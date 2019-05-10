@@ -3,177 +3,9 @@
 #   * Rearrange models' order
 #   * Make sure each model has one field with primary_key=True
 #   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+#   * Remove `managed = True` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-
-
-class AccRegNum(models.Model):
-    account_id = models.PositiveIntegerField(primary_key=True)
-    key = models.CharField(max_length=32)
-    index = models.PositiveIntegerField()
-    value = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'acc_reg_num'
-        unique_together = (('account_id', 'key', 'index'),)
-
-
-class AccRegStr(models.Model):
-    account_id = models.PositiveIntegerField(primary_key=True)
-    key = models.CharField(max_length=32)
-    index = models.PositiveIntegerField()
-    value = models.CharField(max_length=254)
-
-    class Meta:
-        managed = False
-        db_table = 'acc_reg_str'
-        unique_together = (('account_id', 'key', 'index'),)
-
-
-class Achievement(models.Model):
-    char_id = models.PositiveIntegerField(primary_key=True)
-    id = models.BigIntegerField()
-    count1 = models.PositiveIntegerField()
-    count2 = models.PositiveIntegerField()
-    count3 = models.PositiveIntegerField()
-    count4 = models.PositiveIntegerField()
-    count5 = models.PositiveIntegerField()
-    count6 = models.PositiveIntegerField()
-    count7 = models.PositiveIntegerField()
-    count8 = models.PositiveIntegerField()
-    count9 = models.PositiveIntegerField()
-    count10 = models.PositiveIntegerField()
-    completed = models.DateTimeField(blank=True, null=True)
-    rewarded = models.DateTimeField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'achievement'
-        unique_together = (('char_id', 'id'),)
-
-
-class Auction(models.Model):
-    auction_id = models.BigAutoField(primary_key=True)
-    seller_id = models.PositiveIntegerField()
-    seller_name = models.CharField(max_length=30)
-    buyer_id = models.PositiveIntegerField()
-    buyer_name = models.CharField(max_length=30)
-    price = models.PositiveIntegerField()
-    buynow = models.PositiveIntegerField()
-    hours = models.SmallIntegerField()
-    timestamp = models.PositiveIntegerField()
-    nameid = models.PositiveSmallIntegerField()
-    item_name = models.CharField(max_length=50)
-    type = models.SmallIntegerField()
-    refine = models.PositiveIntegerField()
-    attribute = models.PositiveIntegerField()
-    card0 = models.PositiveSmallIntegerField()
-    card1 = models.PositiveSmallIntegerField()
-    card2 = models.PositiveSmallIntegerField()
-    card3 = models.PositiveSmallIntegerField()
-    option_id0 = models.SmallIntegerField()
-    option_val0 = models.SmallIntegerField()
-    option_parm0 = models.IntegerField()
-    option_id1 = models.SmallIntegerField()
-    option_val1 = models.SmallIntegerField()
-    option_parm1 = models.IntegerField()
-    option_id2 = models.SmallIntegerField()
-    option_val2 = models.SmallIntegerField()
-    option_parm2 = models.IntegerField()
-    option_id3 = models.SmallIntegerField()
-    option_val3 = models.SmallIntegerField()
-    option_parm3 = models.IntegerField()
-    option_id4 = models.SmallIntegerField()
-    option_val4 = models.SmallIntegerField()
-    option_parm4 = models.IntegerField()
-    unique_id = models.BigIntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'auction'
-
-
-class BonusScript(models.Model):
-    char_id = models.PositiveIntegerField()
-    script = models.TextField()
-    tick = models.BigIntegerField()
-    flag = models.PositiveSmallIntegerField()
-    type = models.PositiveIntegerField()
-    icon = models.SmallIntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'bonus_script'
-
-
-class BuyingstoreItems(models.Model):
-    buyingstore_id = models.PositiveIntegerField()
-    index = models.PositiveSmallIntegerField()
-    item_id = models.PositiveIntegerField()
-    amount = models.PositiveSmallIntegerField()
-    price = models.PositiveIntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'buyingstore_items'
-
-
-class Buyingstores(models.Model):
-    id = models.PositiveIntegerField(primary_key=True)
-    account_id = models.PositiveIntegerField()
-    char_id = models.PositiveIntegerField()
-    sex = models.CharField(max_length=1)
-    map = models.CharField(max_length=20)
-    x = models.PositiveSmallIntegerField()
-    y = models.PositiveSmallIntegerField()
-    title = models.CharField(max_length=80)
-    limit = models.PositiveIntegerField()
-    body_direction = models.CharField(max_length=1)
-    head_direction = models.CharField(max_length=1)
-    sit = models.CharField(max_length=1)
-    autotrade = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'buyingstores'
-
-
-class CartInventory(models.Model):
-    char_id = models.IntegerField()
-    nameid = models.PositiveSmallIntegerField()
-    amount = models.IntegerField()
-    equip = models.PositiveIntegerField()
-    identify = models.SmallIntegerField()
-    refine = models.PositiveIntegerField()
-    attribute = models.IntegerField()
-    card0 = models.PositiveSmallIntegerField()
-    card1 = models.PositiveSmallIntegerField()
-    card2 = models.PositiveSmallIntegerField()
-    card3 = models.PositiveSmallIntegerField()
-    option_id0 = models.SmallIntegerField()
-    option_val0 = models.SmallIntegerField()
-    option_parm0 = models.IntegerField()
-    option_id1 = models.SmallIntegerField()
-    option_val1 = models.SmallIntegerField()
-    option_parm1 = models.IntegerField()
-    option_id2 = models.SmallIntegerField()
-    option_val2 = models.SmallIntegerField()
-    option_parm2 = models.IntegerField()
-    option_id3 = models.SmallIntegerField()
-    option_val3 = models.SmallIntegerField()
-    option_parm3 = models.IntegerField()
-    option_id4 = models.SmallIntegerField()
-    option_val4 = models.SmallIntegerField()
-    option_parm4 = models.IntegerField()
-    expire_time = models.PositiveIntegerField()
-    bound = models.PositiveIntegerField()
-    unique_id = models.BigIntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'cart_inventory'
 
 class Login(models.Model):
     GENDER = (
@@ -185,7 +17,7 @@ class Login(models.Model):
     user_pass = models.CharField(max_length=32, verbose_name='Password')
     sex = models.CharField(max_length=1, choices=GENDER, verbose_name='Gender')
     email = models.CharField(max_length=39, verbose_name='Email', unique=True)
-    group_id = models.IntegerField(null=True, default=0)
+    group_id = models.IntegerField(null=True, default=1)
     state = models.PositiveIntegerField(null=True, default=0)
     unban_time = models.PositiveIntegerField(null=True, default=0)
     expiration_time = models.PositiveIntegerField(null=True, default=0)
@@ -200,7 +32,7 @@ class Login(models.Model):
     old_group = models.IntegerField(null=True, default=0)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'login'
 
 class Char(models.Model):
@@ -270,30 +102,197 @@ class Char(models.Model):
     show_equip = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'char'
 
-
-class CharRegNum(models.Model):
-    char_id = models.PositiveIntegerField(primary_key=True)
+class AccRegNum(models.Model):
+    account_id = models.ForeignKey(Login, primary_key=True, on_delete=models.CASCADE)
     key = models.CharField(max_length=32)
     index = models.PositiveIntegerField()
     value = models.IntegerField()
 
     class Meta:
-        managed = False
-        db_table = 'char_reg_num'
-        unique_together = (('char_id', 'key', 'index'),)
+        managed = True
+        db_table = 'acc_reg_num'
+        unique_together = (('account_id', 'key', 'index'),)
 
 
-class CharRegStr(models.Model):
-    char_id = models.PositiveIntegerField(primary_key=True)
+class AccRegStr(models.Model):
+    account_id = models.ForeignKey(Login, primary_key=True, on_delete=models.CASCADE)
     key = models.CharField(max_length=32)
     index = models.PositiveIntegerField()
     value = models.CharField(max_length=254)
 
     class Meta:
-        managed = False
+        managed = True
+        db_table = 'acc_reg_str'
+        unique_together = (('account_id', 'key', 'index'),)
+
+
+class Achievement(models.Model):
+    char_id = models.ForeignKey(Char, primary_key=True, on_delete=models.CASCADE)
+    id = models.BigIntegerField()
+    count1 = models.PositiveIntegerField()
+    count2 = models.PositiveIntegerField()
+    count3 = models.PositiveIntegerField()
+    count4 = models.PositiveIntegerField()
+    count5 = models.PositiveIntegerField()
+    count6 = models.PositiveIntegerField()
+    count7 = models.PositiveIntegerField()
+    count8 = models.PositiveIntegerField()
+    count9 = models.PositiveIntegerField()
+    count10 = models.PositiveIntegerField()
+    completed = models.DateTimeField(blank=True, null=True)
+    rewarded = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'achievement'
+        unique_together = (('char_id', 'id'),)
+
+
+class Auction(models.Model):
+    auction_id = models.BigAutoField(primary_key=True)
+    seller_id = models.PositiveIntegerField()
+    seller_name = models.CharField(max_length=30)
+    buyer_id = models.PositiveIntegerField()
+    buyer_name = models.CharField(max_length=30)
+    price = models.PositiveIntegerField()
+    buynow = models.PositiveIntegerField()
+    hours = models.SmallIntegerField()
+    timestamp = models.PositiveIntegerField()
+    nameid = models.PositiveSmallIntegerField()
+    item_name = models.CharField(max_length=50)
+    type = models.SmallIntegerField()
+    refine = models.PositiveIntegerField()
+    attribute = models.PositiveIntegerField()
+    card0 = models.PositiveSmallIntegerField()
+    card1 = models.PositiveSmallIntegerField()
+    card2 = models.PositiveSmallIntegerField()
+    card3 = models.PositiveSmallIntegerField()
+    option_id0 = models.SmallIntegerField()
+    option_val0 = models.SmallIntegerField()
+    option_parm0 = models.IntegerField()
+    option_id1 = models.SmallIntegerField()
+    option_val1 = models.SmallIntegerField()
+    option_parm1 = models.IntegerField()
+    option_id2 = models.SmallIntegerField()
+    option_val2 = models.SmallIntegerField()
+    option_parm2 = models.IntegerField()
+    option_id3 = models.SmallIntegerField()
+    option_val3 = models.SmallIntegerField()
+    option_parm3 = models.IntegerField()
+    option_id4 = models.SmallIntegerField()
+    option_val4 = models.SmallIntegerField()
+    option_parm4 = models.IntegerField()
+    unique_id = models.BigIntegerField()
+
+    class Meta:
+        managed = True
+        db_table = 'auction'
+
+
+class BonusScript(models.Model):
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
+    script = models.TextField()
+    tick = models.BigIntegerField()
+    flag = models.PositiveSmallIntegerField()
+    type = models.PositiveIntegerField()
+    icon = models.SmallIntegerField()
+
+    class Meta:
+        managed = True
+        db_table = 'bonus_script'
+
+
+class BuyingstoreItems(models.Model):
+    buyingstore_id = models.PositiveIntegerField()
+    index = models.PositiveSmallIntegerField()
+    item_id = models.PositiveIntegerField()
+    amount = models.PositiveSmallIntegerField()
+    price = models.PositiveIntegerField()
+
+    class Meta:
+        managed = True
+        db_table = 'buyingstore_items'
+
+
+class Buyingstores(models.Model):
+    id = models.PositiveIntegerField(primary_key=True)
+    account_id = models.ForeignKey(Login, on_delete=models.CASCADE)
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
+    sex = models.CharField(max_length=1)
+    map = models.CharField(max_length=20)
+    x = models.PositiveSmallIntegerField()
+    y = models.PositiveSmallIntegerField()
+    title = models.CharField(max_length=80)
+    limit = models.PositiveIntegerField()
+    body_direction = models.CharField(max_length=1)
+    head_direction = models.CharField(max_length=1)
+    sit = models.CharField(max_length=1)
+    autotrade = models.IntegerField()
+
+    class Meta:
+        managed = True
+        db_table = 'buyingstores'
+
+
+class CartInventory(models.Model):
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
+    nameid = models.PositiveSmallIntegerField()
+    amount = models.IntegerField()
+    equip = models.PositiveIntegerField()
+    identify = models.SmallIntegerField()
+    refine = models.PositiveIntegerField()
+    attribute = models.IntegerField()
+    card0 = models.PositiveSmallIntegerField()
+    card1 = models.PositiveSmallIntegerField()
+    card2 = models.PositiveSmallIntegerField()
+    card3 = models.PositiveSmallIntegerField()
+    option_id0 = models.SmallIntegerField()
+    option_val0 = models.SmallIntegerField()
+    option_parm0 = models.IntegerField()
+    option_id1 = models.SmallIntegerField()
+    option_val1 = models.SmallIntegerField()
+    option_parm1 = models.IntegerField()
+    option_id2 = models.SmallIntegerField()
+    option_val2 = models.SmallIntegerField()
+    option_parm2 = models.IntegerField()
+    option_id3 = models.SmallIntegerField()
+    option_val3 = models.SmallIntegerField()
+    option_parm3 = models.IntegerField()
+    option_id4 = models.SmallIntegerField()
+    option_val4 = models.SmallIntegerField()
+    option_parm4 = models.IntegerField()
+    expire_time = models.PositiveIntegerField()
+    bound = models.PositiveIntegerField()
+    unique_id = models.BigIntegerField()
+
+    class Meta:
+        managed = True
+        db_table = 'cart_inventory'
+
+
+class CharRegNum(models.Model):
+    char_id = models.ForeignKey(Char, primary_key=True, on_delete=models.CASCADE)
+    key = models.CharField(max_length=32)
+    index = models.PositiveIntegerField()
+    value = models.IntegerField()
+
+    class Meta:
+        managed = True
+        db_table = 'char_reg_num'
+        unique_together = (('char_id', 'key', 'index'),)
+
+
+class CharRegStr(models.Model):
+    char_id = models.ForeignKey(Char, primary_key=True, on_delete=models.CASCADE)
+    key = models.CharField(max_length=32)
+    index = models.PositiveIntegerField()
+    value = models.CharField(max_length=254)
+
+    class Meta:
+        managed = True
         db_table = 'char_reg_str'
         unique_together = (('char_id', 'key', 'index'),)
 
@@ -301,7 +300,7 @@ class CharRegStr(models.Model):
 class Charlog(models.Model):
     time = models.DateTimeField()
     char_msg = models.CharField(max_length=255)
-    account_id = models.IntegerField()
+    account_id = models.ForeignKey(Login, on_delete=models.CASCADE)
     char_num = models.IntegerField()
     name = models.CharField(max_length=23)
     str = models.PositiveIntegerField()
@@ -314,7 +313,7 @@ class Charlog(models.Model):
     hair_color = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'charlog'
 
 
@@ -326,18 +325,18 @@ class Clan(models.Model):
     max_member = models.PositiveSmallIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'clan'
 
 
 class ClanAlliance(models.Model):
-    clan_id = models.PositiveIntegerField(primary_key=True)
+    clan_id = models.ForeignKey(Clan, primary_key=True, on_delete=models.CASCADE)
     opposition = models.PositiveIntegerField()
     alliance_id = models.PositiveIntegerField()
     name = models.CharField(max_length=24)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'clan_alliance'
         unique_together = (('clan_id', 'alliance_id'),)
 
@@ -350,13 +349,13 @@ class DbRoulette(models.Model):
     flag = models.PositiveSmallIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'db_roulette'
 
 
 class Elemental(models.Model):
     ele_id = models.AutoField(primary_key=True)
-    char_id = models.IntegerField()
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
     class_field = models.PositiveIntegerField(db_column='class')  # Field renamed because it was a Python reserved word.
     mode = models.PositiveIntegerField()
     hp = models.PositiveIntegerField()
@@ -374,40 +373,40 @@ class Elemental(models.Model):
     life_time = models.BigIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'elemental'
 
 
 class Friends(models.Model):
-    char_id = models.IntegerField()
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
     friend_account = models.IntegerField()
     friend_id = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'friends'
 
 
 class GlobalAccRegNum(models.Model):
-    account_id = models.PositiveIntegerField(primary_key=True)
+    account_id = models.ForeignKey(Login, primary_key=True, on_delete=models.CASCADE)
     key = models.CharField(max_length=32)
     index = models.PositiveIntegerField()
     value = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'global_acc_reg_num'
         unique_together = (('account_id', 'key', 'index'),)
 
 
 class GlobalAccRegStr(models.Model):
-    account_id = models.PositiveIntegerField(primary_key=True)
+    account_id = models.ForeignKey(Login, primary_key=True, on_delete=models.CASCADE)
     key = models.CharField(max_length=32)
     index = models.PositiveIntegerField()
     value = models.CharField(max_length=254)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'global_acc_reg_str'
         unique_together = (('account_id', 'key', 'index'),)
 
@@ -415,7 +414,7 @@ class GlobalAccRegStr(models.Model):
 class Guild(models.Model):
     guild_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=24)
-    char_id = models.PositiveIntegerField()
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
     master = models.CharField(max_length=24)
     guild_lv = models.PositiveIntegerField()
     connect_member = models.PositiveIntegerField()
@@ -432,26 +431,26 @@ class Guild(models.Model):
     last_master_change = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'guild'
         unique_together = (('guild_id', 'char_id'),)
 
 
 class GuildAlliance(models.Model):
-    guild_id = models.PositiveIntegerField(primary_key=True)
+    guild_id = models.ForeignKey(Guild, primary_key=True, on_delete=models.CASCADE)
     opposition = models.PositiveIntegerField()
     alliance_id = models.PositiveIntegerField()
     name = models.CharField(max_length=24)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'guild_alliance'
         unique_together = (('guild_id', 'alliance_id'),)
 
 
 class GuildCastle(models.Model):
     castle_id = models.PositiveIntegerField(primary_key=True)
-    guild_id = models.PositiveIntegerField()
+    guild_id = models.ForeignKey(Guild, on_delete=models.CASCADE)
     economy = models.PositiveIntegerField()
     defense = models.PositiveIntegerField()
     triggere = models.PositiveIntegerField(db_column='triggerE')  # Field name made lowercase.
@@ -470,26 +469,26 @@ class GuildCastle(models.Model):
     visibleg7 = models.PositiveIntegerField(db_column='visibleG7')  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'guild_castle'
 
 
 class GuildExpulsion(models.Model):
-    guild_id = models.PositiveIntegerField(primary_key=True)
+    guild_id = models.ForeignKey(Guild, primary_key=True, on_delete=models.CASCADE)
     account_id = models.PositiveIntegerField()
     name = models.CharField(max_length=24)
     mes = models.CharField(max_length=40)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'guild_expulsion'
         unique_together = (('guild_id', 'name'),)
 
 
 class GuildMember(models.Model):
-    guild_id = models.PositiveIntegerField(primary_key=True)
-    account_id = models.PositiveIntegerField()
-    char_id = models.PositiveIntegerField()
+    guild_id = models.ForeignKey(Guild, primary_key=True, on_delete=models.CASCADE)
+    account_id = models.ForeignKey(Login, on_delete=models.CASCADE)
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
     hair = models.PositiveIntegerField()
     hair_color = models.PositiveSmallIntegerField()
     gender = models.PositiveIntegerField()
@@ -502,37 +501,37 @@ class GuildMember(models.Model):
     name = models.CharField(max_length=24)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'guild_member'
         unique_together = (('guild_id', 'char_id'),)
 
 
 class GuildPosition(models.Model):
-    guild_id = models.PositiveIntegerField(primary_key=True)
+    guild_id = models.ForeignKey(Guild, primary_key=True, on_delete=models.CASCADE)
     position = models.PositiveIntegerField()
     name = models.CharField(max_length=24)
     mode = models.PositiveSmallIntegerField()
     exp_mode = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'guild_position'
         unique_together = (('guild_id', 'position'),)
 
 
 class GuildSkill(models.Model):
-    guild_id = models.PositiveIntegerField(primary_key=True)
+    guild_id = models.ForeignKey(Guild, primary_key=True, on_delete=models.CASCADE)
     id = models.PositiveSmallIntegerField()
     lv = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'guild_skill'
         unique_together = (('guild_id', 'id'),)
 
 
 class GuildStorage(models.Model):
-    guild_id = models.PositiveIntegerField()
+    guild_id = models.ForeignKey(Guild, on_delete=models.CASCADE)
     nameid = models.PositiveSmallIntegerField()
     amount = models.PositiveIntegerField()
     equip = models.PositiveIntegerField()
@@ -563,14 +562,14 @@ class GuildStorage(models.Model):
     unique_id = models.BigIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'guild_storage'
 
 
 class GuildStorageLog(models.Model):
-    guild_id = models.PositiveIntegerField()
+    guild_id = models.ForeignKey(Guild, on_delete=models.CASCADE)
     time = models.DateTimeField()
-    char_id = models.IntegerField()
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
     name = models.CharField(max_length=24)
     nameid = models.PositiveSmallIntegerField()
     amount = models.IntegerField()
@@ -601,13 +600,13 @@ class GuildStorageLog(models.Model):
     bound = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'guild_storage_log'
 
 
 class Homunculus(models.Model):
     homun_id = models.AutoField(primary_key=True)
-    char_id = models.IntegerField()
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
     class_field = models.PositiveIntegerField(db_column='class')  # Field renamed because it was a Python reserved word.
     prev_class = models.IntegerField()
     name = models.CharField(max_length=24)
@@ -632,19 +631,19 @@ class Homunculus(models.Model):
     autofeed = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'homunculus'
 
 
 class Hotkey(models.Model):
-    char_id = models.IntegerField(primary_key=True)
+    char_id = models.ForeignKey(Char, primary_key=True, on_delete=models.CASCADE)
     hotkey = models.PositiveIntegerField()
     type = models.PositiveIntegerField()
     itemskill_id = models.PositiveIntegerField()
     skill_lvl = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'hotkey'
         unique_together = (('char_id', 'hotkey'),)
 
@@ -654,7 +653,7 @@ class Interlog(models.Model):
     log = models.CharField(max_length=255)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'interlog'
 
 
@@ -663,12 +662,12 @@ class Interreg(models.Model):
     value = models.CharField(max_length=20)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'interreg'
 
 
 class Inventory(models.Model):
-    char_id = models.PositiveIntegerField()
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
     nameid = models.PositiveSmallIntegerField()
     amount = models.PositiveIntegerField()
     equip = models.PositiveIntegerField()
@@ -701,7 +700,7 @@ class Inventory(models.Model):
     equip_switch = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'inventory'
 
 
@@ -712,7 +711,7 @@ class Ipbanlist(models.Model):
     reason = models.CharField(max_length=255)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ipbanlist'
 
 
@@ -722,7 +721,7 @@ class ItemCashDb(models.Model):
     price = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'item_cash_db'
         unique_together = (('tab', 'item_id'),)
 
@@ -733,7 +732,7 @@ class ItemCashDb2(models.Model):
     price = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'item_cash_db2'
         unique_together = (('tab', 'item_id'),)
 
@@ -763,7 +762,7 @@ class ItemDb(models.Model):
     unequip_script = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'item_db'
 
 
@@ -792,7 +791,7 @@ class ItemDb2(models.Model):
     unequip_script = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'item_db2'
 
 
@@ -821,7 +820,7 @@ class ItemDb2Re(models.Model):
     unequip_script = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'item_db2_re'
 
 
@@ -850,7 +849,7 @@ class ItemDbRe(models.Model):
     unequip_script = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'item_db_re'
 
 
@@ -868,7 +867,7 @@ class Mail(models.Model):
     type = models.SmallIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mail'
 
 
@@ -903,7 +902,7 @@ class MailAttachments(models.Model):
     bound = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mail_attachments'
         unique_together = (('id', 'index'),)
 
@@ -914,7 +913,7 @@ class Mapreg(models.Model):
     value = models.CharField(max_length=255)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mapreg'
         unique_together = (('varname', 'index'),)
 
@@ -927,26 +926,26 @@ class Market(models.Model):
     flag = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'market'
         unique_together = (('name', 'nameid'),)
 
 
 class Memo(models.Model):
     memo_id = models.AutoField(primary_key=True)
-    char_id = models.PositiveIntegerField()
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
     map = models.CharField(max_length=11)
     x = models.PositiveSmallIntegerField()
     y = models.PositiveSmallIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'memo'
 
 
 class Mercenary(models.Model):
     mer_id = models.AutoField(primary_key=True)
-    char_id = models.IntegerField()
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
     class_field = models.PositiveIntegerField(db_column='class')  # Field renamed because it was a Python reserved word.
     hp = models.PositiveIntegerField()
     sp = models.PositiveIntegerField()
@@ -954,12 +953,12 @@ class Mercenary(models.Model):
     life_time = models.BigIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mercenary'
 
 
 class MercenaryOwner(models.Model):
-    char_id = models.IntegerField(primary_key=True)
+    char_id = models.ForeignKey(Char, primary_key=True, on_delete=models.CASCADE)
     merc_id = models.IntegerField()
     arch_calls = models.IntegerField()
     arch_faith = models.IntegerField()
@@ -969,7 +968,7 @@ class MercenaryOwner(models.Model):
     sword_faith = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mercenary_owner'
 
 
@@ -1033,7 +1032,7 @@ class MobDb(models.Model):
     dropcardper = models.PositiveSmallIntegerField(db_column='DropCardper')  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mob_db'
 
 
@@ -1097,7 +1096,7 @@ class MobDb2(models.Model):
     dropcardper = models.PositiveSmallIntegerField(db_column='DropCardper')  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mob_db2'
 
 
@@ -1161,7 +1160,7 @@ class MobDb2Re(models.Model):
     dropcardper = models.PositiveSmallIntegerField(db_column='DropCardper')  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mob_db2_re'
 
 
@@ -1225,7 +1224,7 @@ class MobDbRe(models.Model):
     dropcardper = models.PositiveSmallIntegerField(db_column='DropCardper')  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mob_db_re'
 
 
@@ -1251,7 +1250,7 @@ class MobSkillDb(models.Model):
     chat = models.TextField(db_column='CHAT', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mob_skill_db'
 
 
@@ -1277,7 +1276,7 @@ class MobSkillDb2(models.Model):
     chat = models.TextField(db_column='CHAT', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mob_skill_db2'
 
 
@@ -1303,7 +1302,7 @@ class MobSkillDb2Re(models.Model):
     chat = models.TextField(db_column='CHAT', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mob_skill_db2_re'
 
 
@@ -1329,7 +1328,7 @@ class MobSkillDbRe(models.Model):
     chat = models.TextField(db_column='CHAT', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mob_skill_db_re'
 
 
@@ -1342,7 +1341,7 @@ class Party(models.Model):
     leader_char = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'party'
 
 
@@ -1350,8 +1349,8 @@ class Pet(models.Model):
     pet_id = models.AutoField(primary_key=True)
     class_field = models.PositiveIntegerField(db_column='class')  # Field renamed because it was a Python reserved word.
     name = models.CharField(max_length=24)
-    account_id = models.PositiveIntegerField()
-    char_id = models.PositiveIntegerField()
+    account_id = models.ForeignKey(Login, on_delete=models.CASCADE)
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
     level = models.PositiveSmallIntegerField()
     egg_id = models.PositiveSmallIntegerField()
     equip = models.PositiveIntegerField()
@@ -1362,12 +1361,12 @@ class Pet(models.Model):
     autofeed = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'pet'
 
 
 class Quest(models.Model):
-    char_id = models.PositiveIntegerField(primary_key=True)
+    char_id = models.ForeignKey(Char, primary_key=True, on_delete=models.CASCADE)
     quest_id = models.PositiveIntegerField()
     state = models.CharField(max_length=1)
     time = models.PositiveIntegerField()
@@ -1376,7 +1375,7 @@ class Quest(models.Model):
     count3 = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'quest'
         unique_together = (('char_id', 'quest_id'),)
 
@@ -1389,7 +1388,7 @@ class Ragsrvinfo(models.Model):
     drop = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ragsrvinfo'
 
 
@@ -1400,13 +1399,13 @@ class Sales(models.Model):
     amount = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'sales'
 
 
 class ScData(models.Model):
-    account_id = models.PositiveIntegerField()
-    char_id = models.PositiveIntegerField()
+    account_id = models.ForeignKey(Login, on_delete=models.CASCADE)
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
     type = models.PositiveSmallIntegerField()
     tick = models.BigIntegerField()
     val1 = models.IntegerField()
@@ -1415,41 +1414,41 @@ class ScData(models.Model):
     val4 = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'sc_data'
 
 
 class Skill(models.Model):
-    char_id = models.PositiveIntegerField(primary_key=True)
+    char_id = models.ForeignKey(Char, primary_key=True, on_delete=models.CASCADE)
     id = models.PositiveSmallIntegerField()
     lv = models.PositiveIntegerField()
     flag = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'skill'
         unique_together = (('char_id', 'id'),)
 
 
 class SkillHomunculus(models.Model):
-    homun_id = models.IntegerField(primary_key=True)
+    homun_id = models.ForeignKey(Homunculus, primary_key=True, on_delete=models.CASCADE)
     id = models.IntegerField()
     lv = models.SmallIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'skill_homunculus'
         unique_together = (('homun_id', 'id'),)
 
 
 class Skillcooldown(models.Model):
-    account_id = models.PositiveIntegerField()
-    char_id = models.PositiveIntegerField()
+    account_id = models.ForeignKey(Login, on_delete=models.CASCADE)
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
     skill = models.PositiveSmallIntegerField()
     tick = models.BigIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'skillcooldown'
 
 
@@ -1459,12 +1458,12 @@ class Sstatus(models.Model):
     user = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'sstatus'
 
 
 class Storage(models.Model):
-    account_id = models.PositiveIntegerField()
+    account_id = models.ForeignKey(Login, on_delete=models.CASCADE)
     nameid = models.PositiveSmallIntegerField()
     amount = models.PositiveSmallIntegerField()
     equip = models.PositiveIntegerField()
@@ -1495,7 +1494,7 @@ class Storage(models.Model):
     unique_id = models.BigIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'storage'
 
 
@@ -1507,14 +1506,14 @@ class VendingItems(models.Model):
     price = models.PositiveIntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'vending_items'
 
 
 class Vendings(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
-    account_id = models.PositiveIntegerField()
-    char_id = models.PositiveIntegerField()
+    account_id = models.ForeignKey(Login, on_delete=models.CASCADE)
+    char_id = models.ForeignKey(Char, on_delete=models.CASCADE)
     sex = models.CharField(max_length=1)
     map = models.CharField(max_length=20)
     x = models.PositiveSmallIntegerField()
@@ -1526,5 +1525,5 @@ class Vendings(models.Model):
     autotrade = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'vendings'
