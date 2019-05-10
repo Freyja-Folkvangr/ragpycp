@@ -175,6 +175,33 @@ class CartInventory(models.Model):
         managed = False
         db_table = 'cart_inventory'
 
+class Login(models.Model):
+    GENDER = (
+        ('M', 'Male'),
+        ('F', 'Female')
+    )
+    account_id = models.AutoField(primary_key=True)
+    userid = models.CharField(max_length=23, verbose_name='Username')
+    user_pass = models.CharField(max_length=32, verbose_name='Password')
+    sex = models.CharField(max_length=1, choices=GENDER, verbose_name='Gender')
+    email = models.CharField(max_length=39, verbose_name='Email')
+    group_id = models.IntegerField(null=True, default=0)
+    state = models.PositiveIntegerField(null=True, default=0)
+    unban_time = models.PositiveIntegerField(null=True, default=0)
+    expiration_time = models.PositiveIntegerField(null=True, default=0)
+    logincount = models.PositiveIntegerField(null=True, default=0)
+    lastlogin = models.DateTimeField(blank=True, null=True)
+    last_ip = models.CharField(max_length=100)
+    birthdate = models.DateField(blank=True, null=True)
+    character_slots = models.PositiveIntegerField(null=True, default=0)
+    pincode = models.CharField(max_length=4)
+    pincode_change = models.PositiveIntegerField(null=True, default=0)
+    vip_time = models.PositiveIntegerField(null=True, default=0)
+    old_group = models.IntegerField(null=True, default=0)
+
+    class Meta:
+        managed = False
+        db_table = 'login'
 
 class Char(models.Model):
     char_id = models.AutoField(primary_key=True)
@@ -825,31 +852,6 @@ class ItemDbRe(models.Model):
     class Meta:
         managed = False
         db_table = 'item_db_re'
-
-
-class Login(models.Model):
-    account_id = models.AutoField(primary_key=True)
-    userid = models.CharField(max_length=23)
-    user_pass = models.CharField(max_length=32)
-    sex = models.CharField(max_length=1)
-    email = models.CharField(max_length=39)
-    group_id = models.IntegerField()
-    state = models.PositiveIntegerField()
-    unban_time = models.PositiveIntegerField()
-    expiration_time = models.PositiveIntegerField()
-    logincount = models.PositiveIntegerField()
-    lastlogin = models.DateTimeField(blank=True, null=True)
-    last_ip = models.CharField(max_length=100)
-    birthdate = models.DateField(blank=True, null=True)
-    character_slots = models.PositiveIntegerField()
-    pincode = models.CharField(max_length=4)
-    pincode_change = models.PositiveIntegerField()
-    vip_time = models.PositiveIntegerField()
-    old_group = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'login'
 
 
 class Mail(models.Model):
