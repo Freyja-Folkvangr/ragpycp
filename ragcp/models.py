@@ -181,10 +181,10 @@ class Login(models.Model):
         ('F', 'Female')
     )
     account_id = models.AutoField(primary_key=True)
-    userid = models.CharField(max_length=23, verbose_name='Username')
+    userid = models.CharField(max_length=23, verbose_name='Username', unique=True)
     user_pass = models.CharField(max_length=32, verbose_name='Password')
     sex = models.CharField(max_length=1, choices=GENDER, verbose_name='Gender')
-    email = models.CharField(max_length=39, verbose_name='Email')
+    email = models.CharField(max_length=39, verbose_name='Email', unique=True)
     group_id = models.IntegerField(null=True, default=0)
     state = models.PositiveIntegerField(null=True, default=0)
     unban_time = models.PositiveIntegerField(null=True, default=0)
@@ -205,7 +205,7 @@ class Login(models.Model):
 
 class Char(models.Model):
     char_id = models.AutoField(primary_key=True)
-    account_id = models.PositiveIntegerField()
+    account_id = models.ForeignKey(Login, on_delete=models.CASCADE)
     char_num = models.IntegerField()
     name = models.CharField(unique=True, max_length=30)
     class_field = models.PositiveSmallIntegerField(db_column='class')  # Field renamed because it was a Python reserved word.
