@@ -25,12 +25,13 @@ SECRET_KEY = '&h74#_%&b)k9x$xobgi!c7jq)v$l^$#go#26ng!bbc@_y8pofq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'ragcp.apps.RagcpConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
