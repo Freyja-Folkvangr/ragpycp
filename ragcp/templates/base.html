@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--
+
+    WE'RE SO COOL THAT YOU WANT TO SEE OUR SOURCE CODE...
+
+    -->
     <meta charset="UTF-8">
     <title>{% block title %}RagCP{% endblock %}</title>
     {% load staticfiles %}
@@ -9,11 +14,28 @@
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ragcp.css' %}">
 </head>
 
 <body>
 
-<div class="container">
+<!-- Parallax header banner and logo -->
+
+<div class="pre-parallax">
+    <div class="parallax">
+        <div class="container w-100 h-100">
+            <div class="row  align-items-center h-100 justify-content-center text-lg-center">
+                <div class="col-md">
+                    <img src="{% static 'logo.png' %}" width="300px">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Navigation Bar -->
+
+<div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#nogo">RagCP</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -46,6 +68,8 @@
         </div>
     </nav>
 </div>
+
+<!-- Site Content -->
 
 <div class="container">
     {% block body %}

@@ -1,0 +1,30 @@
+.parallax {
+    /* The image used */
+    background-image: url("../background_header.png");
+
+    /* Set a specific height */
+    height: 450px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-position-y: -200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    vertical-align: top;
+    transform-origin: center top;
+    transform: translateZ(-100px) scale(1.1);
+}
+
+.pre-parallax {
+    background-image: url("../main-bg.jpg");
+    background-color: rgb(36, 39, 51);
+}
+
+/* Turn off parallax scrolling for all tablets and phones. Increase/decrease the pixels if needed */
+@media only screen and (max-device-width: 1366px) {
+    .parallax {
+        background-attachment: scroll;
+    }
+}
