@@ -1,16 +1,17 @@
 <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group row justify-content-md-center">
-        <header class="jumbotron subhead" id="overview" style="padding: 2rem 4rem;">
+        <header class="jumbotron subhead" id="overview" style="padding-left: 2rem; padding-right: 2rem; padding-top: 1rem; padding-bottom: 1rem;">
+
+        <!-- Label - Text pairs -->
             {% for field in form %}
-
                 <div class="row justify-content-md-left">
-                    <label class="col-sm-6 col-form-label col-form-label-sm">{{ field.label_tag }}</label>
-                    <div class="col-4"> {{ field }}</div>
+                    <label class="col-sm-4 col-form-label col-form-label-sm">{{ field.label_tag }}</label>
+                    <div class="col-8"> {{ field }}</div>
                 </div>
-
             {% endfor %}
 
+        <!-- Extra text to show -->
             {% if notes %}
                 <div class="col-12">
                     {% for note in notes %}
@@ -20,14 +21,18 @@
                     {% endfor %}
                 </div>
             {% endif %}
+
+        <!-- Display errors if any -->
             {% for field in form %}
-                <div class="col-sm-offset-2">
-                    <span class="text-danger small">{{ field.errors }}</span>
-                </div>
+                {% if field.errors %}
+                    <div class="col-sm-offset-2">
+                        <span class="text-danger small">{{ field.errors }}</span>
+                    </div>
+                {% endif %}
             {% endfor %}
             <hr>
             <div class="row">
-                <div class="col-2">
+                <div class="col-12">
                     <button type="submit" class="btn btn-success">Send</button>
                 </div>
             </div>
