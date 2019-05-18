@@ -6,6 +6,7 @@
 #   * Remove `managed = True` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from users.models import Login
 
 
 class AccRegNum(models.Model):
@@ -825,31 +826,6 @@ class ItemDbRe(models.Model):
     class Meta:
         managed = True
         db_table = 'item_db_re'
-
-
-class Login(models.Model):
-    account_id = models.AutoField(primary_key=True)
-    userid = models.CharField(max_length=23)
-    user_pass = models.CharField(max_length=32)
-    sex = models.CharField(max_length=1)
-    email = models.CharField(max_length=39)
-    group_id = models.IntegerField()
-    state = models.PositiveIntegerField()
-    unban_time = models.PositiveIntegerField()
-    expiration_time = models.PositiveIntegerField()
-    logincount = models.PositiveIntegerField()
-    lastlogin = models.DateTimeField(blank=True, null=True)
-    last_ip = models.CharField(max_length=100)
-    birthdate = models.DateField(blank=True, null=True)
-    character_slots = models.PositiveIntegerField()
-    pincode = models.CharField(max_length=4)
-    pincode_change = models.PositiveIntegerField()
-    vip_time = models.PositiveIntegerField()
-    old_group = models.IntegerField()
-
-    class Meta:
-        managed = True
-        db_table = 'login'
 
 
 class Mail(models.Model):
