@@ -1,9 +1,36 @@
-{% for field in form %}
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <span class="text-danger small">{{ field.errors }}</span>
-        </div>
-        <label class="control-label col-sm-2" for="song_title">{{ field.label_tag }}</label>
-        <div class="col-sm-10">{{ field }}</div>
+<form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group row justify-content-md-center">
+        <header class="jumbotron subhead" id="overview" style="padding: 2rem 4rem;">
+            {% for field in form %}
+
+                <div class="row justify-content-md-left">
+                    <label class="col-sm-6 col-form-label col-form-label-sm">{{ field.label_tag }}</label>
+                    <div class="col-4"> {{ field }}</div>
+                </div>
+
+            {% endfor %}
+
+            {% if notes %}
+                <div class="col-12">
+                    {% for note in notes %}
+                        <div class="alert alert-info" role="alert">
+                            {{ note }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% for field in form %}
+                <div class="col-sm-offset-2">
+                    <span class="text-danger small">{{ field.errors }}</span>
+                </div>
+            {% endfor %}
+            <hr>
+            <div class="row">
+                <div class="col-2">
+                    <button type="submit" class="btn btn-success">Send</button>
+                </div>
+            </div>
+        </header>
     </div>
-{% endfor %}
+</form>
