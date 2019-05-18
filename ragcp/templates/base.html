@@ -72,9 +72,19 @@
 
 <!-- Site Content -->
 
-<div class="container">
-    {% block body %}
-    {% endblock %}
-</div>
+{% block body_base %}
+    <main role="main" class="container">
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            {% comment %}
+            {% include "_messages.html" %}
+            {% endcomment %}
+            <div class="container justify-content-md-center">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
 </body>
 </html>
