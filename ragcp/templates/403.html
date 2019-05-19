@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Forbidden" %}{% endblock %}
+
+{% block body %}
+    <h1>😬!</h1>
+    <header class="jumbotron subhead" id="overview">
+        <h1>:(</h1>
+        <h3>{% trans "Forbidden" %}</h3>
+        <p class="lead">{% trans "Sorry, you don't have access to that resource." %}</p>
+    </header>
+{% endblock %}

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from ragcp.views import index
+from ragcp.views import index, forbidden
 from django.conf.urls import url
 
 app_name = 'ragcp'
@@ -25,7 +25,11 @@ urlpatterns = [
 
     url(r'^$', index, name='index'),
 
+    url('403/', forbidden, name='forbidden'),
+
     path('users/', include('users.urls')),  # new
     path('users/', include('django.contrib.auth.urls')),  # new
+
+    path('char/', include('char.urls')),
 
 ]

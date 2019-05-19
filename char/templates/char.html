@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>Characters</h1>
+    {% if char_count == 0 %}
+        <div class="row">
+            <div class="col-sm-12">
+                <p>You don't have any character in the server.</p>
+            </div>
+        </div>
+    {% else %}
+        {% for char in chars %}
+            <div class="row">
+                <div class="col-sm-4">
+                    <a href="{% url 'char:char_view' char.char_id %}"> {{ char.name }} </a> levels {{ char.base_level }}/{{ char.job_level }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
