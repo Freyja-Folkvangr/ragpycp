@@ -4,7 +4,7 @@ from users.models import Login
 # Create your models here.
 class Char(models.Model):
     char_id = models.AutoField(primary_key=True)
-    account_id = models.ForeignKey(Login, on_delete=models.CASCADE)
+    account_id = models.ForeignKey(Login, on_delete=models.CASCADE, db_column='account_id')
     char_num = models.IntegerField()
     name = models.CharField(unique=True, max_length=30)
     class_field = models.PositiveSmallIntegerField(db_column='class')  # Field renamed because it was a Python reserved word.
