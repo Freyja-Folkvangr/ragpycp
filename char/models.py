@@ -68,6 +68,27 @@ class Char(models.Model):
     title_id = models.PositiveIntegerField()
     show_equip = models.PositiveIntegerField()
 
+    def __str__(self):
+        return '%s %s %s/%s' % (self.name, self.class_field, self.base_level, self.job_level)
+
+    def reset_position(self):
+        self.last_map = 'prontera'
+        self.last_x = 160
+        self.last_y = 160
+        return self.save()
+
+    def reset_save_position(self):
+        self.save_map = 'prontera'
+        self.save_x = 160
+        self.save_y = 160
+        return self.save()
+
+    def reset_appearence(self):
+        self.hair = 1
+        self.hair_color = 1
+        self.clothes_color = 1
+        return self.save()
+
     class Meta:
         managed = True
         db_table = 'char'
