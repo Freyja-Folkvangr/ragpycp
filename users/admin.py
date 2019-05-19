@@ -8,9 +8,15 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import Login
 
-class CustomUserAdmin(UserAdmin):
-    model = Login
-    add_form = CustomUserCreationForm
+@admin.register(Login)
+class MyUserAdmin(UserAdmin):
     form = CustomUserChangeForm
-
-admin.site.register(Login, CustomUserAdmin)
+    add_form = CustomUserCreationForm
+    fieldsets = UserAdmin.fieldsets + (
+        ('Ragnarok Settings', {'fields': ('sex', 'birthdate', 'character_slots')}),
+        ('Ragnarok Privileges', {'fields': ('state', 'group_id', 'vip_time', 'old_group')}),
+        ('Ragnarok Security',
+         {'fields': ('pincode', 'pincode_change', 'unban_time', 'expiration_time', 'logincount', 'last_ip')})
+    )
+    list_display = ('username', 'id', 'email', 'is_staff', 'is_active', 'state')
+    search_fields = ['id', 'username', 'email']

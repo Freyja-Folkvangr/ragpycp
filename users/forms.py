@@ -4,13 +4,11 @@ from .models import Login
 
 
 class CustomUserCreationForm(UserCreationForm):
-
     class Meta(UserCreationForm):
         model = Login
-        fields = ('username', 'email', 'sex', 'birthdate')
+        fields = ('username','first_name', 'last_name', 'email', 'sex', 'birthdate')
+
 
 class CustomUserChangeForm(UserChangeForm):
-
-    class Meta:
+    class Meta(UserChangeForm.Meta):
         model = Login
-        fields = UserChangeForm.Meta.fields
