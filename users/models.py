@@ -26,7 +26,7 @@ class Login(AbstractUser):
     logincount = models.PositiveIntegerField(default=0, blank=True)
     last_login = models.DateTimeField(blank=True, null=True, db_column='lastlogin')
     last_ip = models.CharField(max_length=100, null=True, blank=True)
-    birthdate = models.DateField(null=True, blank=True)
+    birthdate = models.DateField(null=True, blank=True, default='2019-05-19')
     character_slots = models.PositiveIntegerField(null=True, blank=True)
     pincode = models.CharField(max_length=4, null=True, blank=True)
     pincode_change = models.PositiveIntegerField(default=0)
