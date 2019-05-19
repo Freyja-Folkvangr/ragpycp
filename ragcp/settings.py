@@ -185,4 +185,3 @@ FEED_ADDRESS = get_rss_address()
 
 # User settings
 FEED_ENABLED = True
-
