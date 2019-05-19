@@ -7,8 +7,8 @@ class CustomUserManager(UserManager):
 
 class Login(AbstractUser):
     SEX = (
-        ('M', 'Male'),
-        ('F', 'Female')
+        ('M', '👦🏻'),
+        ('F', '👧🏻')
     )
     STATES = (
         (0, 'Active'),
@@ -17,7 +17,7 @@ class Login(AbstractUser):
     id = models.AutoField(primary_key=True, db_column='account_id', verbose_name='Account ID')
     username = models.CharField(unique=True, max_length=23, db_column='userid')
     password = models.CharField(max_length=32, db_column='user_pass')
-    sex = models.CharField(choices=SEX, max_length=1, verbose_name='Gender')
+    sex = models.CharField(choices=SEX, max_length=1, verbose_name='Gender', default='F')
     email = models.CharField(unique=True, max_length=39)
     group_id = models.IntegerField(default=0, null=False)
     state = models.PositiveIntegerField(choices=STATES, default=0, null=False, verbose_name='RO State')
