@@ -1,17 +1,95 @@
 {% extends 'base.html' %}
 
+
 {% block body %}
+
+
     <div class="row">
         <div class="col-sm-12">
-            <h1>Viewing char: {{ char.name }}</h1>
-            <h5>{{ char.get_job_name }} {{ char.base_level }}/{{ char.job_level }}</h5>
+            <h1>
+                {% if char.online %}
+                    <span style="color: green;">*</span>
+                {% else %}
+                    <span style="color: red;">*</span>
+                {% endif %}
+                {{ char.name }}
+            </h1>
         </div>
     </div>
-    <hr>
+
     <div class="row">
         <div class="col-sm-12">
-            Hi
+            <h3>Basic Info</h3>
         </div>
     </div>
-    That's all
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h6>{{ char.get_job_name }} {{ char.base_level }}/{{ char.job_level }}</h6>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <table style="width:100%">
+                <tr>
+                    <th>Zeny</th>
+                    <th>Guild</th>
+                    <th>Guild Position</th>
+                    <th>Slot</th>
+                    <th>Mother</th>
+                    <th>Father</th>
+                    <th>Pet</th>
+                    <th>Homun</th>
+                    <th>Party</th>
+                    <th>Party Leader</th>
+                </tr>
+                <tr>
+                    <td>{{ char.zeny }} 💰</td>
+                    <td>{{ char.guild_id }}</td>
+                    <td>Not Supported</td>
+                    <td>Not Supported</td>
+                    <td>{{ char.mother }}</td>
+                    <td>{{ char.father }}</td>
+                    <td>{{ char.pet_id }}</td>
+                    <td>{{ char.homun_id }}</td>
+                    <td>{{ char.party_id }}</td>
+                    <td>Not Supported</td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Friend List</h3>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            Not supported
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Inventory</h3>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            Not Supported
+        </div>
+    </div>
+
+    {% include '_char_options.html' %}
+
 {% endblock %}
