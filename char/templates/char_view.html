@@ -8,9 +8,13 @@
         <div class="col-sm-12">
             <h1>
                 {% if char.online %}
+                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Online status">
                     <span style="color: green;">*</span>
+                    </span>
                 {% else %}
+                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Online status">
                     <span style="color: red;">*</span>
+                    </span>
                 {% endif %}
                 {{ char.name }}
             </h1>
@@ -19,7 +23,7 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <h3>Basic Info</h3>
+            <h2>Basic Info</h2>
         </div>
     </div>
 
@@ -31,36 +35,110 @@
 
 
     <div class="row">
-        <div class="col-sm-12">
-            <table style="width:100%">
-                <tr>
-                    <th>Zeny</th>
-                    <th>Guild</th>
-                    <th>Guild Position</th>
-                    <th>Slot</th>
-                    <th>Mother</th>
-                    <th>Father</th>
-                    <th>Pet</th>
-                    <th>Homun</th>
-                    <th>Party</th>
-                    <th>Party Leader</th>
-                </tr>
-                <tr>
-                    <td>{{ char.zeny }} 💰</td>
-                    <td>{{ char.guild_id }}</td>
-                    <td>Not Supported</td>
-                    <td>Not Supported</td>
-                    <td>{{ char.mother }}</td>
-                    <td>{{ char.father }}</td>
-                    <td>{{ char.pet_id }}</td>
-                    <td>{{ char.homun_id }}</td>
-                    <td>{{ char.party_id }}</td>
-                    <td>Not Supported</td>
-                </tr>
+        <div class="col-sm-2"><b>ID</b></div>
+        <div class="col-sm-2">{{ char.char_id }}</div>
+        <div class="col-sm-2"><b>Slot</b></div>
+        <div class="col-sm-2">{{ char.char_num }}</div>
+        <div class="col-sm-2"><b>Character</b></div>
+        <div class="col-sm-2">{{ char.name }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"><b>B. Experience</b></div>
+        <div class="col-sm-2">{{ char.base_exp }}</div>
+        <div class="col-sm-2"><b>Partner</b></div>
+        <div class="col-sm-2">{{ char.partner_id }}</div>
+        <div class="col-sm-2"><b>J. Experience</b></div>
+        <div class="col-sm-2">{{ char.job_exp }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"><b>Child</b></div>
+        <div class="col-sm-2">{{ char.child }}</div>
+        <div class="col-sm-2"><b>Current HP</b></div>
+        <div class="col-sm-2">{{ char.hp }}</div>
+        <div class="col-sm-2"><b>Max HP</b></div>
+        <div class="col-sm-2">{{ char.max_hp }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"><b>Mother</b></div>
+        <div class="col-sm-2">{{ char.mother }}</div>
+        <div class="col-sm-2"><b>Current SP</b></div>
+        <div class="col-sm-2">{{ char.sp }}</div>
+        <div class="col-sm-2"><b>Max SP</b></div>
+        <div class="col-sm-2">{{ char.max_sp }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"><b>Father</b></div>
+        <div class="col-sm-2">{{ char.father }}</div>
+        <div class="col-sm-2"><b>Zeny</b></div>
+        <div class="col-sm-2">{{ char.zeny }}</div>
+        <div class="col-sm-2"><b>Status Points</b></div>
+        <div class="col-sm-2">{{ char.status_point }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"><b>Skill Points</b></div>
+        <div class="col-sm-2">{{ char.skill_point }}</div>
+        <div class="col-sm-2"><b>Guild Name</b></div>
+        <div class="col-sm-2">{{ char.guild_id }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"><b>Party Name</b></div>
+        <div class="col-sm-2">{{ char.party_id }}</div>
+        <div class="col-sm-2"><b>Party Leader</b></div>
+        <div class="col-sm-2">Not Supported</div>
+        <div class="col-sm-2"><b>Pet</b></div>
+        <div class="col-sm-2">{{ char.pet_id }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"><b>Online Status</b></div>
+        <div class="col-sm-2">{{ char.online }}</div>
+        <div class="col-sm-2"><b>Homunculus</b></div>
+        <div class="col-sm-2">{{ char.homun_id }}</div>
+    </div>
 
-            </table>
+    <hr>
+
+    <div class="row">
+        <div class="col-sm-1">
+            <h3>STATS</h3>
         </div>
     </div>
+
+
+    <div class="row">
+        <div class="col-sm-2"><b>STR</b></div>
+        <div class="col-sm-2">{{ char.str }}</div>
+        <div class="col-sm-2"><b>AGI</b></div>
+        <div class="col-sm-2">{{ char.agi }}</div>
+        <div class="col-sm-2"><b>VIT</b></div>
+        <div class="col-sm-2">{{ char.vit }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"><b>INT</b></div>
+        <div class="col-sm-2">{{ char.int }}</div>
+        <div class="col-sm-2"><b>DEX</b></div>
+        <div class="col-sm-2">{{ char.dex }}</div>
+        <div class="col-sm-2"><b>LUK</b></div>
+        <div class="col-sm-2">{{ char.luk }}</div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-sm-1">
+            <h3>Location</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ul>
+                <li>Char is at {{ char.last_map }} {{ char.last_x }}, {{ char.last_y }}</li>
+                <li>Char respawn is at {{ char.save_map }} {{ char.save_x }}, {{ char.save_y }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
 
 
     <div class="row">
@@ -76,6 +154,7 @@
         </div>
     </div>
 
+    <hr>
 
     <div class="row">
         <div class="col-sm-12">
@@ -87,6 +166,14 @@
     <div class="row">
         <div class="col-sm-12">
             Not Supported
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Options</h3>
         </div>
     </div>
 
