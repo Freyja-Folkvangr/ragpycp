@@ -1,29 +1,31 @@
-<hr>
 <div class="row align-self-center">
     <!-- Reset Position -->
     <div class="col-md-12 align-self-center">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reset-position">
             Reset Position
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="reset-position" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        Hello
+                        You are about to reset {{ char.name }}'s position.
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nevermind</button>
-                        <button type="button" class="btn btn-primary">Go ahead</button>
+                        <form action="{% url 'char:char_reset_position' char.char_id %}" method="post" id="reset-position">
+                            {% csrf_token %}
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nevermind</button>
+                            <button id="reset-position" name="reset-position" type="submit" class="btn btn-primary">Go ahead</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -32,27 +34,30 @@
     <!-- Reset Save map -->
     <div class="col-md-12 align-self-center">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reset-map">
             Reset Save Map
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="reset-map" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        Hello
+                        You are about to reset {{ char.name }}'s spawn point.
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nevermind</button>
-                        <button type="button" class="btn btn-primary">Go ahead</button>
+                        <form action="{% url 'char:char_reset_map' char.char_id %}" method="post" id="reset-map">
+                            {% csrf_token %}
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nevermind</button>
+                            <button id="reset-map" name="reset-map" type="submit" class="btn btn-primary">Go ahead</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -62,27 +67,30 @@
     <!-- Reset Appearence -->
     <div class="col-md-12 align-self-center">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reset-appearance">
             Reset Appearence
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="reset-appearance" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        Hello
+                        You are about to reset {{ char.name }}'s appearance.
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nevermind</button>
-                        <button type="button" class="btn btn-primary">Go ahead</button>
+                        <form action="{% url 'char:char_reset_appearence' char.char_id %}" method="post" id="reset-appearance">
+                            {% csrf_token %}
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nevermind</button>
+                            <button id="reset-appearance" name="reset-appearance" type="submit" class="btn btn-primary">Go ahead</button>
+                        </form>
                     </div>
                 </div>
             </div>
