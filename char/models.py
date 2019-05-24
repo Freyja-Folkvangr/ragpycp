@@ -246,7 +246,7 @@ class Char(models.Model):
         self.save_y = 160
         return self.save()
 
-    def reset_appearence(self):
+    def reset_appearance(self):
         self.hair = 1
         self.hair_color = 1
         self.clothes_color = 1

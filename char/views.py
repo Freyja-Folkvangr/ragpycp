@@ -50,7 +50,7 @@ def char_reset_appearence(request, char_id):
 
         if char.account_id.id != request.user.id:
             return redirect('forbidden')
-        char.reset_appearence()
+        char.reset_appearance()
         return redirect('char:char_view', char_id)
     else:
         return redirect('not_found')
