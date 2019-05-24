@@ -23,9 +23,13 @@
                         <tr>
                             <td>
                                 {% if char.online %}
+                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Online status">
                                     <span style="color: green;">*</span>
+                                    </span>
                                 {% else %}
+                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Online status">
                                     <span style="color: red;">*</span>
+                                    </span>
                                 {% endif %}
                                 <a href="{% url 'char:char_view' char.char_id %}"> {{ char.name }}</a>
                             </td>
