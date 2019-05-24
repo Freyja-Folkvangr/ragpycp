@@ -13,8 +13,8 @@ class MyUserAdmin(UserAdmin):
     form = CustomUserChangeForm
     add_form = CustomUserCreationForm
     fieldsets = UserAdmin.fieldsets + (
-        ('Ragnarok Settings', {'fields': ('sex', 'birthdate', 'character_slots')}),
-        ('Ragnarok Privileges', {'fields': ('state', 'group_id', 'vip_time', 'old_group')}),
+        ('Ragnarok Settings', {'fields': ('state', 'sex', 'birthdate', 'character_slots')}),
+        ('Ragnarok Privileges', {'fields': ('group_id', 'vip_time', 'old_group')}),
         ('Ragnarok Security',
          {'fields': ('pincode', 'pincode_change', 'unban_time', 'expiration_time', 'logincount', 'last_ip')})
     )

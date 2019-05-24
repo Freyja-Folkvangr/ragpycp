@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>Characters</h1>
+    {% if char_count == 0 %}
+        <div class="row">
+            <div class="col-sm-12">
+                <p>You don't have any character in the server.</p>
+            </div>
+        </div>
+    {% else %}
+        <table style="width:100%">
+            <tr>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Levels</th>
+                <th>Guild</th>
+                <th>Zeny</th>
+            </tr>
+            {% for char in chars %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <tr>
+                            <td>
+                                {% if char.online %}
+                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Online status">
+                                    <span style="color: green;">*</span>
+                                    </span>
+                                {% else %}
+                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Online status">
+                                    <span style="color: red;">*</span>
+                                    </span>
+                                {% endif %}
+                                <a href="{% url 'char:char_view' char.char_id %}"> {{ char.name }}</a>
+                            </td>
+                            <td>{{ char.get_job_name }}</td>
+                            <td>{{ char.base_level }}/{{ char.job_level }}</td>
+                            <td>{{ char.guild_id }}</td>
+                            <td>{{ char.zeny }}</td>
+                        </tr>
+                    </div>
+                </div>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

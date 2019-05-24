@@ -47,24 +47,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only"></span></a>
+                    <a class="nav-link" href="{% url 'index' %}">Home 🏠<span class="sr-only"></span></a>
                 </li>
-                {% comment %}
-                <!-- Dropdown menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        Account
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'login_user' %}">Login</a>
-                        <a class="dropdown-item" href="{% url 'logout_user' %}">Logout</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'register' %}">Register</a>
-                    </div>
-                </li>
-                {% endcomment %}
+
+                {% if request.user.is_authenticated %}
+                    {% block ragnarok_bar %}{% include "_ragnarok_bar.html" %}{% endblock %}
+                {% endif %}
+
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>

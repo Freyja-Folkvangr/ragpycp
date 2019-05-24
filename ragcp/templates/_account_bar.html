@@ -1,46 +1,57 @@
 {% load i18n %}
 
 <ul class="nav navbar-nav navbar-left">
-    {% if request.user.is_authenticated %}
-        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-            {{ user.username }}
-        </button>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-        {% comment %}
-            <a class="dropdown-item" href="{% url "account_settings" %}"><i
-                    class="fa fa-user"></i>
-                <button type="button" class="btn btn-secondary btn-sm btn-block">{% trans "Cuenta" %}</button>
-            </a>
-            {% endcomment %}
+
+
+    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+        {% if request.user.is_authenticated %}
+            {{ user.username }} 👤
+        {% else %}
+            Account 👤
+        {% endif %}
+    </button>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+        <!-- User Menu -->
+        {% if request.user.is_authenticated %}
+            <a class="dropdown-item" href="{% url 'char:list' %}"><i
+                        class="fa fa-cog"></i>
+                    <button type="button"
+                            class="btn btn-secondary btn-sm btn-block">{% trans "Chars 🧦 ️" %}</button>
+                </a>
+            <!-- Staff Admin button -->
             {% if request.user.is_staff %}
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i
                         class="fa fa-cog"></i>
                     <button type="button"
-                            class="btn btn-secondary btn-sm btn-block">{% trans "Administrar" %}</button>
+                            class="btn btn-secondary btn-sm btn-block">{% trans "Manage ⚙️" %}</button>
                 </a>
             {% endif %}
-            <div class="dropdown-divider"></div>
             <a class="dropdown-item" id="account_logout" href="{% url "users:logout" %}"><i
                     class="fa fa-power-off"></i>
-                <button type="button" class="btn btn-danger btn-sm btn-block">{% trans "Log out" %}</button>
+                <button type="button" class="btn btn-danger btn-sm btn-block">{% trans "Log out 🔒" %}</button>
             </a>
-        </div>
-    {% else %}
-        <div class="btn-group" role="group" aria-label="Login Sign Up">
-            <a href="{% url "login" %}">
-                <button type="button" class="btn btn-secondary">{% trans "Log in" %}</button>
+            </div>
+
+            <!-- Guest menu -->
+        {% else %}
+            <a class="dropdown-item" href="{% url "login" %}">
+                <button type="button" class="btn btn-secondary btn-sm btn-block">{% trans "Log in 🖌" %}</button>
+                <i
+                        class="fa fa-user"></i>
             </a>
-            <a href="{% url "users:signup" %}">
-                <button type="button" class="btn btn-secondary">{% trans "Sign up" %}</button>
+            <a class="dropdown-item" href="{% url 'users:signup' %}">
+                <button type="button" class="btn btn-success btn-sm btn-block">{% trans "Sign up  📝" %}</button>
+                <i
+                        class="fa fa-user"></i>
             </a>
-        </div>
-        {% comment %}
+        {% endif %}
+    {% comment %}
         {% if ACCOUNT_OPEN_SIGNUP %}
             <li><a href="{% url "account_signup" %}">{% trans "Sign up" %}</a></li>
         {% endif %}
         {% endcomment %}
-    {% endif %}
 </ul>
 
 <form id="accountLogOutForm" style="display: none;" action="{% url "logout" %}" method="POST">
