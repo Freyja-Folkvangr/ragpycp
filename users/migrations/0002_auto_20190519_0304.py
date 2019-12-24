@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='login',
             name='birthdate',
-            field=models.DateField(blank=True, default='2019-05-19', null=True),
+            field=models.DateField(blank=True, default=None, null=True),
         ),
         migrations.AlterField(
             model_name='login',
