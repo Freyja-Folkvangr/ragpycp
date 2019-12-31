@@ -16,7 +16,7 @@ class AccRegNum(models.Model):
     value = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'acc_reg_num'
         unique_together = (('account_id', 'key', 'index'),)
 
