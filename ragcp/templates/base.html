@@ -54,9 +54,11 @@
                     {% block ragnarok_bar %}{% include "_ragnarok_bar.html" %}{% endblock %}
                 {% endif %}
 
+                {% comment %}
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
+                {% endcomment %}
             </ul>
             {% block account_bar %}{% include "_account_bar.html" %}{% endblock %}
         </div>
