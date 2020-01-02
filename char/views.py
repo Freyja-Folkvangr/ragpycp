@@ -10,7 +10,7 @@ def char(request):
         'chars': chars,
         'char_count': len(chars)
     }
-    return render(request, 'char.html', context)
+    return render(request, 'chars.html', context)
 
 
 def char_reset_position(request, char_id):
@@ -65,4 +65,4 @@ def char_view(request, char_id):
     context = {
         'char': char
     }
-    return render(request, 'char_view.html', context)
+    return render(request, 'char.html', context)

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block masterhead %}
+    <h1>Characters</h1>
+{% endblock %}
+
+{% block body %}
+    {% if char_count == 0 %}
+        <header class="jumbotron subhead" id="overview">
+            <h1>:(</h1>
+            <h3>No chars</h3>
+            <p class="lead">Sorry, you don't have any char on this server.</p>
+        </header>
+    {% else %}
+        {% for char in chars %}
+            <div class="card border-0 shadow mb-4">
+                <div class="card-body">
+                    <h5><a href="{% url 'char:char_view' char.char_id %}"> {{ char.name }}</a></h5>
+                    <hr class="my-2">
+                    <div class="d-flex justify-content-between small">
+                        <span class="font-weight-bold">Class</span>
+                        <span>{{ char.get_job_name }}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between small">
+                        <span class="font-weight-bold">Levels</span>
+                        <span>{{ char.base_level }}/{{ char.job_level }}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between small">
+                        <span class="font-weight-bold">Guild</span>
+                        <span>{{ char.guild_id }}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between small">
+                        <span class="font-weight-bold">Zeny</span>
+                        <span>{{ char.zeny }}</span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
