@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = '&h74#_%&b)k9x$xobgi!c7jq)v$l^$#go#26ng!bbc@_y8pofq'
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
-
 
 # Application definition
 
@@ -75,9 +73,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ragcp.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'ragnarok',
+#         'USER': 'root',
+#         'PASSWORD': 'root',
+#         # 'PASSWORD': '7DtMAZ5YHEUpkq5j',
+#         'HOST': '0.0.0.0',
+#         'PORT': '32768',
+#     }
+# }
 
 DATABASES = {
     'default': {
@@ -87,17 +96,20 @@ DATABASES = {
         'PASSWORD': 'root',
         # 'PASSWORD': '7DtMAZ5YHEUpkq5j',
         'HOST': '0.0.0.0',
-        'PORT': '32768',
+        'PORT': '32769',
+        'OPTIONS': {
+            'init_command': 'SET storage_engine=InnoDB',
+            # better to set this in your database config, otherwise django has to do a query everytime
+        }
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
 PASSWORD_HASHERS = [
-        'django.contrib.auth.hashers.UnsaltedMD5PasswordHasher',
-    ]
+    'django.contrib.auth.hashers.UnsaltedMD5PasswordHasher',
+]
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -114,6 +126,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+STRIPE_PUBLISHABLE_KEY = '<your test publishable key here>'
+STRIPE_SECRET_KEY = '<your test secret key here>'
+STRIPE_CONNECT_CLIENT_ID = 'ca_Fn7WYpNSelTC87rz1C6jrxjdPUSITxq4'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -130,7 +145,6 @@ USE_TZ = True
 
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
