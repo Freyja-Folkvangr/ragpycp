@@ -253,5 +253,5 @@ class Char(models.Model):
         return self.save()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'char'

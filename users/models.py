@@ -41,7 +41,7 @@ class Login(AbstractUser):
         return '[%s] %s (%s)' % (self.id, self.username, self.state_str)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'login'
         verbose_name = 'Account'
         verbose_name_plural = 'Accounts'

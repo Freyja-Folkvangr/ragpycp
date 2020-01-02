@@ -32,9 +32,21 @@ In the same file, find this pattern: *`ALLOWED_HOSTS =`* and add to the list you
 
 3. Apply database changes
 
+rAthena uses MyISAM as table engine, run the following command to upgrade them to InnoDB
+
+`python manage.py preinstall`
+
+`python manage.py migrate users --fake-initial`
+
+The following migration has a RagCP known issue
+
+`python manage.py migrate admin`
+
+Finally run:
+
 `python manage.py migrate`
 
-4. Run the server
+4. Run the CP
 
 This command ignores the whitelist, for more information refer to [Django documentation](https://docs.djangoproject.com/en/3.0/ref/django-admin/)
 
