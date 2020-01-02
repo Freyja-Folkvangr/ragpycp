@@ -20,14 +20,14 @@
                             class="btn btn-secondary btn-sm btn-block">{% trans "Chars 🧦 ️" %}</button>
                 </a>
             <!-- Staff Admin button -->
-            {% if request.user.is_staff %}
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i
-                        class="fa fa-cog"></i>
-                    <button type="button"
-                            class="btn btn-secondary btn-sm btn-block">{% trans "Manage ⚙️" %}</button>
-                </a>
-            {% endif %}
+{#            {% if request.user.is_staff %}#}
+{#                <div class="dropdown-divider"></div>#}
+{#                <a class="dropdown-item" href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i#}
+{#                        class="fa fa-cog"></i>#}
+{#                    <button type="button"#}
+{#                            class="btn btn-secondary btn-sm btn-block">{% trans "Manage ⚙️" %}</button>#}
+{#                </a>#}
+{#            {% endif %}#}
             <a class="dropdown-item" id="account_logout" href="{% url "users:logout" %}"><i
                     class="fa fa-power-off"></i>
                 <button type="button" class="btn btn-danger btn-sm btn-block">{% trans "Log out 🔒" %}</button>
@@ -47,11 +47,6 @@
                         class="fa fa-user"></i>
             </a>
         {% endif %}
-    {% comment %}
-        {% if ACCOUNT_OPEN_SIGNUP %}
-            <li><a href="{% url "account_signup" %}">{% trans "Sign up" %}</a></li>
-        {% endif %}
-        {% endcomment %}
 </ul>
 
 <form id="accountLogOutForm" style="display: none;" action="{% url "logout" %}" method="POST">
