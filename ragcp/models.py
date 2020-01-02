@@ -3,7 +3,7 @@
 #   * Rearrange models' order
 #   * Make sure each model has one field with primary_key=True
 #   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
-#   * Remove `managed = True` lines if you wish to allow Django to create, modify, and delete the table
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 from users.models import Login
@@ -28,7 +28,7 @@ class AccRegStr(models.Model):
     value = models.CharField(max_length=254)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'acc_reg_str'
         unique_together = (('account_id', 'key', 'index'),)
 
@@ -50,7 +50,7 @@ class Achievement(models.Model):
     rewarded = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'achievement'
         unique_together = (('char_id', 'id'),)
 
@@ -92,7 +92,7 @@ class Auction(models.Model):
     unique_id = models.BigIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'auction'
 
 
@@ -105,7 +105,7 @@ class BonusScript(models.Model):
     icon = models.SmallIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'bonus_script'
 
 
@@ -117,7 +117,7 @@ class BuyingstoreItems(models.Model):
     price = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'buyingstore_items'
 
 
@@ -137,7 +137,7 @@ class Buyingstores(models.Model):
     autotrade = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'buyingstores'
 
 
@@ -173,7 +173,7 @@ class CartInventory(models.Model):
     unique_id = models.BigIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'cart_inventory'
 
 
@@ -184,7 +184,7 @@ class CharRegNum(models.Model):
     value = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'char_reg_num'
         unique_together = (('char_id', 'key', 'index'),)
 
@@ -196,7 +196,7 @@ class CharRegStr(models.Model):
     value = models.CharField(max_length=254)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'char_reg_str'
         unique_together = (('char_id', 'key', 'index'),)
 
@@ -217,7 +217,7 @@ class Charlog(models.Model):
     hair_color = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'charlog'
 
 
@@ -229,7 +229,7 @@ class Clan(models.Model):
     max_member = models.PositiveSmallIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'clan'
 
 
@@ -240,7 +240,7 @@ class ClanAlliance(models.Model):
     name = models.CharField(max_length=24)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'clan_alliance'
         unique_together = (('clan_id', 'alliance_id'),)
 
@@ -253,7 +253,7 @@ class DbRoulette(models.Model):
     flag = models.PositiveSmallIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'db_roulette'
 
 
@@ -277,7 +277,7 @@ class Elemental(models.Model):
     life_time = models.BigIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'elemental'
 
 
@@ -287,7 +287,7 @@ class Friends(models.Model):
     friend_id = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'friends'
 
 
@@ -298,7 +298,7 @@ class GlobalAccRegNum(models.Model):
     value = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'global_acc_reg_num'
         unique_together = (('account_id', 'key', 'index'),)
 
@@ -310,7 +310,7 @@ class GlobalAccRegStr(models.Model):
     value = models.CharField(max_length=254)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'global_acc_reg_str'
         unique_together = (('account_id', 'key', 'index'),)
 
@@ -335,7 +335,7 @@ class Guild(models.Model):
     last_master_change = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'guild'
         unique_together = (('guild_id', 'char_id'),)
 
@@ -347,7 +347,7 @@ class GuildAlliance(models.Model):
     name = models.CharField(max_length=24)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'guild_alliance'
         unique_together = (('guild_id', 'alliance_id'),)
 
@@ -373,7 +373,7 @@ class GuildCastle(models.Model):
     visibleg7 = models.PositiveIntegerField(db_column='visibleG7')  # Field name made lowercase.
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'guild_castle'
 
 
@@ -384,7 +384,7 @@ class GuildExpulsion(models.Model):
     mes = models.CharField(max_length=40)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'guild_expulsion'
         unique_together = (('guild_id', 'name'),)
 
@@ -405,7 +405,7 @@ class GuildMember(models.Model):
     name = models.CharField(max_length=24)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'guild_member'
         unique_together = (('guild_id', 'char_id'),)
 
@@ -418,7 +418,7 @@ class GuildPosition(models.Model):
     exp_mode = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'guild_position'
         unique_together = (('guild_id', 'position'),)
 
@@ -429,7 +429,7 @@ class GuildSkill(models.Model):
     lv = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'guild_skill'
         unique_together = (('guild_id', 'id'),)
 
@@ -466,7 +466,7 @@ class GuildStorage(models.Model):
     unique_id = models.BigIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'guild_storage'
 
 
@@ -504,7 +504,7 @@ class GuildStorageLog(models.Model):
     bound = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'guild_storage_log'
 
 
@@ -535,7 +535,7 @@ class Homunculus(models.Model):
     autofeed = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'homunculus'
 
 
@@ -547,7 +547,7 @@ class Hotkey(models.Model):
     skill_lvl = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'hotkey'
         unique_together = (('char_id', 'hotkey'),)
 
@@ -557,7 +557,7 @@ class Interlog(models.Model):
     log = models.CharField(max_length=255)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'interlog'
 
 
@@ -566,7 +566,7 @@ class Interreg(models.Model):
     value = models.CharField(max_length=20)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'interreg'
 
 
@@ -604,7 +604,7 @@ class Inventory(models.Model):
     equip_switch = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'inventory'
 
 
@@ -615,7 +615,7 @@ class Ipbanlist(models.Model):
     reason = models.CharField(max_length=255)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'ipbanlist'
 
 
@@ -625,7 +625,7 @@ class ItemCashDb(models.Model):
     price = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'item_cash_db'
         unique_together = (('tab', 'item_id'),)
 
@@ -636,7 +636,7 @@ class ItemCashDb2(models.Model):
     price = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'item_cash_db2'
         unique_together = (('tab', 'item_id'),)
 
@@ -666,7 +666,7 @@ class ItemDb(models.Model):
     unequip_script = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'item_db'
 
 
@@ -695,7 +695,7 @@ class ItemDb2(models.Model):
     unequip_script = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'item_db2'
 
 
@@ -724,7 +724,7 @@ class ItemDb2Re(models.Model):
     unequip_script = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'item_db2_re'
 
 
@@ -753,7 +753,7 @@ class ItemDbRe(models.Model):
     unequip_script = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'item_db_re'
 
 
@@ -771,7 +771,7 @@ class Mail(models.Model):
     type = models.SmallIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'mail'
 
 
@@ -806,7 +806,7 @@ class MailAttachments(models.Model):
     bound = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'mail_attachments'
         unique_together = (('id', 'index'),)
 
@@ -817,7 +817,7 @@ class Mapreg(models.Model):
     value = models.CharField(max_length=255)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'mapreg'
         unique_together = (('varname', 'index'),)
 
@@ -830,7 +830,7 @@ class Market(models.Model):
     flag = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'market'
         unique_together = (('name', 'nameid'),)
 
@@ -843,7 +843,7 @@ class Memo(models.Model):
     y = models.PositiveSmallIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'memo'
 
 
@@ -857,7 +857,7 @@ class Mercenary(models.Model):
     life_time = models.BigIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'mercenary'
 
 
@@ -872,7 +872,7 @@ class MercenaryOwner(models.Model):
     sword_faith = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'mercenary_owner'
 
 
@@ -936,7 +936,7 @@ class MobDb(models.Model):
     dropcardper = models.PositiveSmallIntegerField(db_column='DropCardper')  # Field name made lowercase.
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'mob_db'
 
 
@@ -1000,7 +1000,7 @@ class MobDb2(models.Model):
     dropcardper = models.PositiveSmallIntegerField(db_column='DropCardper')  # Field name made lowercase.
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'mob_db2'
 
 
@@ -1064,7 +1064,7 @@ class MobDb2Re(models.Model):
     dropcardper = models.PositiveSmallIntegerField(db_column='DropCardper')  # Field name made lowercase.
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'mob_db2_re'
 
 
@@ -1128,7 +1128,7 @@ class MobDbRe(models.Model):
     dropcardper = models.PositiveSmallIntegerField(db_column='DropCardper')  # Field name made lowercase.
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'mob_db_re'
 
 
@@ -1154,7 +1154,7 @@ class MobSkillDb(models.Model):
     chat = models.TextField(db_column='CHAT', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'mob_skill_db'
 
 
@@ -1180,7 +1180,7 @@ class MobSkillDb2(models.Model):
     chat = models.TextField(db_column='CHAT', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'mob_skill_db2'
 
 
@@ -1206,7 +1206,7 @@ class MobSkillDb2Re(models.Model):
     chat = models.TextField(db_column='CHAT', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'mob_skill_db2_re'
 
 
@@ -1232,7 +1232,7 @@ class MobSkillDbRe(models.Model):
     chat = models.TextField(db_column='CHAT', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'mob_skill_db_re'
 
 
@@ -1245,7 +1245,7 @@ class Party(models.Model):
     leader_char = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'party'
 
 
@@ -1265,7 +1265,7 @@ class Pet(models.Model):
     autofeed = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'pet'
 
 
@@ -1279,7 +1279,7 @@ class Quest(models.Model):
     count3 = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'quest'
         unique_together = (('char_id', 'quest_id'),)
 
@@ -1292,7 +1292,7 @@ class Ragsrvinfo(models.Model):
     drop = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'ragsrvinfo'
 
 
@@ -1303,7 +1303,7 @@ class Sales(models.Model):
     amount = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'sales'
 
 
@@ -1318,7 +1318,7 @@ class ScData(models.Model):
     val4 = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'sc_data'
 
 
@@ -1329,7 +1329,7 @@ class Skill(models.Model):
     flag = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'skill'
         unique_together = (('char_id', 'id'),)
 
@@ -1340,7 +1340,7 @@ class SkillHomunculus(models.Model):
     lv = models.SmallIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'skill_homunculus'
         unique_together = (('homun_id', 'id'),)
 
@@ -1352,7 +1352,7 @@ class Skillcooldown(models.Model):
     tick = models.BigIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'skillcooldown'
 
 
@@ -1362,7 +1362,7 @@ class Sstatus(models.Model):
     user = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'sstatus'
 
 
@@ -1398,7 +1398,7 @@ class Storage(models.Model):
     unique_id = models.BigIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'storage'
 
 
@@ -1410,7 +1410,7 @@ class VendingItems(models.Model):
     price = models.PositiveIntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'vending_items'
 
 
@@ -1429,5 +1429,5 @@ class Vendings(models.Model):
     autotrade = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'vendings'
