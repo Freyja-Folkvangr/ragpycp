@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load mathfilters %}
 <head>
     <!--
 
@@ -11,8 +12,8 @@
     {% load static %}
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/ragcp.css' %}">
 </head>
@@ -58,7 +59,6 @@
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
             </ul>
-            {% block account_bar %}{% include "_account_bar.html" %}{% endblock %}
         </div>
     </nav>
 </div>
@@ -66,16 +66,69 @@
 <!-- Site Content -->
 
 {% block body_base %}
-    <main role="main" class="container">
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
-            {% comment %}
-            {% include "_messages.html" %}
-            {% endcomment %}
-            <div class="container justify-content-md-center">
-                {% block body %}
-                {% endblock %}
+
+    <header class="masthead masthead-page mb-5"
+            style="background-image: url('{% static 'head.jpg' %}'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 py-5" style="color: #ffffff; text-shadow: 2px 2px 2px #000000;">
+                    {% block masterhead %}
+                    {% endblock %}
+                </div>
             </div>
         </div>
+    </header>
+
+    <main role="main" class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+
+
+                    <div class="container justify-content-md-center">
+                        {% block body %}
+                        {% endblock %}
+                    </div>
+
+
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow mb-4 text-center">
+                        <div class="card-body">
+                            {% if request.user.is_authenticated %}
+                                {% if freshchat %}
+                                    <img src="{{ freshchat.persona.gravatar_url }}">
+                                {% else %}
+                                    <img src="{% static 'avatar/' %}{{ request.user.id|mod:6 }}.jpg">
+                                {% endif %}
+                                <div class="small mb-2 font-weight-bold">
+                                    {{ request.user.username }}
+                                </div>
+                                {% include '_account_bar.html' %}
+                            {% else %}
+                                {% include '_account_bar.html' %}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {% if request.user.is_staff %}
+                        <div class="card border-0 shadow mb-4 text-center">
+                            <div class="card-body">
+                                <h5>Change history:</h5>
+                                <div class="small mb-2 font-weight-bold">Review CP history of changes.
+                                </div>
+                                <a href="#nogo">
+                                    <button type="button" class="btn btn-sm btn-primary">Changelog</button>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% block rightbar %}
+                    {% endblock %}
+
+                </div>
+            </div>
     </main>
 {% endblock %}
 
