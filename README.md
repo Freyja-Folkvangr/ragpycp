@@ -42,6 +42,10 @@ The following migration has a RagCP known issue
 
 `python manage.py migrate admin`
 
+3.5 Collects the static files into STATIC_ROOT
+
+`python manage.py collectstatic`
+
 Finally run:
 
 `python manage.py migrate`
