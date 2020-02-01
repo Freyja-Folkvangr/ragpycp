@@ -99,7 +99,8 @@ DATABASES = {
         'HOST': os.environ['DATABASE_HOST'],
         'PORT': os.environ['DATABASE_PORT'],
         'OPTIONS': {
-            'init_command': 'SET storage_engine=InnoDB',
+            # 'init_command': 'SET storage_engine=InnoDB', #For MySQL 5.6
+            'init_command': 'SET default_storage_engine=INNODB', #For MySQL 5.7+
             # better to set this in your database config, otherwise django has to do a query everytime
         }
     }
