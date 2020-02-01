@@ -18,13 +18,25 @@ After setting up your environment, run the following commands:
 
 Note that depending of your setup you'll have to run python or python3 commands, also pip or pip3.
 
-1. Modify database credentials
+1. Create environment variables to store database credentials
 
-Edit the file `./ragcp/settings.py`, find this pattern: *`DATABASES =`*  and change the credentials to the ones you use on your server.
+Log in to the server you'll use to run the CP and create the following environment variables.
+
+`DATABASE_PORT`
+
+`DATABASE_HOST`
+
+`DATABASE_USER`
+
+`DATABASE_PASSWORD`
+
+`DATABASE_NAME`
 
 2. Add your domain to the whitelist
 
 In the same file, find this pattern: *`ALLOWED_HOSTS =`* and add to the list your domain, for example: www.myragnarok.com
+
+By default RagCP allow all hosts, you can skip this step, but if you don't, remove `0.0.0.0` from the list.
 
 2. Install dependencies
 

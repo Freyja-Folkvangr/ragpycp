@@ -24,7 +24,7 @@ SECRET_KEY = '&h74#_%&b)k9x$xobgi!c7jq)v$l^$#go#26ng!bbc@_y8pofq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
 # Application definition
 
@@ -92,12 +92,12 @@ WSGI_APPLICATION = 'ragcp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ragnarok',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'NAME': os.environ['DATABASE_NAME'],
+        'USER': os.environ['DATABASE_USER'],
+        'PASSWORD': os.environ['DATABASE_PASSWORD'],
         # 'PASSWORD': '7DtMAZ5YHEUpkq5j',
-        'HOST': '0.0.0.0',
-        'PORT': '32769',
+        'HOST': os.environ['DATABASE_HOST'],
+        'PORT': os.environ['DATABASE_PORT'],
         'OPTIONS': {
             'init_command': 'SET storage_engine=InnoDB',
             # better to set this in your database config, otherwise django has to do a query everytime
