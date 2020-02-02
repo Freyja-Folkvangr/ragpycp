@@ -41,9 +41,34 @@ class Login(AbstractUser):
         return '[%s] %s (%s)' % (self.id, self.username, self.state_str)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'login'
         verbose_name = 'Account'
         verbose_name_plural = 'Accounts'
 
     objects = CustomUserManager()
+
+# This model is used for installation
+class Login2(models.Model):
+    account_id = models.AutoField(primary_key=True)
+    userid = models.CharField(max_length=23)
+    user_pass = models.CharField(max_length=32)
+    sex = models.CharField(max_length=1)
+    email = models.CharField(max_length=39)
+    group_id = models.IntegerField()
+    state = models.PositiveIntegerField()
+    unban_time = models.PositiveIntegerField()
+    expiration_time = models.PositiveIntegerField()
+    logincount = models.PositiveIntegerField()
+    lastlogin = models.DateTimeField(blank=True, null=True)
+    last_ip = models.CharField(max_length=100)
+    birthdate = models.DateField(blank=True, null=True)
+    character_slots = models.PositiveIntegerField()
+    pincode = models.CharField(max_length=4)
+    pincode_change = models.PositiveIntegerField()
+    vip_time = models.PositiveIntegerField()
+    old_group = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'login2'
