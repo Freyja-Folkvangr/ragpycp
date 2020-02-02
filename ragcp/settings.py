@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import logging
+logger = logging.getLogger(__name__)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,10 +29,11 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
 try:
-    host = os.environ['DATABASE_HOST']
+    host = os.environ['HOST']
 except Exception:
     host = None
 if host:
+    logger.warning('Could not load environment variable HOST')
     ALLOWED_HOSTS.append(host)
 
 # Application definition
@@ -81,37 +84,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ragcp.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'ragnarok',
-#         'USER': 'root',
-#         'PASSWORD': 'root',
-#         # 'PASSWORD': '7DtMAZ5YHEUpkq5j',
-#         'HOST': '0.0.0.0',
-#         'PORT': '32768',
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['DATABASE_NAME'],
-        'USER': os.environ['DATABASE_USER'],
-        'PASSWORD': os.environ['DATABASE_PASSWORD'],
-        # 'PASSWORD': '7DtMAZ5YHEUpkq5j',
-        'HOST': os.environ['DATABASE_HOST'],
-        'PORT': os.environ['DATABASE_PORT'],
-        'OPTIONS': {
-            # 'init_command': 'SET storage_engine=InnoDB', #For MySQL 5.6
-            'init_command': 'SET default_storage_engine=INNODB', #For MySQL 5.7+
-            # better to set this in your database config, otherwise django has to do a query everytime
+try:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ['DATABASE_NAME'],
+            'USER': os.environ['DATABASE_USER'],
+            'PASSWORD': os.environ['DATABASE_PASSWORD'],
+            # 'PASSWORD': '7DtMAZ5YHEUpkq5j',
+            'HOST': os.environ['DATABASE_HOST'],
+            'PORT': os.environ['DATABASE_PORT'],
+            'OPTIONS': {
+                # 'init_command': 'SET storage_engine=InnoDB', #For MySQL 5.6
+                'init_command': 'SET default_storage_engine=INNODB', #For MySQL 5.7+
+                # better to set this in your database config, otherwise django has to do a query everytime
+            }
         }
     }
-}
+except KeyError as err:
+    logger.error('Could not load one or more database settings from environment variables.')
+    logger.error(err)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
