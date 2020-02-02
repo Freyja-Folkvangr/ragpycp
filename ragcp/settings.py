@@ -26,6 +26,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
+try:
+    host = os.environ['DATABASE_HOST']
+except Exception:
+    host = None
+if host:
+    ALLOWED_HOSTS.append(host)
+
 # Application definition
 
 INSTALLED_APPS = [

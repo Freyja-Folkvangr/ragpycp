@@ -11,6 +11,8 @@ differs between the varying operating systems available.
 1. It is recommended to install on linux systems.
 2. Make sure the host you'll use has access to your Ragnarok database.
 3. Python Runtime | [Python 3 or newer](https://www.python.org/downloads/)
+4. Your login table MUST NOT HAVE ADDITIONAL COLUMNS.
+5. Your server MUST run with MD5 passwords enabled by default.
 
 # Installation
 
@@ -34,9 +36,9 @@ Log in to the server you'll use to run the CP and create the following environme
 
 2. Add your domain to the whitelist
 
-In the same file, find this pattern: *`ALLOWED_HOSTS =`* and add to the list your domain, for example: www.myragnarok.com
+Create an environment variable called HOST which its value is the hostname where the CP is going to be located. Don't include https://
 
-By default RagCP allow all hosts, you can skip this step, but if you don't, remove `0.0.0.0` from the list.
+For example www.myragnarok.com
 
 2. Install dependencies
 
@@ -44,19 +46,13 @@ By default RagCP allow all hosts, you can skip this step, but if you don't, remo
 
 3. Apply database changes
 
-rAthena uses MyISAM as table engine, run the following command to upgrade them to InnoDB
+rAthena uses MyISAM as table engine, run the following command to upgrade tables used by RagCP to InnoDB
 
 `python manage.py preinstall`
 
-`python manage.py migrate users --fake-initial`
+Then run database migrations
 
-The following migration has a RagCP known issue
-
-`python manage.py migrate admin`
-
-3.5 Collects the static files into STATIC_ROOT
-
-`python manage.py collectstatic`
+`python manage.py migrate users`
 
 Finally run:
 
@@ -77,3 +73,13 @@ Content of the index page is located at:
 `./ragcp/templates/index.html`
 
 In future versions, you'll be able to customize it from the CP (Django Admin).
+
+# Common issues
+
+## RagCP does not looks as expected
+
+This could happen on certain environments, if this is your case, run the following command, then restart the server.
+
+`python manage.py collectstatic`
+
+The command collects the static files into STATIC_ROOT
