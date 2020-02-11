@@ -1,4 +1,4 @@
-django==3.0.2
+django==3.0.3
 mysqlclient
 mysql-connector-python
 django-mathfilters
