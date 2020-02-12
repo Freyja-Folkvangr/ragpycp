@@ -83,3 +83,8 @@ This could happen on certain environments, if this is your case, run the followi
 `python manage.py collectstatic`
 
 The command collects the static files into STATIC_ROOT
+
+# Demo
+I'm creating a Ragnarok server to play with friends, we'll be using RagCP, so feel free to take a look :)
+
+[Freyja](https://freyja-ro.herokuapp.com)
