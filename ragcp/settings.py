@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'char',
-    'mathfilters'
+    'mathfilters',
+    'servicedesk'
 ]
 
 AUTH_USER_MODEL = 'users.Login'

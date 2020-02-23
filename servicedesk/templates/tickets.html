@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block masterhead %}
+    <h1>Service Desk</h1>
+    <h2>List of tickets</h2>
+{% endblock %}
+
+{% block body %}
+
+    <a href="{% url 'servicedesk:new_ticket' %}">
+        <button type="button" class="btn btn-sm btn-block btn-secondary"
+                style="margin-bottom: 5px;">
+            Create new support ticket 🖋
+        </button>
+    </a>
+
+    {% if ticket_count == 0 %}
+        <header class="jumbotron subhead" id="overview">
+            <h1>:)</h1>
+            <h3>No tickets</h3>
+            <p class="lead">You don't have support tickets on this server.</p>
+        </header>
+    {% else %}
+        {% for ticket in tickets %}
+            <div class="card border-0 shadow mb-4">
+                <div class="card-body">
+                    <h2>
+                        <a href="{% url 'servicedesk:ticket' ticket.id %}"> {{ ticket.subject }}</a>
+                    </h2>
+                    <span>🗓 {{ ticket.created }}</span>
+                    <hr class="my-2">
+
+                    <div class="d-flex justify-content-between small">
+                        <span class="font-weight-bold">🔔 State</span>
+                        <span>
+                        {% if ticket.latest_reply.response_needed and ticket.latest_reply.created_by != request.user %}
+                            Support is waiting for your response
+                        {% elif ticket.latest_reply.response_needed and ticket.latest_reply.created_by == request.user %}
+                            Waiting response of support team
+                        {% else %}
+                            {{ ticket.state_str }}
+                        {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

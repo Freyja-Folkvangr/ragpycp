@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block masterhead %}
+    <h1>Service Desk</h1>
+    <h2>Details of {{ ticket.subject }}</h2>
+{% endblock %}
+{# TODO: add buttons to change ticket status to closed, etc #}
+{% block body %}
+    <div class="card border-0 shadow mb-4">
+        <div class="card-body">
+            <h2>
+                {{ ticket.subject }}
+            </h2>
+            <span>🗓 {{ ticket.created }}</span>
+            <hr class="my-2">
+            <p>
+                {{ ticket.body }}
+            </p>
+            <hr class="my-2">
+
+            <div class="d-flex justify-content-between small">
+                <span class="font-weight-bold">🔔 State</span>
+                <span>
+                        {% if ticket.latest_reply.response_needed and ticket.latest_reply.created_by != request.user %}
+                            Waiting Response
+                        {% elif ticket.latest_reply.response_needed and ticket.latest_reply.created_by != request.user %}
+                            Response Needed
+                        {% else %}
+                            {{ ticket.state_str }}
+                        {% endif %}
+                        </span>
+            </div>
+
+            <div class="d-flex justify-content-between small">
+                <span class="font-weight-bold">🤦🏻‍♂️ Created by</span>
+                <span>
+                {{ ticket.created_by }}
+            </span>
+            </div>
+        </div>
+    </div>
+
+    {% if responses %}
+        <h1>Messages</h1>
+        {% for response in responses %}
+            <div class="card border-0 shadow mb-4">
+                <div class="card-body">
+                    <h3>
+                        {{ response.created_by.username }}
+                    </h3>
+                    🗓 {{ response.created }}
+                    <hr class="my-2">
+
+                    <p>
+                        {{ response.body }}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <h1>Write something</h1>
+    <div class="row">
+        <div class="col-md-12">
+            {% include 'form_template.html' %}
+        </div>
+    </div>
+{% endblock %}
