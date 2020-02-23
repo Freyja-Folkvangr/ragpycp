@@ -3,8 +3,12 @@ from .models import Char
 
 
 # Create your views here.
+# view list of chars
 def char(request):
-    chars = Char.objects.filter(account_id=request.user.id)
+    if request.user.is_staff:
+        chars = Char.objects.all()
+    else:
+        chars = Char.objects.filter(account_id=request.user.id)
 
     context = {
         'chars': chars,
@@ -24,8 +28,9 @@ def char_reset_position(request, char_id):
 
         char = Char.objects.get(char_id=char_id)
 
-        if char.account_id.id != request.user.id:
+        if char.account_id != request.user and not request.user.is_staff:
             return redirect('forbidden')
+
         char.reset_position()
         return redirect('char:char_view', char_id)
     else:
@@ -36,8 +41,9 @@ def char_reset_map(request, char_id):
     if request.POST:
         char = Char.objects.get(char_id=char_id)
 
-        if char.account_id.id != request.user.id:
+        if char.account_id != request.user and not request.user.is_staff:
             return redirect('forbidden')
+
         char.reset_save_position()
         return redirect('char:char_view', char_id)
     else:
@@ -48,18 +54,19 @@ def char_reset_appearence(request, char_id):
     if request.POST:
         char = Char.objects.get(char_id=char_id)
 
-        if char.account_id.id != request.user.id:
+        if char.account_id != request.user and not request.user.is_staff:
             return redirect('forbidden')
+
         char.reset_appearance()
         return redirect('char:char_view', char_id)
     else:
         return redirect('not_found')
 
-
+# view a single char
 def char_view(request, char_id):
     char = Char.objects.get(char_id=char_id)
 
-    if char.account_id.id != request.user.id:
+    if char.account_id != request.user and not request.user.is_staff:
         return redirect('forbidden')
 
     context = {

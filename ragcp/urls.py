@@ -31,5 +31,6 @@ urlpatterns = [
     path('users/', include('django.contrib.auth.urls')),  # new
 
     path('char/', include('char.urls')),
+    path('servicedesk/', include('servicedesk.urls')),
 
 ]
