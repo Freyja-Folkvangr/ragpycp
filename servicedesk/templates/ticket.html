@@ -22,9 +22,9 @@
                 <span class="font-weight-bold">🔔 State</span>
                 <span>
                         {% if ticket.latest_reply.response_needed and ticket.latest_reply.created_by != request.user %}
-                            Waiting Response
-                        {% elif ticket.latest_reply.response_needed and ticket.latest_reply.created_by != request.user %}
-                            Response Needed
+                            Support is waiting for your response
+                        {% elif ticket.latest_reply.response_needed and ticket.latest_reply.created_by == request.user %}
+                            Waiting response of support team
                         {% else %}
                             {{ ticket.state_str }}
                         {% endif %}
