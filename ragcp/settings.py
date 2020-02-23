@@ -24,7 +24,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '&h74#_%&b)k9x$xobgi!c7jq)v$l^$#go#26ng!bbc@_y8pofq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
@@ -32,9 +31,14 @@ try:
     host = os.environ['HOST']
 except Exception:
     host = None
+    pass
+
 if host:
     logger.warning('Could not load environment variable HOST')
     ALLOWED_HOSTS.append(host)
+    DEBUG = False
+else:
+    DEBUG = True
 
 # Application definition
 
