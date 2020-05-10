@@ -9,7 +9,7 @@ from users.models import Login
 
 
 class Wallet(models.Model):
-    identifier = models.TextField(primary_key=True)
+    identifier = models.CharField(primary_key=True, max_length=255)
     friendly_name = models.TextField(db_index=True)
     password = models.TextField()
     api_code = models.TextField()
@@ -142,7 +142,7 @@ class Wallet(models.Model):
 
 
 class Address(models.Model):
-    address = models.TextField(primary_key=True)
+    address = models.CharField(primary_key=True, max_length=255)
     user = models.OneToOneField(Login, on_delete=models.CASCADE)
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
 
