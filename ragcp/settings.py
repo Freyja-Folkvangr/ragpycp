@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'char',
     'mathfilters',
     'servicedesk',
-    'blockchain',
+    'bitcoin',
 ]
 
 AUTH_USER_MODEL = 'users.Login'
