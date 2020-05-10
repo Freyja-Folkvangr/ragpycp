@@ -3,3 +3,4 @@ mysqlclient
 mysql-connector-python
 django-mathfilters
 blockchain
+django-extensions
