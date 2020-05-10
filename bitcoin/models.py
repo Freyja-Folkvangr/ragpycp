@@ -16,7 +16,10 @@ class Wallet(models.Model):
 
     @property
     def service_url(self):
-        return settings.host
+        if settings.host[-1] == '/':
+            return settings.host
+        else:
+            return settings.host + '/'
 
     """
     An instance of the Wallet class needs to be initialized before it can be used.
