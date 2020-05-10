@@ -2,3 +2,4 @@ django==3.0.3
 mysqlclient
 mysql-connector-python
 django-mathfilters
+blockchain
