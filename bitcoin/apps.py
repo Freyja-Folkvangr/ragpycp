@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class BlockchainConfig(AppConfig):
-    name = 'blockchain'
+class BitcoinConfig(AppConfig):
+    name = 'bitcoin'
