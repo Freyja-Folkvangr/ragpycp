@@ -36,9 +36,13 @@ except Exception:
 if host:
     logger.warning('Could not load environment variable HOST')
     ALLOWED_HOSTS.append(host)
-    DEBUG = False
+    if host in ['127.0.0.1', 'localhost'] or '.local' in host:
+        debug = True
+    else:
+        DEBUG = False
 else:
     DEBUG = True
+logger.info('DEBUG %s' % DEBUG)
 
 # Application definition
 
@@ -53,7 +57,7 @@ INSTALLED_APPS = [
     'users',
     'char',
     'mathfilters',
-    'servicedesk'
+    'servicedesk',
 ]
 
 AUTH_USER_MODEL = 'users.Login'
@@ -155,4 +159,5 @@ LOGOUT_REDIRECT_URL = 'index'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
