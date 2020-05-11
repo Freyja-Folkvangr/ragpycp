@@ -10,7 +10,8 @@
     <a href="{% url 'servicedesk:new_ticket' %}">
         <button type="button" class="btn btn-sm btn-block btn-secondary"
                 style="margin-bottom: 5px;">
-            Create new support ticket 🖋
+            <i class="em em-lower_left_ballpoint_pen" aria-role="presentation" aria-label=""></i>
+            Create new support ticket
         </button>
     </a>
 
@@ -27,11 +28,13 @@
                     <h2>
                         <a href="{% url 'servicedesk:ticket' ticket.id %}"> {{ ticket.subject }}</a>
                     </h2>
-                    <span>🗓 {{ ticket.created }}</span>
+                    <span><i class="em em-calendar" aria-role="presentation"
+                             aria-label="TEAR-OFF CALENDAR"></i> {{ ticket.created }}</span>
                     <hr class="my-2">
 
                     <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">🔔 State</span>
+                        <span class="font-weight-bold"><i class="em em-bell" aria-role="presentation"
+                                                          aria-label="BELL"></i> Status</span>
                         <span>
                         {% if ticket.latest_reply.response_needed and ticket.latest_reply.created_by != request.user %}
                             Support is waiting for your response

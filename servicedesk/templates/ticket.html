@@ -11,7 +11,11 @@
             <h2>
                 {{ ticket.subject }}
             </h2>
-            <span>🗓 {{ ticket.created }}</span>
+            <span>
+                <i class="em em-calendar" aria-role="presentation"
+                   aria-label="TEAR-OFF CALENDAR"></i>
+                {{ ticket.created }}
+            </span>
             <hr class="my-2">
             <p>
                 {{ ticket.body }}
@@ -19,7 +23,7 @@
             <hr class="my-2">
 
             <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">🔔 State</span>
+                <span class="font-weight-bold"><i class="em em-bell" aria-role="presentation" aria-label="BELL"></i> Status</span>
                 <span>
                         {% if ticket.latest_reply.response_needed and ticket.latest_reply.created_by != request.user %}
                             Support is waiting for your response
@@ -32,7 +36,9 @@
             </div>
 
             <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">🤦🏻‍♂️ Created by</span>
+                <span class="font-weight-bold">
+                    <i class="em em-mage" aria-role="presentation" aria-label="MAGE"></i>
+                    ️ Ticket Summoner</span>
                 <span>
                 {{ ticket.created_by }}
             </span>
@@ -48,7 +54,7 @@
                     <h3>
                         {{ response.created_by.username }}
                     </h3>
-                    🗓 {{ response.created }}
+                    <i class="em em-calendar" aria-role="presentation" aria-label="TEAR-OFF CALENDAR"></i> {{ response.created }}
                     <hr class="my-2">
 
                     <p>
