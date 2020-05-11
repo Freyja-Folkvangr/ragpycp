@@ -11,15 +11,24 @@
             <h5>Basic Info</h5>
             <hr class="my-2">
             <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">ID</span>
+                <span class="font-weight-bold">
+
+                     ID
+                </span>
                 <span>{{ char.char_id }}</span>
             </div>
             <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">Job</span>
+                <span class="font-weight-bold">
+                    <i class="em em-briefcase" aria-role="presentation" aria-label="BRIEFCASE"></i>
+                     Class
+                </span>
                 <span>{{ char.get_job_name }}</span>
             </div>
             <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">Status</span>
+                <span class="font-weight-bold">
+
+                     Status
+                </span>
                 <span>
                     {% if char.online == 0 %}
                         <span class="badge badge-danger">Offline</span>
@@ -29,16 +38,25 @@
                 </span>
             </div>
             <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">Zeny</span>
+                <span class="font-weight-bold">
+                    <i class="em em-heavy_dollar_sign" aria-role="presentation" aria-label="HEAVY DOLLAR SIGN"></i>
+                     Zeny
+                </span>
                 <span>{{ char.zeny }}</span>
             </div>
             <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">Slot</span>
+                <span class="font-weight-bold">
+
+                     Slot
+                </span>
                 <span>{{ char.char_num }}</span>
             </div>
             {% if char.pet_id %}
                 <div class="d-flex justify-content-between small">
-                    <span class="font-weight-bold">Pet</span>
+                    <span class="font-weight-bold">
+
+                         Pet
+                    </span>
                     <span>{{ char.pet_id }}</span>
                 </div>
             {% endif %}
@@ -68,15 +86,24 @@
             <h5>Leveling</h5>
             <hr class="my-2">
             <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">Levels</span>
+                <span class="font-weight-bold">
+                    <i class="em em-snail" aria-role="presentation" aria-label="SNAIL"></i>
+                     Levels
+                </span>
                 <span>{{ char.base_level }}/{{ char.job_level }}</span>
             </div>
             <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">Base Experience</span>
+                <span class="font-weight-bold">
+
+                     Base Experience
+                </span>
                 <span>{{ char.base_exp }}</span>
             </div>
             <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">Job experience</span>
+                <span class="font-weight-bold">
+
+                     Job experience
+                </span>
                 <span>{{ char.job_exp }}</span>
             </div>
         </div>
@@ -87,11 +114,17 @@
             <h5>Location</h5>
             <hr class="my-2">
         <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">Now</span>
+                <span class="font-weight-bold">
+
+                     Now
+                </span>
                 <span>{{ char.last_map }} ({{ char.last_x }}, {{ char.last_y }})</span>
             </div>
             <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">Respawn</span>
+                <span class="font-weight-bold">
+
+                     Respawn
+                </span>
                 <span>{{ char.save_map }} ({{ char.save_x }}, {{ char.save_y }})</span>
             </div>
         </div>
@@ -137,32 +170,50 @@
                 <hr class="my-2">
                 {% if char.partner_id %}
                     <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">Partner</span>
+                        <span class="font-weight-bold">
+
+                             Partner
+                        </span>
                         <span>{{ char.partner_id }}</span>
                     </div>
                     <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">Child</span>
+                        <span class="font-weight-bold">
+
+                             Child
+                        </span>
                         <span>{{ char.child }}</span>
                     </div>
                 {% elif char.mother and char.father %}
                     <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">Mother</span>
+                        <span class="font-weight-bold">
+
+                             Mother
+                        </span>
                         <span>{{ char.mother }}</span>
                     </div>
                     <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">Father</span>
+                        <span class="font-weight-bold">
+
+                             Father
+                        </span>
                         <span>{{ char.father }}</span>
                     </div>
                 {% endif %}
                 {% if char.party_id %}
                     <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">Party</span>
+                        <span class="font-weight-bold">
+
+                             Party
+                        </span>
                         <span>{{ char.party_id }}</span>
                     </div>
                 {% endif %}
                 {% if char.guild_id %}
                     <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">Guild</span>
+                        <span class="font-weight-bold">
+                            <i class="em em-shinto_shrine" aria-role="presentation" aria-label=""></i>
+                             Guild
+                        </span>
                         <span>{{ char.guild_id }}</span>
                     </div>
                 {% endif %}
@@ -177,13 +228,19 @@
                 <hr class="my-2">
                 {% if char.pet_id %}
                     <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">Pet</span>
+                        <span class="font-weight-bold">
+
+                             Pet
+                        </span>
                         <span>{{ char.pet_id }}</span>
                     </div>
                 {% endif %}
                 {% if char.homun_id %}
                     <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">Homunculus</span>
+                        <span class="font-weight-bold">
+
+                             Homunculus
+                        </span>
                         <span>{{ char.homun_id }}</span>
                     </div>
                 {% endif %}
