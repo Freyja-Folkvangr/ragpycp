@@ -8,6 +8,9 @@ class Categories(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.name
+
 class Ticket(models.Model):
     STATES = (
         (1, 'Open'),
@@ -19,9 +22,9 @@ class Ticket(models.Model):
         (7, 'No proofs'),
     )
     created_by = models.ForeignKey(Login, on_delete=models.CASCADE)
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE)
-    subject = models.CharField(max_length=128, default='', null=False)
-    body = models.TextField(default='', null=False)
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE, help_text='The category this ticket is related to')
+    subject = models.CharField(max_length=128, default='', null=False, help_text='Describe the issue in few words')
+    body = models.TextField(default='', null=False, help_text='Describe the problem in deatil, include steps to reproduce the problem and/or proofs if applicable')
     state = models.IntegerField(default=1, null=False, choices=STATES)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
