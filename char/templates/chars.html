@@ -16,13 +16,7 @@
             <div class="card border-0 shadow mb-4">
                 <div class="card-body">
                     <h5><a href="{% url 'char:char_view' char.char_id %}">
-                        {% if response.created_by.sex == 'M' %}
-                            <i class="em em-blond-haired-man" aria-role="presentation" aria-label=""></i>
-                        {% elif response.created_by.sex == 'F' %}
-                            <i class="em em-blond-haired-woman" aria-role="presentation" aria-label=""></i>
-                        {% else %}
-                            <i class="em em-robot_face" aria-role="presentation" aria-label="ROBOT FACE"></i>
-                        {% endif %}
+                        <i class="em em-bust_in_silhouette" aria-role="presentation" aria-label="BUST IN SILHOUETTE"></i>
                         {{ char.name }}
                     </a></h5>
                     <hr class="my-2">

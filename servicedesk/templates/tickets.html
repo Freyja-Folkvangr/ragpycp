@@ -26,7 +26,10 @@
             <div class="card border-0 shadow mb-4">
                 <div class="card-body">
                     <h2>
-                        <a href="{% url 'servicedesk:ticket' ticket.id %}"> {{ ticket.subject }}</a>
+                        <a href="{% url 'servicedesk:ticket' ticket.id %}">
+                            <i class="em em-spiral_note_pad" aria-role="presentation" aria-label=""></i>
+                            {{ ticket.subject }}
+                        </a>
                     </h2>
                     <span>
                         <i class="em em-spiral_calendar_pad" aria-role="presentation" aria-label=""></i>
