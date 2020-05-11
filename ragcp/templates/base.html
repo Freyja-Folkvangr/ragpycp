@@ -16,6 +16,7 @@
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/ragcp.css' %}">
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
 </head>
 
 <body style="background-image: url('{{ STATIC_URL }} /static/main-bg-clean.jpg');background-attachment: fixed;background-position: center;background-repeat: no-repeat;background-size: cover;">
@@ -48,7 +49,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}">Home 🏠<span class="sr-only"></span></a>
+                    <a class="nav-link" href="{% url 'index' %}"><i class="em em-house_with_garden"
+                                                                    aria-role="presentation"
+                                                                    aria-label="HOUSE WITH GARDEN"></i> Home<span
+                            class="sr-only"></span></a>
                 </li>
 
                 {% if request.user.is_authenticated %}

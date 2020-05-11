@@ -4,43 +4,46 @@
     <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
         {% if request.user.is_authenticated %}
-            {{ user.username }} 👤
+            <i class="em em-bust_in_silhouette" aria-role="presentation" aria-label="BUST IN SILHOUETTE"></i> {{ user.username }}
         {% else %}
-            Account 👤
+            <i class="em em-bust_in_silhouette" aria-role="presentation" aria-label="BUST IN SILHOUETTE"></i> Account
         {% endif %}
     </button>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
         <!-- User Menu -->
         {% if request.user.is_authenticated %}
             <a class="dropdown-item" href="{% url 'char:list' %}"><i
-                        class="fa fa-cog"></i>
-                    <button type="button"
-                            class="btn btn-secondary btn-sm btn-block">{% trans "Chars 🧦 ️" %}</button>
-                </a>
+                    class="fa fa-cog"></i>
+                <button type="button"
+                        class="btn btn-secondary btn-sm btn-block">{% trans '<i class="em em-socks" aria-role="presentation" aria-label="SOCKS"></i>️ Chars' %}</button>
+            </a>
             <!-- Staff Admin button -->
-{#            {% if request.user.is_staff %}#}
-{#                <div class="dropdown-divider"></div>#}
-{#                <a class="dropdown-item" href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i#}
-{#                        class="fa fa-cog"></i>#}
-{#                    <button type="button"#}
-{#                            class="btn btn-secondary btn-sm btn-block">{% trans "Manage ⚙️" %}</button>#}
-{#                </a>#}
-{#            {% endif %}#}
+            {#            {% if request.user.is_staff %}#}
+            {#                <div class="dropdown-divider"></div>#}
+            {#                <a class="dropdown-item" href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i#}
+            {#                        class="fa fa-cog"></i>#}
+            {#                    <button type="button"#}
+            {#                            class="btn btn-secondary btn-sm btn-block">{% trans '<i class="em em-gear" aria-role="presentation" aria-label=""></i>️ Manage' %}</button>#}
+            {#                </a>#}
+            {#            {% endif %}#}
             <a class="dropdown-item" id="account_logout" href="{% url "users:logout" %}"><i
                     class="fa fa-power-off"></i>
-                <button type="button" class="btn btn-danger btn-sm btn-block">{% trans "Log out 🔒" %}</button>
+                <button type="button"
+                        class="btn btn-danger btn-sm btn-block">{% trans '<i class="em em-lock" aria-role="presentation" aria-label="LOCK"></i> Log out' %}</button>
             </a>
             </div>
 
             <!-- Guest menu -->
         {% else %}
             <a class="dropdown-item" href="{% url "login" %}">
-                <button type="button" class="btn btn-secondary btn-sm btn-block">{% trans "Log in 🖌" %}</button>
+                <button type="button"
+                        class="btn btn-secondary btn-sm btn-block">{% trans '<i class="em em-lock_with_ink_pen" aria-role="presentation" aria-label="LOCK WITH INK PEN"></i> Log in' %}</button>
                 <i
                         class="fa fa-user"></i>
             </a>
             <a class="dropdown-item" href="{% url 'users:signup' %}">
-                <button type="button" class="btn btn-success btn-sm btn-block">{% trans "Sign up  📝" %}</button>
+                <button type="button"
+                        class="btn btn-success btn-sm btn-block">{% trans '<i class="em em-writing_hand" aria-role="presentation" aria-label=""></i> Sign up' %}</button>
                 <i
                         class="fa fa-user"></i>
             </a>
