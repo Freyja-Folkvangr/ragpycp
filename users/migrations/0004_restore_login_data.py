@@ -2,6 +2,7 @@
 
 from django.db import migrations
 from django.forms.models import model_to_dict
+import random
 
 def migrate_data(apps, schema_editor):
     old_logins = apps.get_model("users", "Login2")
@@ -21,6 +22,9 @@ def migrate_data(apps, schema_editor):
 
         data_dict['last_login'] = data_dict['lastlogin']
         del data_dict['lastlogin']
+
+        if not data_dict['web_auth_token']:
+            data_dict['web_auth_token'] = str(random.randrange(1000000000))
 
         l = new_login(**data_dict)
         l.save()

@@ -42,6 +42,8 @@ class Migration(migrations.Migration):
                 ('pincode_change', models.PositiveIntegerField(blank=True, default=0)),
                 ('vip_time', models.PositiveIntegerField(blank=True, default=0)),
                 ('old_group', models.IntegerField(blank=True, default=0)),
+                ('web_auth_token', models.CharField(blank=True, max_length=17, null=True, unique=True)),
+                ('web_auth_token_enabled', models.IntegerField(default=None)),
                 ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.Group', verbose_name='groups')),
                 ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.Permission', verbose_name='user permissions')),
             ],
@@ -76,6 +78,8 @@ class Migration(migrations.Migration):
                 ('pincode_change', models.PositiveIntegerField()),
                 ('vip_time', models.PositiveIntegerField()),
                 ('old_group', models.IntegerField()),
+                ('web_auth_token', models.CharField(blank=True, max_length=17, null=True, unique=True)),
+                ('web_auth_token_enabled', models.IntegerField(default=0)),
             ],
             options={
                 'db_table': 'login2',

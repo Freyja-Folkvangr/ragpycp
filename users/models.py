@@ -32,6 +32,8 @@ class Login(AbstractUser):
     pincode_change = models.PositiveIntegerField(default=0, blank=True)
     vip_time = models.PositiveIntegerField(null=False, blank=True, default=0)
     old_group = models.IntegerField(null=False, blank=True, default=0)
+    web_auth_token = models.CharField(unique=True, max_length=17, blank=True, null=True, default=None)
+    web_auth_token_enabled = models.IntegerField(default=0)
 
     @property
     def state_str(self):

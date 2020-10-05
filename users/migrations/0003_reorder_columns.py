@@ -63,5 +63,11 @@ class Migration(migrations.Migration):
         ),
         migrations.RunSQL(
             "ALTER TABLE `login` CHANGE `old_group` `old_group` int(11) NOT NULL COMMENT '' AFTER `vip_time`;"
+        ),
+        migrations.RunSQL(
+            "ALTER TABLE `login` CHANGE `web_auth_token` `web_auth_token` int(11) NOT NULL COMMENT '' AFTER `old_group`;"
+        ),
+        migrations.RunSQL(
+            "ALTER TABLE `login` CHANGE `web_auth_token_enabled` `web_auth_token_enabled` int(11) NOT NULL COMMENT '' AFTER `web_auth_token`;"
         )
     ]
