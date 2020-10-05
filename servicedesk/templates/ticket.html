@@ -2,20 +2,19 @@
 
 {% block masterhead %}
     <h1>Service Desk</h1>
-    <h2>Details of {{ ticket.subject }}</h2>
+    <h2>Details of: "{{ ticket.subject }}"</h2>
 {% endblock %}
 {# TODO: add buttons to change ticket status to closed, etc #}
 {% block body %}
     <div class="card border-0 shadow mb-4">
         <div class="card-body">
-            <h2>
-                <i class="em em-spiral_note_pad" aria-role="presentation" aria-label=""></i>
-                 {{ ticket.subject }}
-            </h2>
-            <span>
-                <i class="em em-spiral_calendar_pad" aria-role="presentation" aria-label=""></i>
+            <h4>
+                {{ ticket.category }}:
+                "{{ ticket.subject }}"
+            </h4>
+            <h7>
                 {{ ticket.created }}
-            </span>
+            </h7>
             <hr class="my-2">
             <p>
                 {{ ticket.body }}
@@ -51,7 +50,7 @@
         {% for response in responses %}
             <div class="card border-0 shadow mb-4">
                 <div class="card-body">
-                    <h3>
+                    <h5>
                         {% if response.created_by.sex == 'M' %}
                             <i class="em em-blond-haired-man" aria-role="presentation" aria-label=""></i>
                         {% elif response.created_by.sex == 'F' %}
@@ -60,8 +59,10 @@
                             <i class="em em-robot_face" aria-role="presentation" aria-label="ROBOT FACE"></i>
                         {% endif %}
                          {{ response.created_by.username }}
-                    </h3>
-                    <i class="em em-spiral_calendar_pad" aria-role="presentation" aria-label=""></i> {{ response.created }}
+                    </h5>
+                    <h6>
+                        {{ response.created }}
+                    </h6>
                     <hr class="my-2">
 
                     <p>

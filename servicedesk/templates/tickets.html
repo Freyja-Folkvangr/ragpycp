@@ -25,16 +25,15 @@
         {% for ticket in tickets %}
             <div class="card border-0 shadow mb-4">
                 <div class="card-body">
-                    <h2>
+                    <h4>
                         <a href="{% url 'servicedesk:ticket' ticket.id %}">
-                            <i class="em em-spiral_note_pad" aria-role="presentation" aria-label=""></i>
-                            {{ ticket.subject }}
+                            {{ ticket.category }}:
+                            "{{ ticket.subject }}"
                         </a>
-                    </h2>
-                    <span>
-                        <i class="em em-spiral_calendar_pad" aria-role="presentation" aria-label=""></i>
+                    </h4>
+                    <h7>
                          {{ ticket.created }}
-                    </span>
+                    </h7>
                     <hr class="my-2">
 
                     <div class="d-flex justify-content-between small">
