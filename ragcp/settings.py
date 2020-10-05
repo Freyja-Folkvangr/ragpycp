@@ -59,7 +59,6 @@ INSTALLED_APPS = [
     'char',
     'mathfilters',
     'servicedesk',
-    'bitcoin',
 ]
 
 AUTH_USER_MODEL = 'users.Login'
@@ -137,10 +136,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-STRIPE_PUBLISHABLE_KEY = '<your test publishable key here>'
-STRIPE_SECRET_KEY = '<your test secret key here>'
-STRIPE_CONNECT_CLIENT_ID = 'ca_Fn7WYpNSelTC87rz1C6jrxjdPUSITxq4'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
