@@ -14,6 +14,8 @@ differs between the varying operating systems available.
 4. Your login table MUST NOT HAVE ADDITIONAL COLUMNS.
 5. Your server MUST run with MD5 passwords enabled by default.
 
+WARNING: We do not give support for third party addons and/or mods that modify, add or remove columns of rAthena database tables, always install RagCP on a clean database structure and backup your data if something apocalyptic happens. 
+
 # Installation
 
 After setting up your environment, run the following commands:

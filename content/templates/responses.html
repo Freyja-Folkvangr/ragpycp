@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block masterhead %}
+    <h1>Post responses</h1>
+    <h5>{{ post.title }}</h5>
+{% endblock %}
+
+{% block body %}
+    {% include 'main_post.html' %}
+    {% if responses %}
+        <h1 style="color: #ffffff; text-shadow: 2px 2px 2px #000000;">
+            Responses</h1>
+        {% for response in responses %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card border-0 shadow mb-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between small">
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <div class="col-md-12"
+                                             style="text-align: center;">
+                                            <img width="32px" height="32px"
+                                                 src="{{ response.author.gravatar_url }}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12"
+                                             style="text-align: center;">
+                                            <span class="font-weight-bold">{{ response.author.username }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12"
+                                             style="text-align: center;">
+                                            <span>{{ response.added }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <span>{{ response.content | safe }}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="{% url 'content:view_responses' response.id %}">
+                                        <button type="button"
+                                                class="btn btn-sm btn-block btn-outline-secondary">{{ response.num_responses }}
+                                            responses
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <header class="jumbotron subhead" id="overview">
+            <h1>:(</h1>
+            <h3>No responses</h3>
+            <p class="lead">
+                Nobody has written something... (yet)
+                <i class="em em-wind_blowing_face" aria-role="presentation"
+                   aria-label=""></i>
+                <i class="em em-leaves" aria-role="presentation"
+                   aria-label="LEAF FLUTTERING IN WIND"></i>
+            </p>
+        </header>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+        <h1 style="color: #ffffff; text-shadow: 2px 2px 2px #000000;">
+            Respond</h1>
+        <div class="row">
+            <div class="col-md-12">
+                {% include 'form_template.html' %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

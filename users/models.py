@@ -39,6 +39,13 @@ class Login(AbstractUser):
     def state_str(self):
         return self.STATES[self.state][1]
 
+    @property
+    def gravatar_url(self):
+        from libgravatar import Gravatar
+        email = (self.email)
+        g = Gravatar(email)
+        return g.get_image()
+
     def __str__(self):
         return '[%s] %s (%s)' % (self.id, self.username, self.state_str)
 

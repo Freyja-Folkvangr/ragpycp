@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'char',
     'mathfilters',
     'servicedesk',
+    'content'
 ]
 
 AUTH_USER_MODEL = 'users.Login'
@@ -107,6 +108,7 @@ try:
             'OPTIONS': {
                 # 'init_command': 'SET storage_engine=InnoDB', #For MySQL 5.6
                 'init_command': 'SET default_storage_engine=INNODB', #For MySQL 5.7+
+                'charset': 'utf8mb4' # to support emoji in posts
                 # better to set this in your database config, otherwise django has to do a query everytime
             }
         }
@@ -158,3 +160,8 @@ LOGOUT_REDIRECT_URL = 'index'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+
+# User settings
+FEED_ENABLED = True
+RSS_FEED = 'https://zapier.com/engine/rss/973076/freyja'

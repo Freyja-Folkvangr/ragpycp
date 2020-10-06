@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block masterhead %}
+    <h1>Create new entry</h1>
+    <h5>Tip: You can use HTML, use it at your own risk</h5>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            {% include 'form_template.html' %}
+        </div>
+    </div>
+{% endblock %}
