@@ -11,7 +11,7 @@ from .models import *
 def index(request):
     context = {}
     try:
-        context['posts'] = Post.objects.all().order_by('-added')[:15]
+        context['posts'] = Post.objects.filter(parent=None).order_by('-added')[:15]
     except Exception as e:
         context['posts'] = None
     return render(request, 'index.html', context)
