@@ -158,3 +158,7 @@ LOGOUT_REDIRECT_URL = 'index'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+
+# User settings
+RSS_FEED = 'https://zapier.com/engine/rss/973076/freyja'
