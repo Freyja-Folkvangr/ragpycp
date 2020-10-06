@@ -6,7 +6,7 @@
 
 {% block body %}
     {% if request.user.is_authenticated and request.user.is_staff %}
-        <a href="{% url 'servicedesk:new_ticket' %}">
+        <a href="{% url 'content:new_entry' %}">
             <button type="button" class="btn btn-sm btn-block btn-secondary"
                     style="margin-bottom: 5px;">
                 <i class="em em-lower_left_ballpoint_pen"

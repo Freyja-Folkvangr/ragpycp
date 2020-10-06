@@ -2,6 +2,7 @@ import feedparser
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from content.forms import new_entry_form
 from content.models import Post
 from ragcp import settings
 from ragcp.settings import logger
@@ -29,3 +30,20 @@ def get_feed(request):
             ).save()
             logger.debug('post created: %s' % p)
     return redirect('index')
+
+def new_entry(request):
+    if not request.user.is_staff:
+        redirect('forbidden')
+
+    form = new_entry_form(request.POST or None)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.author = request.user
+        form.save()
+        return redirect('index')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'new_entry.html', context)
