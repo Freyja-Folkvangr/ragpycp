@@ -102,8 +102,8 @@
                     <div class="card border-0 shadow mb-4 text-center">
                         <div class="card-body">
                             {% if request.user.is_authenticated %}
-                                {% if freshchat %}
-                                    <img src="{{ freshchat.persona.gravatar_url }}">
+                                {% if request.user.gravatar_url %}
+                                    <img src="{{ request.user.gravatar_url }}">
                                 {% else %}
                                     <img src="{% static 'avatar/' %}{{ request.user.id|mod:6 }}.jpg">
                                 {% endif %}
