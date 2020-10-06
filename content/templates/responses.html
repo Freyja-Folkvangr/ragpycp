@@ -1,19 +1,12 @@
 {% extends 'base.html' %}
 
 {% block masterhead %}
-    <h1>Post details</h1>
+    <h1>Post responses</h1>
     <h5>{{ post.title }}</h5>
 {% endblock %}
 
 {% block body %}
     {% include 'main_post.html' %}
-    <h1 style="color: #ffffff; text-shadow: 2px 2px 2px #000000;">Write
-        something</h1>
-    <div class="row">
-        <div class="col-md-12">
-            {% include 'form_template.html' %}
-        </div>
-    </div>
     {% if responses %}
         <h1 style="color: #ffffff; text-shadow: 2px 2px 2px #000000;">
             Responses</h1>
@@ -76,4 +69,10 @@
             </p>
         </header>
     {% endif %}
+    <h1 style="color: #ffffff; text-shadow: 2px 2px 2px #000000;">Respond</h1>
+    <div class="row">
+        <div class="col-md-12">
+            {% include 'form_template.html' %}
+        </div>
+    </div>
 {% endblock %}
