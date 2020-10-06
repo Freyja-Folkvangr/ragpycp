@@ -2,13 +2,11 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import Login
 
-@admin.register(Login)
 class MyUserAdmin(UserAdmin):
     form = CustomUserChangeForm
     add_form = CustomUserCreationForm
@@ -20,3 +18,5 @@ class MyUserAdmin(UserAdmin):
     )
     list_display = ('username', 'id', 'email', 'is_staff', 'is_active', 'state')
     search_fields = ['id', 'username', 'email']
+
+admin.site.register(Login, MyUserAdmin)
