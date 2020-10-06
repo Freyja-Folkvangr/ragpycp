@@ -2,7 +2,7 @@
 
 <ul class="nav navbar-nav navbar-left">
     <button id="btnGroupDrop1" type="button"
-            class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+            class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
         {% if request.user.is_authenticated %}
             <i class="em em-bust_in_silhouette" aria-role="presentation"
@@ -58,11 +58,9 @@
         {% endif %}
 <!-- Staff Admin button -->
             {% if request.user.is_staff %}
-                <a class="dropdown-item"
-                   href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i
-                        class="fa fa-cog"></i>
+                <a href="{% url THEME_ADMIN_URL|default:"admin:index" %}">
                     <button type="button"
-                            class="btn btn-info btn-block">
+                            class="btn btn-sm btn-info btn-block">
                         <i class="em em-gear" aria-role="presentation"
                            aria-label=""></i>️ Manage server
                     </button>
