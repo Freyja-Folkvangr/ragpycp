@@ -34,7 +34,7 @@ def get_feed(request):
 
 def new_entry(request):
     if not request.user.is_staff:
-        redirect('forbidden')
+        return redirect('forbidden')
 
     form = new_entry_form(request.POST or None)
     if form.is_valid():
@@ -49,3 +49,15 @@ def new_entry(request):
     }
 
     return render(request, 'new_entry.html', context)
+
+def view_responses(request, post_id):
+    if post_id:
+        post = Post.objects.get(pk=post_id)
+    else:
+        return redirect('index')
+    responses = Post.objects.filter(parent=post).order_by('-added')
+    context = {
+        'post': post,
+        'responses': responses
+    }
+    return render(request, 'responses.html', context)
