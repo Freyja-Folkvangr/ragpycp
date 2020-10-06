@@ -68,14 +68,14 @@
                                         <span>{{ post.content | safe }}</span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <a href="{% url 'content:view_responses' post.id %}">
-                                    <button type="button"
-                                            class="btn btn-sm btn-block btn-outline-secondary">{{ post.num_responses }}
-                                        responses
-                                    </button>
-                                </a>
+                                <div class="row">
+                                    <a href="{% url 'content:view_responses' post.id %}">
+                                        <button type="button"
+                                                class="btn btn-sm btn-block btn-outline-secondary">{{ post.num_responses }}
+                                            responses
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
