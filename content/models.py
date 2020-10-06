@@ -13,3 +13,6 @@ class Post(models.Model):
 
     added = models.DateTimeField(auto_now_add=True, help_text='Date when it was created on RagCP')
     updated = models.DateTimeField(auto_now=True, help_text='Date when modified')
+
+    def __str__(self):
+        return '%s // %s by %s' % (self.title[:10], self.content[:20], self.author)

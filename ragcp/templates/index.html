@@ -5,9 +5,24 @@
 {% endblock %}
 
 {% block body %}
+    {% if request.user.is_authenticated and request.user.is_staff %}
+        <a href="{% url 'servicedesk:new_ticket' %}">
+        <button type="button" class="btn btn-sm btn-block btn-secondary"
+                style="margin-bottom: 5px;">
+            <i class="em em-lower_left_ballpoint_pen" aria-role="presentation" aria-label=""></i>
+            Create new post
+        </button>
+    </a>
+        <a href="{% url 'content:get_feed' %}">
+        <button type="button" class="btn btn-sm btn-block btn-secondary"
+                style="margin-bottom: 5px;">
+            <i class="em em-lower_left_ballpoint_pen" aria-role="presentation" aria-label=""></i>
+            Fetch from RSS Feed
+        </button>
+    </a>
+    {% endif %}
     {% if posts %}
         {% for post in posts %}
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="card border-0 shadow mb-4">
