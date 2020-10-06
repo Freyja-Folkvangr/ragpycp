@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'char',
     'mathfilters',
     'servicedesk',
+    'content'
 ]
 
 AUTH_USER_MODEL = 'users.Login'
@@ -161,4 +162,5 @@ STATIC_URL = '/static/'
 
 
 # User settings
+FEED_ENABLED = True
 RSS_FEED = 'https://zapier.com/engine/rss/973076/freyja'

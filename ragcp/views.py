@@ -2,12 +2,19 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
+
+from content.models import Post
 from .forms import *
 from .models import *
 
 
 def index(request):
-    return render(request, 'index.html')
+    context = {}
+    try:
+        context['posts'] = Post.objects.all()[:15]
+    except Exception as e:
+        context['posts'] = None
+    return render(request, 'index.html', context)
 
 
 def forbidden(request):
