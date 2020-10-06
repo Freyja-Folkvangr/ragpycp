@@ -16,7 +16,7 @@ def get_feed(request):
 
     feed = feedparser.parse(feed_url)
     system_account = Login.objects.filter(sex='S').first()
-    posts = Post.objects.filter(author__sex='S', parent=None).values_list('title', 'content', flat=True)
+    posts = Post.objects.filter(author__sex='S', parent=None).values_list('title', 'content')
     logger.debug('Existing posts: %s' % posts)
     for post in feed['entries']:
         if (post.title, post.content) not in posts:
