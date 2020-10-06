@@ -47,7 +47,9 @@
                                 <div class="col-md-9">
                                     <span>{{ response.content | safe }}</span>
                                 </div>
-                                <div class="row">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
                                     <a href="{% url 'content:view_responses' response.id %}">
                                         <button type="button"
                                                 class="btn btn-sm btn-block btn-outline-secondary">{{ response.num_responses }}
