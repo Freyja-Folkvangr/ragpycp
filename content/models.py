@@ -16,3 +16,7 @@ class Post(models.Model):
 
     def __str__(self):
         return '%s: %s by %s' % (self.title[:10], self.content[:40], self.author.username)
+
+    @property
+    def num_responses(self):
+        return Post.objects.filter(parent=self.pk).count()
