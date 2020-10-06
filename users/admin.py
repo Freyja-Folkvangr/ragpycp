@@ -18,5 +18,6 @@ class MyUserAdmin(UserAdmin):
     )
     list_display = ('username', 'id', 'email', 'is_staff', 'is_active', 'state')
     search_fields = ['id', 'username', 'email']
+    list_filter = ['state', 'sex', 'active', 'is_staff', 'is_superuser']
 
 admin.site.register(Login, MyUserAdmin)
