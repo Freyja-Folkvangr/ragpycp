@@ -108,6 +108,7 @@ try:
             'OPTIONS': {
                 # 'init_command': 'SET storage_engine=InnoDB', #For MySQL 5.6
                 'init_command': 'SET default_storage_engine=INNODB', #For MySQL 5.7+
+                'charset': 'utf8mb4' # to support emoji in posts
                 # better to set this in your database config, otherwise django has to do a query everytime
             }
         }
