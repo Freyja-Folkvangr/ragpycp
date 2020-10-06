@@ -62,7 +62,6 @@ def view_responses(request, post_id):
         response.author = request.user
         response.parent = post
         response.title = 'Re: %s' % post.title
-        response.content = response.content.replace('\n', '<br>')
         form.save()
         return redirect('content:view_responses', post_id=post.pk)
 
