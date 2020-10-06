@@ -7,6 +7,8 @@ from django.views import generic
 import random
 
 from .forms import CustomUserCreationForm
+from .models import Login
+
 
 class SignUp(generic.CreateView):
     form_class = CustomUserCreationForm
@@ -14,5 +16,11 @@ class SignUp(generic.CreateView):
     template_name = 'signup.html'
     def form_valid(self, form):
         user = form.save(commit=False)
-        user.web_auth_token = str(random.randrange(1000000000))
+
+        tokens = Login.objects.all().values_list('web_auth_token', flat=True)
+        token = None
+        while token in tokens or token == None:
+            token = str(random.randrange(1000000000))
+
+        user.web_auth_token = token
         return super().form_valid(form)
