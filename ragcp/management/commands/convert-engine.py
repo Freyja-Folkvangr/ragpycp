@@ -1,6 +1,8 @@
 from django.core.management.base import BaseCommand
 from django.db import connections
 
+from ragcp.settings import logger
+
 tables = ['login', 'char']
 
 
@@ -14,4 +16,4 @@ class Command(BaseCommand):
 
         for row in cursor.fetchall():
             if row[1] != "InnoDB" and row[0] in tables:
-                print("Converting %s: %s" % (row[0], cursor.execute("ALTER TABLE `%s` ENGINE=InnoDB" % row[0])))
+                logger.info("Converting %s: %s" % (row[0], cursor.execute("ALTER TABLE `%s` ENGINE=InnoDB" % row[0])))

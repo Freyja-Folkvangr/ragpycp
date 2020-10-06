@@ -48,7 +48,7 @@ For example www.myragnarok.com
 
 rAthena uses MyISAM as table engine, run the following command to upgrade tables used by RagCP to InnoDB
 
-`python manage.py preinstall`
+`python manage.py convert-engine`
 
 Then run database migrations
 
