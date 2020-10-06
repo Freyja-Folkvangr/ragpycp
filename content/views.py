@@ -19,7 +19,7 @@ def get_feed(request):
     posts = Post.objects.filter(author__sex='S', parent=None).values_list('title', 'content')
     logger.debug('Existing posts: %s' % posts)
     for post in feed['entries']:
-        if (post.title, post.content) not in posts:
+        if (post.title, post.description) not in posts:
             p = Post(
                 title=post.title,
                 content=post.description,
