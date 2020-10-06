@@ -24,19 +24,6 @@
                        aria-label="SOCKS"></i>️ Chars
                 </button>
             </a>
-            <!-- Staff Admin button -->
-            {% if request.user.is_staff %}
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item"
-                   href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i
-                        class="fa fa-cog"></i>
-                    <button type="button"
-                            class="btn btn-secondary btn-sm btn-block">
-                        <i class="em em-gear" aria-role="presentation"
-                           aria-label=""></i>️ Manage
-                    </button>
-                </a>
-            {% endif %}
             <a class="dropdown-item" id="account_logout"
                href="{% url "users:logout" %}"><i
                     class="fa fa-power-off"></i>
@@ -69,6 +56,19 @@
                         class="fa fa-user"></i>
             </a>
         {% endif %}
+<!-- Staff Admin button -->
+            {% if request.user.is_staff %}
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item"
+                   href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i
+                        class="fa fa-cog"></i>
+                    <button type="button"
+                            class="btn btn-info btn-sm btn-block">
+                        <i class="em em-gear" aria-role="presentation"
+                           aria-label=""></i>️ Manage server
+                    </button>
+                </a>
+            {% endif %}
 </ul>
 
 <form id="accountLogOutForm" style="display: none;" action="{% url "logout" %}"
