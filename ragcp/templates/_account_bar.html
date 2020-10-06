@@ -58,12 +58,11 @@
         {% endif %}
 <!-- Staff Admin button -->
             {% if request.user.is_staff %}
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item"
                    href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i
                         class="fa fa-cog"></i>
                     <button type="button"
-                            class="btn btn-info btn-sm btn-block">
+                            class="btn btn-info btn-block">
                         <i class="em em-gear" aria-role="presentation"
                            aria-label=""></i>️ Manage server
                     </button>
