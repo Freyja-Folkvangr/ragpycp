@@ -2,7 +2,7 @@ import feedparser
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from content.forms import new_entry_form
+from content.forms import new_entry_form, write_response_form
 from content.models import Post
 from ragcp import settings
 from ragcp.settings import logger
@@ -55,9 +55,21 @@ def view_responses(request, post_id):
         post = Post.objects.get(pk=post_id)
     else:
         return redirect('index')
+
+    form = write_response_form(request.POST or None)
+    if form.is_valid():
+        response = form.save(commit=False)
+        response.author = request.user
+        response.parent = post
+        response.title = 'Re: %s' % post.title
+        response.content = post.content.replace('\n', '<br>')
+        form.save()
+        return redirect('content:view_responses', post_id=post.pk)
+
     responses = Post.objects.filter(parent=post).order_by('-added')
     context = {
         'post': post,
-        'responses': responses
+        'responses': responses,
+        'form': form
     }
     return render(request, 'responses.html', context)
