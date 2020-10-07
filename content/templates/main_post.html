@@ -25,7 +25,11 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <span>{{ post.content | safe }}</span>
+                        {% if post.parent == None %}
+                            <span>{{ post.content | safe }}</span>
+                        {% else %}
+                            <span>{{ post.content | linebreaks }}</span>
+                        {% endif %}
                     </div>
                 </div>
             </div>
