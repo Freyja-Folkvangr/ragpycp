@@ -36,6 +36,8 @@ Log in to the server you'll use to run the CP and create the following environme
 
 `DATABASE_NAME`
 
+`HOST`: The domain name your users will use to open the web page
+
 2. Add your domain to the whitelist
 
 Create an environment variable called HOST which its value is the hostname where the CP is going to be located. Don't include https://
@@ -89,4 +91,4 @@ The command collects the static files into STATIC_ROOT
 # Demo
 I'm creating a Ragnarok server to play with friends, we'll be using RagCP, so feel free to take a look :)
 
-[Freyja](https://freyja-ro.herokuapp.com)
+[Freyja](https://freyja-ro.xyz)
