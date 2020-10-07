@@ -34,15 +34,14 @@ except Exception:
     pass
 
 if host:
-    logger.warning('Could not load environment variable HOST')
     ALLOWED_HOSTS.append(host)
     if host in ['127.0.0.1', 'localhost'] or '.local' in host:
-        debug = True
-    else:
         DEBUG = True
+    else:
+        DEBUG = False
 else:
     DEBUG = True
-logger.info('DEBUG %s' % DEBUG)
+logger.info('The HOST is %s and debug is %s' % (host, DEBUG))
 
 # Application definition
 
