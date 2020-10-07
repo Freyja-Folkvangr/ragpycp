@@ -38,7 +38,7 @@ if host:
     if host in ['127.0.0.1', 'localhost'] or '.local' in host:
         DEBUG = True
     else:
-        DEBUG = False
+        DEBUG = True
 else:
     DEBUG = True
 logger.info('The HOST is %s and debug is %s' % (host, DEBUG))
