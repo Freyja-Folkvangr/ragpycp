@@ -58,12 +58,7 @@
                 {% if request.user.is_authenticated %}
                     {% block ragnarok_bar %}{% include "_ragnarok_bar.html" %}{% endblock %}
                 {% endif %}
-
-                {% comment %}
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-                {% endcomment %}
+            
             </ul>
         </div>
     </nav>
@@ -116,19 +111,6 @@
                             {% endif %}
                         </div>
                     </div>
-
-                    {% if request.user.is_staff %}
-                        <div class="card border-0 shadow mb-4 text-center">
-                            <div class="card-body">
-                                <h5>Change history:</h5>
-                                <div class="small mb-2 font-weight-bold">Review CP history of changes.
-                                </div>
-                                <a href="#nogo">
-                                    <button type="button" class="btn btn-sm btn-primary">Changelog</button>
-                                </a>
-                            </div>
-                        </div>
-                    {% endif %}
 
                     {% block rightbar %}
                     {% endblock %}
