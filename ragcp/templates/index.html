@@ -42,7 +42,13 @@
                                     <div class="row">
                                         <div class="col-md-12"
                                              style="text-align: center;">
-                                            <span class="font-weight-bold">{{ post.author.username }}</span>
+                                            {% if post.author.sex == 'S' %}
+                                                <span class="font-weight-bold">{{ post.author.username }}</span>
+                                            {% else %}
+                                                <a href="{% url 'users:profile' post.author.id %}">
+                                                    <span class="font-weight-bold">{{ post.author.username }}</span>
+                                                </a>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="row">
@@ -52,16 +58,7 @@
                                         </div>
                                     </div>
                                     {% if request.user.is_staff %}
-                                        <div class="row">
-                                            <a href="{% url 'content:delete_post' post.id %}">
-                                                <button type="button"
-                                                        class="btn btn-sm btn-block btn-outline-secondary">
-                                                    <i class="em em-file_cabinet"
-                                                       aria-role="presentation"
-                                                       aria-label=""></i>
-                                                </button>
-                                            </a>
-                                        </div>
+                                        {% include 'post_options.html' %}
                                     {% endif %}
                                 </div>
                                 <div class="col-md-9">
@@ -82,16 +79,34 @@
                                     </div>
                                 </div>
                             </div>
+                            <hr>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="{% url 'content:view_responses' post.id %}">
-                                        <button type="button"
-                                                class="btn btn-sm btn-block btn-outline-secondary">{{ post.num_responses }}
-                                            responses
-                                        </button>
+                                    <a href="{% url 'content:post_details' post.id %}">
+                                        <i class="em em-right_anger_bubble"
+                                           aria-role="presentation"
+                                           aria-label=""></i>
+                                        {{ post.num_responses }}
+                                        responses
                                     </a>
                                 </div>
                             </div>
+                            {% if request.user.is_staff and post.deleted %}
+                                <div class="row" style="padding-top: 1em;">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-info alert-dismissible fade show"
+                                             role="alert">
+                                            This post and its answers are not
+                                            visible unless they have the link...
+                                            <button type="button" class="close"
+                                                    data-dismiss="alert"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

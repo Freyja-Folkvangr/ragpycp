@@ -49,16 +49,22 @@ def new_entry(request):
         'form': form
     }
 
-    return render(request, 'new_entry.html', context)
+    return render(request, 'post_create.html', context)
 
 def delete_post(request, post_id):
     if not request.user.is_staff:
         return redirect('forbidden')
     elif post_id:
-        Post.objects.filter(pk=post_id).update(deleted=True)
+        post = Post.objects.get(pk=post_id)
+        post.deleted = True
+        post.save()
+        if post.parent:
+            return redirect('content:post_details', post_id=post.parent.pk)
+        else:
+            return redirect('index')
     return redirect('index')
 
-def view_responses(request, post_id):
+def post_details(request, post_id):
     if post_id:
         post = get_object_or_404(Post, pk=post_id, deleted=False)
     else:
@@ -71,7 +77,7 @@ def view_responses(request, post_id):
         response.parent = post
         response.title = 'Re: %s' % post.title
         form.save()
-        return redirect('content:view_responses', post_id=post.pk)
+        return redirect('content:post_details', post_id=post.pk)
 
     deleted = Q(deleted=False)
     if not request.user.is_anonymous:
@@ -83,4 +89,4 @@ def view_responses(request, post_id):
         'responses': responses,
         'form': form
     }
-    return render(request, 'responses.html', context)
+    return render(request, 'post_details.html', context)

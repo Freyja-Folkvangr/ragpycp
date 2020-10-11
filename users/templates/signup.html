@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
+{% block masterhead %}
+    <h1>Sign up</h1>
+    <h5>...for a new account</h5>
+{% endblock %}
+
 {% block body %}
-<!-- templates/signup.html -->
-<h2>Sign up</h2>
-{% include 'form_template.html' %}
+    {% include 'form_template.html' %}
 {% endblock %}

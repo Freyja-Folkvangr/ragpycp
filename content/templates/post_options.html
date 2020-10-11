@@ -1,0 +1,22 @@
+<div class="dropdown">
+    <button class="btn btn-sm btn-block btn-outline-primary dropdown-toggle"
+            type="button" id="post{{ post.id }}Options" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+        Options
+    </button>
+    <div class="dropdown-menu" aria-labelledby="post{{ post.id }}Options">
+        {% if request.user.is_staff and not post.deleted %}
+            <a class="dropdown-item"
+               href="{% url 'content:delete_post' post.id %}">
+                <i class="em em-file_cabinet" aria-role="presentation"
+                   aria-label=""></i>
+                Archive post
+            </a>
+        {% endif %}
+        <a class="dropdown-item disabled" href="#nogo">
+            <i class="em em-clipboard" aria-role="presentation"
+               aria-label="CLIPBOARD"></i>
+            Copy link
+        </a>
+    </div>
+</div>

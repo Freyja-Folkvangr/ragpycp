@@ -1,0 +1,75 @@
+{% load static %}
+{% load humanize %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card border-0 shadow mb-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between small">
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-md-12"
+                                 style="text-align: center;">
+                                <img width="32px" height="32px"
+                                     src="{{ post.author.gravatar_url }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12"
+                                 style="text-align: center;">
+                                {% if post.author.sex == 'S' %}
+                                    <span class="font-weight-bold">{{ post.author.username }}</span>
+                                {% else %}
+                                    <a href="{% url 'users:profile' post.author.id %}">
+                                        <span class="font-weight-bold">{{ post.author.username }}</span>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12"
+                                 style="text-align: center;">
+                                <span>{{ post.added | naturaltime }}</span>
+                            </div>
+                        </div>
+                        {% include 'post_options.html' %}
+                    </div>
+                    <div class="col-md-9">
+                        {% if post.parent == None %}
+                            <span>{{ post.content | safe }}</span>
+                        {% else %}
+                            <span>{{ post.content | linebreaks }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="{% url 'content:post_details' post.id %}">
+                            <i class="em em-right_anger_bubble"
+                               aria-role="presentation" aria-label=""></i>
+                            {{ post.num_responses }}
+                            responses
+                        </a>
+                    </div>
+                </div>
+                {% if request.user.is_staff and post.deleted %}
+                    <div class="row" style="padding-top: 1em;">
+                        <div class="col-md-12">
+                            <div class="alert alert-info alert-dismissible fade show"
+                                 role="alert">
+                                This post and its answers are not visible to
+                                others...
+                                <button type="button" class="close"
+                                        data-dismiss="alert"
+                                        aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

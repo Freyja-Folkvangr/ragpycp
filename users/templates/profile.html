@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block masterhead %}
+    <h1>Profile</h1>
+    <h5>Viewing {{ profile.username }}'s public profile</h5>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border-0 shadow mb-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between small">
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12"
+                                     style="text-align: center;">
+                                    <img width="64px" height="64px"
+                                         src="{{ profile.gravatar_url }}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12"
+                                     style="text-align: center;">
+                                    <span class="font-weight-bold">{{ profile.username }}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12"
+                                     style="text-align: center;">
+                                    <span>Member since</span>
+                                    <span>{{ profile.date_joined | naturaltime }}</span>
+                                </div>
+                            </div>
+                            <!-- options here -->
+                        </div>
+                        <div class="col-md-9">
+                            <!-- content here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
