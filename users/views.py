@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 # users/views.py
@@ -24,3 +24,12 @@ class SignUp(generic.CreateView):
 
         user.web_auth_token = token
         return super().form_valid(form)
+
+def profile(request, profile_id):
+    profile = Login.objects.get(pk=profile_id)
+    if profile.sex == 'S':
+        return redirect('forbidden')
+    context = {
+        'profile': profile
+    }
+    return render(request, 'profile.html', context)

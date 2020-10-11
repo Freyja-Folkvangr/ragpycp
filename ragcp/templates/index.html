@@ -42,7 +42,13 @@
                                     <div class="row">
                                         <div class="col-md-12"
                                              style="text-align: center;">
-                                            <span class="font-weight-bold">{{ post.author.username }}</span>
+                                            {% if post.author.sex == 'S' %}
+                                                <span class="font-weight-bold">{{ post.author.username }}</span>
+                                            {% else %}
+                                                <a href="{% url 'users:profile' post.author.id %}">
+                                                    <span class="font-weight-bold">{{ post.author.username }}</span>
+                                                </a>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="row">

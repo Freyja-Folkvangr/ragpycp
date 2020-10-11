@@ -17,6 +17,15 @@
          aria-labelledby="accountDropdown">
         <!-- User Menu -->
         {% if request.user.is_authenticated %}
+            <a class="dropdown-item" href="{% url 'users:profile' request.user.id %}"><i
+                    class="fa fa-cog"></i>
+                <button type="button"
+                        class="btn btn-secondary btn-sm btn-block">
+                    <i class="em em-child" aria-role="presentation" aria-label="CHILD"></i>
+                    Public profile
+                </button>
+            </a>
+
             <a class="dropdown-item" href="{% url 'char:list' %}"><i
                     class="fa fa-cog"></i>
                 <button type="button"
@@ -25,6 +34,7 @@
                        aria-label="SOCKS"></i>️ Chars
                 </button>
             </a>
+
             <a class="dropdown-item" id="account_logout"
                href="{% url "users:logout" %}"><i
                     class="fa fa-power-off"></i>

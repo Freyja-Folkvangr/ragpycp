@@ -1,7 +1,6 @@
 {% load static %}
 {% load humanize %}
 
-{% load humanize %}
 <div class="row">
     <div class="col-md-12">
         <div class="card border-0 shadow mb-4">
@@ -18,7 +17,13 @@
                         <div class="row">
                             <div class="col-md-12"
                                  style="text-align: center;">
-                                <span class="font-weight-bold">{{ post.author.username }}</span>
+                                {% if post.author.sex == 'S' %}
+                                    <span class="font-weight-bold">{{ post.author.username }}</span>
+                                {% else %}
+                                    <a href="{% url 'users:profile' post.author.id %}">
+                                        <span class="font-weight-bold">{{ post.author.username }}</span>
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row">
@@ -53,7 +58,8 @@
                         <div class="col-md-12">
                             <div class="alert alert-info alert-dismissible fade show"
                                  role="alert">
-                                This post and its answers are not visible to others...
+                                This post and its answers are not visible to
+                                others...
                                 <button type="button" class="close"
                                         data-dismiss="alert"
                                         aria-label="Close">
