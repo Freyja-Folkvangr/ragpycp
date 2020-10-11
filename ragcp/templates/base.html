@@ -21,48 +21,9 @@
 
 <body style="background-image: url('{{ STATIC_URL }} /static/main-bg-clean.jpg');background-attachment: fixed;background-position: center;background-repeat: no-repeat;background-size: cover;">
 
-<!-- Parallax header banner and logo -->
+{% include 'header.html' %}
 
-<div class="pre-parallax">
-    <div class="parallax">
-        <div class="container w-100 h-100">
-            <div class="row  align-items-center h-100 justify-content-center text-lg-center">
-                <div class="col-md">
-                    <img src="{% static 'logo.png' %}" width="300px"><br>
-                    <span style="color: #ffffff">Since 2016</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Navigation Bar -->
-
-<div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#nogo">RagCP</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}"><i class="em em-house_with_garden"
-                                                                    aria-role="presentation"
-                                                                    aria-label="HOUSE WITH GARDEN"></i> Home<span
-                            class="sr-only"></span></a>
-                </li>
-
-                {% if request.user.is_authenticated %}
-                    {% block ragnarok_bar %}{% include "_ragnarok_bar.html" %}{% endblock %}
-                {% endif %}
-
-            </ul>
-        </div>
-    </nav>
-</div>
+{% include 'navigation.html' %}
 
 <!-- Site Content -->
 
@@ -105,9 +66,9 @@
                                 <div class="small mb-2 font-weight-bold">
                                     {{ request.user.username }}
                                 </div>
-                                {% include '_account_bar.html' %}
+                                {% include 'navigation_account.html' %}
                             {% else %}
-                                {% include '_account_bar.html' %}
+                                {% include 'navigation_account.html' %}
                             {% endif %}
                         </div>
                     </div>
