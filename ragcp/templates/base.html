@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load mathfilters %}
 <head>
     <!--
 
@@ -46,35 +45,14 @@
             <div class="row">
                 <div class="col-md-8">
 
-
                     <div class="container justify-content-md-center">
                         {% block body %}
                         {% endblock %}
                     </div>
 
-
                 </div>
                 <div class="col-md-4">
-                    <div class="card border-0 shadow mb-4 text-center">
-                        <div class="card-body">
-                            {% if request.user.is_authenticated %}
-                                {% if request.user.gravatar_url %}
-                                    <img src="{{ request.user.gravatar_url }}">
-                                {% else %}
-                                    <img src="{% static 'avatar/' %}{{ request.user.id|mod:6 }}.jpg">
-                                {% endif %}
-                                <div class="small mb-2 font-weight-bold">
-                                    {{ request.user.username }}
-                                </div>
-                                {% include 'navigation_account.html' %}
-                            {% else %}
-                                {% include 'navigation_account.html' %}
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    {% block rightbar %}
-                    {% endblock %}
+                    {% include 'base_rightmenu.html' %}
 
                 </div>
             </div>
