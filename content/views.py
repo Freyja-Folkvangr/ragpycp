@@ -1,5 +1,6 @@
 import feedparser
-from django.shortcuts import render, redirect
+from django.db.models import Q
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from content.forms import new_entry_form, write_response_form
@@ -50,9 +51,16 @@ def new_entry(request):
 
     return render(request, 'new_entry.html', context)
 
+def delete_post(request, post_id):
+    if not request.user.is_staff:
+        return redirect('forbidden')
+    elif post_id:
+        Post.objects.filter(pk=post_id).update(deleted=True)
+    return redirect('index')
+
 def view_responses(request, post_id):
     if post_id:
-        post = Post.objects.get(pk=post_id)
+        post = get_object_or_404(Post, pk=post_id, deleted=False)
     else:
         return redirect('index')
 
@@ -65,7 +73,11 @@ def view_responses(request, post_id):
         form.save()
         return redirect('content:view_responses', post_id=post.pk)
 
-    responses = Post.objects.filter(parent=post).order_by('-added')
+    deleted = Q(deleted=False)
+    if not request.user.is_anonymous:
+        deleted |= Q(author=request.user)
+    query = Q(parent=post) & deleted
+    responses = Post.objects.filter(query).order_by('-added')
     context = {
         'post': post,
         'responses': responses,
