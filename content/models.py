@@ -10,6 +10,7 @@ class Post(models.Model):
     content = models.TextField(null=True, blank=True, help_text='The body of the post')
     reference = models.CharField(max_length=2048, null=True, default=None, help_text='Link to original post in case it comes from another social network')
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, default=None, verbose_name='In response to', help_text='Foreign key to another post in case it is a response')
+    deleted = models.BooleanField(default=False)
 
     added = models.DateTimeField(auto_now_add=True, help_text='Date when it was created on RagCP')
     updated = models.DateTimeField(auto_now=True, help_text='Date when modified')
@@ -19,4 +20,4 @@ class Post(models.Model):
 
     @property
     def num_responses(self):
-        return Post.objects.filter(parent=self.pk).count()
+        return Post.objects.filter(parent=self.pk, deleted=False).count()
