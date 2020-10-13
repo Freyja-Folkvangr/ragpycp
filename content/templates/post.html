@@ -52,8 +52,7 @@
                             responses
                         </a>
                         {% if post.parent and request.user.is_staff %}
-                             |
-                            Sentiment: {{ post.scoring_label }}
+                            <br>
                             {% if post.sentiment_score == 0 %}
                                 <i class="em em-confused" aria-role="presentation" aria-label="CONFUSED FACE"></i>
                             {% elif post.sentiment_score > 0 %}
@@ -61,6 +60,7 @@
                             {% else %}
                                 <i class="em em--1" aria-role="presentation" aria-label="THUMBS DOWN SIGN"></i>
                             {% endif %}
+                             {{ post.scoring_label }}
                         {% endif %}
                     </div>
                 </div>
