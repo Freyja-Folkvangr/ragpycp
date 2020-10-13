@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import Login
+import requests
 
 # Create your models here.
 
@@ -160,10 +161,12 @@ JOBS = (
 
 class Char(models.Model):
     char_id = models.AutoField(primary_key=True)
-    account_id = models.ForeignKey(Login, on_delete=models.CASCADE, db_column='account_id')
+    account_id = models.ForeignKey(Login, on_delete=models.CASCADE,
+                                   db_column='account_id')
     char_num = models.IntegerField()
     name = models.CharField(unique=True, max_length=30)
-    class_field = models.PositiveSmallIntegerField(choices=JOBS, db_column='class',
+    class_field = models.PositiveSmallIntegerField(choices=JOBS,
+                                                   db_column='class',
                                                    help_text='Do not change manually, use in-game commands instead.')  # Field renamed because it was a Python reserved word.
     base_level = models.PositiveSmallIntegerField()
     job_level = models.PositiveSmallIntegerField()
@@ -226,7 +229,8 @@ class Char(models.Model):
     show_equip = models.PositiveIntegerField()
 
     def __str__(self):
-        return '%s [%s - %s/%s]' % (self.name.upper(), self.get_job_name(), self.base_level, self.job_level)
+        return '%s [%s - %s/%s]' % (
+        self.name.upper(), self.get_job_name(), self.base_level, self.job_level)
 
     def get_job_name(self):
         for item in JOBS:
@@ -252,6 +256,61 @@ class Char(models.Model):
         self.clothes_color = 1
         return self.save()
 
+    def get_preview_image(self):
+        token = RuneNifelheimToken.objects.get(
+            account=self.account_id).get_token()
+        data = {
+            'gender': self.account_id.sex,
+            'job': self.class_field,
+            'hair': self.hair,
+            'haircolor': self.hair_color,
+            'posicion': 1,
+        }
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Cookie': 'PHPSESSID=%s' % token
+        }
+        char = requests.post('http://charsim.rune-nifelheim.com/char.php', data=data, headers=headers)
+        return char.content
+
+
+    @property
+    def character_preview_image(self):
+        image_name = self.get_preview_image()
+        if 'error' in image_name:
+            return None
+        return 'http://charsim.rune-nifelheim.com/img/saved/chars/%s.gif' % image_name
+
     class Meta:
         managed = False
         db_table = 'char'
+
+
+class RuneNifelheimToken(models.Model):
+    account = models.OneToOneField(Login, on_delete=models.CASCADE)
+    token = models.CharField(null=True, default=None, max_length=64)
+
+    def __str__(self):
+        return self.token
+
+    def get_new_token(self):
+        k = requests.get('https://foro.rune-nifelheim.com/index.php')
+        for item in k.cookies:
+            if item.name == 'PHPSESSID':
+                return item.value
+        return None
+
+    def update_token(self):
+        token = self.get_new_token()
+        if token:
+            self.token = token
+            self.save()
+            return self.token
+        else:
+            raise Exception('Cannot update token')
+
+    def get_token(self):
+        if self.token:
+            return self.token
+        else:
+            return self.update_token()
