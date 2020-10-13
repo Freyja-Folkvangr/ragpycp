@@ -4,7 +4,7 @@ from .models import Char
 
 # Create your views here.
 # view list of chars
-def char(request):
+def char_list(request):
     if request.user.is_staff:
         chars = Char.objects.all()
     else:
@@ -15,6 +15,17 @@ def char(request):
         'char_count': len(chars)
     }
     return render(request, 'chars.html', context)
+
+def char_view(request, char_id):
+    char = Char.objects.get(char_id=char_id)
+
+    if char.account_id != request.user and not request.user.is_staff:
+        return redirect('forbidden')
+
+    context = {
+        'char': char
+    }
+    return render(request, 'char_details.html', context)
 
 
 def char_reset_position(request, char_id):
@@ -62,14 +73,3 @@ def char_reset_appearence(request, char_id):
     else:
         return redirect('not_found')
 
-# view a single char
-def char_view(request, char_id):
-    char = Char.objects.get(char_id=char_id)
-
-    if char.account_id != request.user and not request.user.is_staff:
-        return redirect('forbidden')
-
-    context = {
-        'char': char
-    }
-    return render(request, 'char.html', context)
