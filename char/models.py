@@ -1,3 +1,5 @@
+from base64 import b64encode
+
 from django.db import models
 from users.models import Login
 import requests
@@ -256,9 +258,13 @@ class Char(models.Model):
         self.clothes_color = 1
         return self.save()
 
+    def get_token(self):
+        token, created = RuneNifelheimToken.objects.get_or_create(
+            account=self.account_id)
+        token = token.get_token()
+        return token
+
     def get_preview_image(self):
-        token = RuneNifelheimToken.objects.get(
-            account=self.account_id).get_token()
         data = {
             'gender': self.account_id.sex,
             'job': self.class_field,
@@ -268,18 +274,29 @@ class Char(models.Model):
         }
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Cookie': 'PHPSESSID=%s' % token
+            'Cookie': 'PHPSESSID=%s' % self.get_token()
         }
         char = requests.post('http://charsim.rune-nifelheim.com/char.php', data=data, headers=headers)
-        return char.content
+        return char.content.decode("utf-8")
 
 
     @property
-    def character_preview_image(self):
+    def preview_image_link(self):
         image_name = self.get_preview_image()
         if 'error' in image_name:
             return None
-        return 'http://charsim.rune-nifelheim.com/img/saved/chars/%s.gif' % image_name
+        return 'http://charsim.rune-nifelheim.com/img/saved/ava/%s.gif' % image_name
+
+    @property
+    def preview_image(self):
+        ref = 'http://charsim.rune-nifelheim.com/en/'
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Cookie': 'PHPSESSID=%s' % self.get_token(),
+            'Referer': ref
+        }
+        img = requests.get(self.preview_image_link, headers=headers)
+        return b64encode(img.content).decode("utf-8")
 
     class Meta:
         managed = False
@@ -291,10 +308,13 @@ class RuneNifelheimToken(models.Model):
     token = models.CharField(null=True, default=None, max_length=64)
 
     def __str__(self):
-        return self.token
+        return self.token or 'no token'
 
     def get_new_token(self):
-        k = requests.get('https://foro.rune-nifelheim.com/index.php')
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.1 Safari/605.1.15'
+        }
+        k = requests.get('http://charsim.rune-nifelheim.com/en/', headers=headers)
         for item in k.cookies:
             if item.name == 'PHPSESSID':
                 return item.value
@@ -310,7 +330,7 @@ class RuneNifelheimToken(models.Model):
             raise Exception('Cannot update token')
 
     def get_token(self):
-        if self.token:
+        if self.token is not None:
             return self.token
         else:
             return self.update_token()

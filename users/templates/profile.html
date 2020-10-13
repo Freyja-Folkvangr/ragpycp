@@ -43,4 +43,7 @@
             </div>
         </div>
     </div>
+    {% for char in chars %}
+        {% include 'char.html' %}
+    {% endfor %}
 {% endblock %}

@@ -13,47 +13,7 @@
         </header>
     {% else %}
         {% for char in chars %}
-            <div class="card border-0 shadow mb-4">
-                <div class="card-body">
-                    <h5><a href="{% url 'char:char_view' char.char_id %}">
-                        <i class="em em-bust_in_silhouette" aria-role="presentation" aria-label="BUST IN SILHOUETTE"></i>
-                        {{ char.name }}
-                    </a></h5>
-                    <hr class="my-2">
-                    <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">
-                            <i class="em em-briefcase" aria-role="presentation" aria-label="BRIEFCASE"></i>
-                             Class
-                        </span>
-                        <span>{{ char.get_job_name }}</span>
-                    </div>
-
-                    <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">
-                            <i class="em em-snail" aria-role="presentation" aria-label="SNAIL"></i>
-                             Levels
-                        </span>
-                        <span>{{ char.base_level }}/{{ char.job_level }}</span>
-                    </div>
-
-                    <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">
-                            <i class="em em-shinto_shrine" aria-role="presentation" aria-label=""></i>
-                             Guild
-                        </span>
-                        <span>{{ char.guild_id }}</span>
-                    </div>
-
-                    <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">
-                            <i class="em em-heavy_dollar_sign" aria-role="presentation"
-                               aria-label="HEAVY DOLLAR SIGN"></i>
-                             Zeny
-                        </span>
-                        <span>{{ char.zeny }}</span>
-                    </div>
-                </div>
-            </div>
+            {% include 'char.html' %}
         {% endfor %}
     {% endif %}
 {% endblock %}

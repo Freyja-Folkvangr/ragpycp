@@ -1,257 +1,55 @@
-{% extends 'base.html' %}
-{% load mathfilters %}
-
-{% block masterhead %}
-    <h1>{{ char.name }}</h1>
-{% endblock %}
-
-{% block body %}
-    <div class="card border-0 shadow mb-4">
-        <div class="card-body">
-            <h5>Basic Info</h5>
-            <hr class="my-2">
-            <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">
-                    <i class="em em-gear" aria-role="presentation" aria-label=""></i>
-                     ID
-                </span>
-                <span>{{ char.char_id }}</span>
-            </div>
-            <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">
-                    <i class="em em-briefcase" aria-role="presentation" aria-label="BRIEFCASE"></i>
-                     Class
-                </span>
-                <span>{{ char.get_job_name }}</span>
-            </div>
-            <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">
-                    <i class="em em-desktop_computer" aria-role="presentation" aria-label=""></i>
-                     Status
-                </span>
-                <span>
-                    {% if char.online == 0 %}
-                        <span class="badge badge-danger">Offline</span>
-                    {% else %}
-                        <span class="badge badge-success">Online</span>
-                    {% endif %}
-                </span>
-            </div>
-            <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">
-                    <i class="em em-heavy_dollar_sign" aria-role="presentation" aria-label="HEAVY DOLLAR SIGN"></i>
-                     Zeny
-                </span>
-                <span>{{ char.zeny }}</span>
-            </div>
-            <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">
-                    <i class="em em-twisted_rightwards_arrows" aria-role="presentation" aria-label="TWISTED RIGHTWARDS ARROWS"></i>
-                     Slot
-                </span>
-                <span>{{ char.char_num }}</span>
-            </div>
-            {% if char.pet_id %}
-                <div class="d-flex justify-content-between small">
-                    <span class="font-weight-bold">
-
-                         Pet
-                    </span>
-                    <span>{{ char.pet_id }}</span>
-                </div>
-            {% endif %}
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar"
-                             style="width: {{ char.hp|div:char.max_hp|mul:100 }}%" aria-valuenow="25"
-                             aria-valuemin="0" aria-valuemax="100">HP
+<div class="card border-0 shadow mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="d-flex justify-content-center">
+                                <img src="data:image;base64,{{ char.preview_image }}">
+                            </div>
                         </div>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary" role="progressbar"
-                             style="width: {{ char.sp|div:char.max_sp|mul:100 }}%" aria-valuenow="25"
-                             aria-valuemin="0" aria-valuemax="100">SP
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card border-0 shadow mb-4">
-        <div class="card-body">
-            <h5>Leveling</h5>
-            <hr class="my-2">
-            <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">
-                    <i class="em em-snail" aria-role="presentation" aria-label="SNAIL"></i>
-                     Levels
-                </span>
-                <span>{{ char.base_level }}/{{ char.job_level }}</span>
-            </div>
-            <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">
-                    <i class="em em-muscle" aria-role="presentation" aria-label="FLEXED BICEPS"></i>
-                     Base Experience
-                </span>
-                <span>{{ char.base_exp }}</span>
-            </div>
-            <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">
-                    <i class="em em-brain" aria-role="presentation" aria-label="BRAIN"></i>
-                     Job experience
-                </span>
-                <span>{{ char.job_exp }}</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="card border-0 shadow mb-4">
-        <div class="card-body">
-            <h5>Location</h5>
-            <hr class="my-2">
-        <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">
-                    <i class="em em-world_map" aria-role="presentation" aria-label=""></i>
-                     Now
-                </span>
-                <span>{{ char.last_map }} ({{ char.last_x }}, {{ char.last_y }})</span>
-            </div>
-            <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">
-                    <i class="em em-fairy" aria-role="presentation" aria-label="FAIRY"></i>
-                     Respawn
-                </span>
-                <span>{{ char.save_map }} ({{ char.save_x }}, {{ char.save_y }})</span>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="card border-0 shadow mb-4">
-        <div class="card-body">
-            <h5>Stats</h5>
-            <hr class="my-2">
-            <div class="row">
-                <div class="col-sm-2"><b>STR</b></div>
-                <div class="col-sm-2">{{ char.str }}</div>
-                <div class="col-sm-2"><b>AGI</b></div>
-                <div class="col-sm-2">{{ char.agi }}</div>
-                <div class="col-sm-2"><b>VIT</b></div>
-                <div class="col-sm-2">{{ char.vit }}</div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2"><b>INT</b></div>
-                <div class="col-sm-2">{{ char.int }}</div>
-                <div class="col-sm-2"><b>DEX</b></div>
-                <div class="col-sm-2">{{ char.dex }}</div>
-                <div class="col-sm-2"><b>LUK</b></div>
-                <div class="col-sm-2">{{ char.luk }}</div>
-            </div>
-            <hr class="my-2">
-            <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">
-                    <i class="em em-muscle" aria-role="presentation" aria-label="FLEXED BICEPS"></i>
-                     Unused Status Points
-                </span>
-                <span>{{ char.status_point }}</span>
-            </div>
-            <div class="d-flex justify-content-between small">
-                <span class="font-weight-bold">
-                    <i class="em em-tophat" aria-role="presentation" aria-label="TOP HAT"></i>
-                     Unused Skill Points
-                </span>
-                <span>{{ char.skill_point }}</span>
-            </div>
-        </div>
-    </div>
-
-    {% if char.party_id or char.guild_id or char.party_id or char.child %}
-        <div class="card border-0 shadow mb-4">
-            <div class="card-body">
-                <h5>Family and Community</h5>
-                <hr class="my-2">
-                {% if char.partner_id %}
-                    <div class="d-flex justify-content-between small">
+                        <div class="col-md-10">
+                            <h5>
+                                <a href="{% url 'char:char_view' char.char_id %}">
+                                    {{ char.name }}
+                                </a>
+                            </h5>
+                            <hr class="my-2">
+                            <div class="d-flex justify-content-between small">
                         <span class="font-weight-bold">
-
-                             Partner
+                            <i class="em em-briefcase" aria-role="presentation"
+                               aria-label="BRIEFCASE"></i>
+                             Class
                         </span>
-                        <span>{{ char.partner_id }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">
+                                <span>{{ char.get_job_name }}</span>
+                            </div>
 
-                             Child
-                        </span>
-                        <span>{{ char.child }}</span>
-                    </div>
-                {% elif char.mother and char.father %}
-                    <div class="d-flex justify-content-between small">
+                            <div class="d-flex justify-content-between small">
                         <span class="font-weight-bold">
+                            <i class="em em-snail" aria-role="presentation"
+                               aria-label="SNAIL"></i>
+                             Levels
+                        </span>
+                                <span>{{ char.base_level }}/{{ char.job_level }}</span>
+                            </div>
 
-                             Mother
-                        </span>
-                        <span>{{ char.mother }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between small">
+                            <div class="d-flex justify-content-between small">
                         <span class="font-weight-bold">
-
-                             Father
-                        </span>
-                        <span>{{ char.father }}</span>
-                    </div>
-                {% endif %}
-                {% if char.party_id %}
-                    <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">
-
-                             Party
-                        </span>
-                        <span>{{ char.party_id }}</span>
-                    </div>
-                {% endif %}
-                {% if char.guild_id %}
-                    <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">
-                            <i class="em em-shinto_shrine" aria-role="presentation" aria-label=""></i>
+                            <i class="em em-dagger_knife"
+                               aria-role="presentation" aria-label=""></i>
                              Guild
                         </span>
-                        <span>{{ char.guild_id }}</span>
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-    {% endif %}
+                                <span>{{ char.guild_id }}</span>
+                            </div>
 
-    {% if char.homun_id or char.pet_id %}
-        <div class="card border-0 shadow mb-4">
-            <div class="card-body">
-                <h5>Company</h5>
-                <hr class="my-2">
-                {% if char.pet_id %}
-                    <div class="d-flex justify-content-between small">
+                            <div class="d-flex justify-content-between small">
                         <span class="font-weight-bold">
-
-                             Pet
+                            <i class="em em-heavy_dollar_sign"
+                               aria-role="presentation"
+                               aria-label="HEAVY DOLLAR SIGN"></i>
+                             Zeny
                         </span>
-                        <span>{{ char.pet_id }}</span>
+                                <span>{{ char.zeny }}</span>
+                            </div>
+                        </div>
                     </div>
-                {% endif %}
-                {% if char.homun_id %}
-                    <div class="d-flex justify-content-between small">
-                        <span class="font-weight-bold">
-
-                             Homunculus
-                        </span>
-                        <span>{{ char.homun_id }}</span>
-                    </div>
-                {% endif %}
+                </div>
             </div>
-        </div>
-    {% endif %}
-    {% include '_char_options.html' %}
-{% endblock %}

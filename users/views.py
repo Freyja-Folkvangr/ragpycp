@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 import random
 
+from char.models import Char
 from .forms import CustomUserCreationForm
 from .models import Login
 
@@ -27,9 +28,11 @@ class SignUp(generic.CreateView):
 
 def profile(request, profile_id):
     profile = Login.objects.get(pk=profile_id)
+    chars = Char.objects.filter(account_id=profile)
     if profile.sex == 'S':
         return redirect('forbidden')
     context = {
-        'profile': profile
+        'profile': profile,
+        'chars': chars
     }
     return render(request, 'profile.html', context)
