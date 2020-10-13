@@ -36,11 +36,24 @@ class Post(models.Model):
         headers = {
             'Content-Type': 'application/json'
         }
-        data = '{"features": {"sentiment": {}},"text": "%s"}' % self.content
+        data = '{"features": {"sentiment": {},"emotion":{}},"text": "%s"}' % self.content
         results = requests.post(uri, data=data, headers=headers)
         if results.status_code == 200:
-            results = results.json()['results']['sentiment']['document']
-            return results
+            results = results.json()
+            sentiment = results['results']['sentiment']['document']
+            emotions = results['results']['emotion']['document']['emotion']
+            label = ''
+            first = False
+            for emotion in emotions:
+                if emotions[emotion] <= 0.5:
+                    continue
+                elif first:
+                    label += ', %s' % emotion
+                else:
+                    label += '%s' % emotion
+                    first = True
+            sentiment['label'] = label or 'neutral'
+            return sentiment
         else:
             results = results.json()
             logger.warning('There was a problem analyzing post %s, %s' % (self.id, results))
