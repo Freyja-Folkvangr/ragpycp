@@ -42,16 +42,29 @@ class Post(models.Model):
             results = results.json()['results']['sentiment']['document']
             return results
         else:
+            results = results.json()
             logger.warning('There was a problem analyzing post %s, %s' % (self.id, results))
+            if results['error'] == 'not enough text for language id':
+                return {'score': 0, 'label': 'cannot analyze'}
             return {'score': 0, 'label': 'neutral', 'error': True}
 
     @property
     def sentiment_score(self):
-        return self.analyze_content()['score']
+        if self.parent is None:
+            return 1
+        elif not self.scoring:
+            return self.analyze_content()['score']
+        else:
+            return self.scoring
 
     @property
     def sentiment_label(self):
-        return self.analyze_content()['label']
+        if self.parent is None:
+            return 'not analyzed'
+        elif not self.scoring_label:
+            return self.analyze_content()['label']
+        else:
+            return self.scoring_label
 
     @property
     def sentiment(self):
@@ -60,14 +73,13 @@ class Post(models.Model):
     def save(self, **kwargs):
         if self.parent is not None:
             analysis = self.analyze_content()
-            print(analysis)
             scoring = analysis['score']
             label = analysis['label']
 
             if 'error' in analysis:
                 super(Post, self).save()
 
-            if scoring >= 0:
+            if scoring < 0:
                 self.deleted = True
             self.scoring = scoring
             self.scoring_label = label
