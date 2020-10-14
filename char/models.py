@@ -258,11 +258,20 @@ class Char(models.Model):
         self.clothes_color = 1
         return self.save()
 
-    def get_token(self):
+    def get_token(self, renew=False):
         token, created = RuneNifelheimToken.objects.get_or_create(
             account=self.account_id)
+        if renew:
+            return token.update_token()
+
         token = token.get_token()
         return token
+
+    def request_image(self, data, headers):
+        char = requests.post('http://charsim.rune-nifelheim.com/char.php',
+                             data=data, headers=headers)
+        char = char.content.decode("utf-8")
+        return char
 
     def get_preview_image(self):
         data = {
@@ -276,15 +285,24 @@ class Char(models.Model):
             'Content-Type': 'application/x-www-form-urlencoded',
             'Cookie': 'PHPSESSID=%s' % self.get_token()
         }
-        char = requests.post('http://charsim.rune-nifelheim.com/char.php', data=data, headers=headers)
-        return char.content.decode("utf-8")
+        char = self.request_image(data, headers)
+
+        # Renew the token
+        if 'error' in char:
+            headers['Cookie'] = 'PHPSESSID=%s' % self.get_token(renew=True)
+            char = self.request_image(data, headers)
+
+        return char
 
 
     @property
     def preview_image_link(self):
         image_name = self.get_preview_image()
+
+        # if the token was renewed, but there was an error anyways, return None
         if 'error' in image_name:
             return None
+
         return 'http://charsim.rune-nifelheim.com/img/saved/ava/%s.gif' % image_name
 
     @property
