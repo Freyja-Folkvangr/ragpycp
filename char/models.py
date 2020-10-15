@@ -277,9 +277,14 @@ class Char(models.Model):
         data = {
             'gender': self.account_id.sex,
             'job': self.class_field,
+            'jobid': self.get_job_name().lower().replace(' ', '-'),
             'hair': self.hair,
             'haircolor': self.hair_color,
+            'top': 'NOTICE_BOARD',
+            'mid': 'SPIN_GLASS',
+            'bottom': 'CIGAR',
             'posicion': 1,
+
         }
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -291,7 +296,6 @@ class Char(models.Model):
         if 'error' in char:
             headers['Cookie'] = 'PHPSESSID=%s' % self.get_token(renew=True)
             char = self.request_image(data, headers)
-
         return char
 
 
@@ -314,6 +318,11 @@ class Char(models.Model):
             'Referer': ref
         }
         img = requests.get(self.preview_image_link, headers=headers)
+
+        # Some avatars are broken, if 404 try char signature
+        if img.status_code == 404:
+            img = requests.get(self.preview_image_link.replace('ava', 'chars'), headers=headers)
+
         return b64encode(img.content).decode("utf-8")
 
     class Meta:
