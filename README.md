@@ -91,4 +91,4 @@ The command collects the static files into STATIC_ROOT
 # Demo
 I'm creating a Ragnarok server to play with friends, we'll be using RagCP, so feel free to take a look :)
 
-[Freyja](https://freyja-ro.xyz)
+[Freyja](https://freyja-ragcp.herokuapp.com/)
