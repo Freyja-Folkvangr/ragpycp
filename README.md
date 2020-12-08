@@ -1,4 +1,7 @@
 # # RagCP
+
+![CodeQL](https://github.com/Freyja-Folkvangr/ragpycp/workflows/CodeQL/badge.svg)
+
 > RagCP is an open source control panel for rAthena. It is easy to install, mantain, it's written in Python and it uses Django Framework so that it is easy to add new features and integrate things.
 
 [Discord](https://discord.gg/2Y92RMS)
