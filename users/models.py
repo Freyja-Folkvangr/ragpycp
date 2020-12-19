@@ -30,10 +30,10 @@ class Login(AbstractUser):
     character_slots = models.PositiveIntegerField(null=False, blank=False, default=12)
     pincode = models.CharField(max_length=4, null=False, blank=True)
     pincode_change = models.PositiveIntegerField(default=0, blank=True)
-    vip_time = models.PositiveIntegerField(null=False, blank=True, default=0)
+    vip_time = models.PositiveIntegerField(null=False, blank=False, default=0)
     old_group = models.IntegerField(null=False, blank=True, default=0)
-    web_auth_token = models.CharField(unique=True, max_length=17, blank=True, null=True, default=None)
-    web_auth_token_enabled = models.IntegerField(default=0)
+    web_auth_token = models.CharField(unique=True, max_length=17, blank=False, null=True, default=None)
+    web_auth_token_enabled = models.IntegerField(default=0, null=False)
 
     @property
     def state_str(self):
