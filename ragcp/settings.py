@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import logging
+
+from ragcp.utils import get_configuration, get_rss_address
+
 logger = logging.getLogger(__name__)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -28,7 +31,7 @@ SECRET_KEY = '&h74#_%&b)k9x$xobgi!c7jq)v$l^$#go#26ng!bbc@_y8pofq'
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'freyja-ragcp.herokuapp.com']
 
 try:
-    host = os.environ['HOST']
+    host = get_configuration('HOST')
 except Exception:
     host = None
     pass
@@ -99,12 +102,12 @@ try:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.environ['DATABASE_NAME'],
-            'USER': os.environ['DATABASE_USER'],
-            'PASSWORD': os.environ['DATABASE_PASSWORD'],
+            'NAME': get_configuration('DATABASE_NAME'),
+            'USER': get_configuration('DATABASE_USER'),
+            'PASSWORD': get_configuration('DATABASE_PASSWORD'),
             # 'PASSWORD': '7DtMAZ5YHEUpkq5j',
-            'HOST': os.environ['DATABASE_HOST'],
-            'PORT': os.environ['DATABASE_PORT'],
+            'HOST': get_configuration('DATABASE_HOST'),
+            'PORT': get_configuration('DATABASE_PORT'),
             'OPTIONS': {
                 # 'init_command': 'SET storage_engine=InnoDB', #For MySQL 5.6
                 'init_command': 'SET default_storage_engine=INNODB', #For MySQL 5.7+
@@ -161,7 +164,9 @@ LOGOUT_REDIRECT_URL = 'index'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
+# Features configured through environment variables
+FEED_ADDRESS = get_rss_address()
 
 # User settings
 FEED_ENABLED = True
-RSS_FEED = 'https://zapier.com/engine/rss/973076/freyja'
+

@@ -11,7 +11,7 @@ from users.models import Login
 
 
 def get_feed(request):
-    feed_url = settings.RSS_FEED
+    feed_url = settings.FEED_ADDRESS
 
     if not feed_url or not settings.FEED_ENABLED or not request.user.is_staff:
         return redirect('forbidden')

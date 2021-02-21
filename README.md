@@ -71,6 +71,20 @@ This command ignores the whitelist, for more information refer to [Django docume
 
 `python manage.py runserver 0.0.0.0:80`
 
+# User configuration
+
+There are other configurations that you can change in order to customize RagCP to your taste.
+
+Open file ```./ragcp/settings.py``` and search the string ```# User settings```, below that line are the variables you can change.
+
+- FEED_ENABLED: Enable or disable dynamic index that reads an  RSS Feed to populate news automatically.
+
+# Environment variables
+
+List of other environment variables you need to configure in order to use optional features.
+
+- RSS_FEED: URL of RSS Feed to parse in the index
+
 # Change the index page
 
 You can change the content that is displayed on the homepage, to do so you have to modify its HTML content.
