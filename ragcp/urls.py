@@ -33,5 +33,6 @@ urlpatterns = [
     path('char/', include('char.urls')),
     path('servicedesk/', include('servicedesk.urls')),
     path('content/', include('content.urls')),
+    path('thor/', include('thor.urls')),
 
 ]

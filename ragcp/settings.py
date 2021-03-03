@@ -62,7 +62,8 @@ INSTALLED_APPS = [
     'char',
     'mathfilters',
     'servicedesk',
-    'content'
+    'content',
+    'thor'
 ]
 
 AUTH_USER_MODEL = 'users.Login'

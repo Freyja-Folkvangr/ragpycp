@@ -1,0 +1,29 @@
+[Main]
+allow={{ patcher.allow }}
+
+Force_Start={{ patcher.force_start }}
+
+policy_msg={{ patcher.policy_msg }}
+
+file_url={{ patcher.file_url }}
+
+[Patch]
+ClientSum={{ patcher.client_sum }}
+PatcherSum={{ patcher.patcher_sum }}
+
+ClientPath={{ patcher.client_path }}
+PatcherPath={{ patcher.patcher_path }}
+
+PatchList={{ patcher.name }}/patch_list/
+
+[Stars]
+clients={{ patcher.num_clients }}
+
+{% for client in clients %}
+client{{ client.i }}_sum={{ client.checksum }}
+client{{ client.i }}_Name={{ client.name }}
+client{{ client.i }}_Path={{ client.path }}
+{% endfor %}
+
+[Misc]
+FragmentLimit={{ patcher.fragment_limit }}
