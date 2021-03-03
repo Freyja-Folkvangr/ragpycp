@@ -1,5 +1,6 @@
 import feedparser
 from django.db.models import Q
+from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
@@ -13,11 +14,17 @@ from users.models import Login
 def get_feed(request):
     feed_url = settings.FEED_ADDRESS
 
+    # Check that the user is an admin
     if not feed_url or not settings.FEED_ENABLED or not request.user.is_staff:
         return redirect('forbidden')
 
     feed = feedparser.parse(feed_url)
     system_account = Login.objects.filter(sex='S').first()
+
+    # Check that there actually is a system account
+    if not system_account:
+        raise Http404('System account could not be found')
+
     posts = Post.objects.filter(author__sex='S', parent=None).values_list('title', 'content')
     logger.debug('Existing posts: %s' % posts)
     for post in feed['entries']:
