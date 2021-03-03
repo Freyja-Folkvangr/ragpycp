@@ -6,7 +6,10 @@ COPY . /usr/src/app/
 
 WORKDIR /usr/src/app
 
-RUN pip install -r requirements.txt
+RUN apt update \
+    && apt install -y --no-install-recommends gcc default-mysql-client default-libmysqlclient-dev \
+    && pip install -r requirements.txt \
+    && apt purge -y --auto-remove gcc
 
 EXPOSE 8000
 
