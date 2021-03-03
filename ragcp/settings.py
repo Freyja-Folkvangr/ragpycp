@@ -15,6 +15,9 @@ import logging
 
 from ragcp.utils import get_configuration, get_rss_address
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 logger = logging.getLogger(__name__)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -164,6 +167,18 @@ LOGOUT_REDIRECT_URL = 'index'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+# Report bugs to Freyja-Folkvangr to get them fixed
+sentry_sdk.init(
+    dsn="https://5dffbd4c49cf429ca58a0b8e4186ffb9@o541391.ingest.sentry.io/5660228",
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
+
 
 # Features configured through environment variables
 FEED_ADDRESS = get_rss_address()
