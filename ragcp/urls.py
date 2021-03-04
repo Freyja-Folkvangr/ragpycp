@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from ragcp.views import index, forbidden
+from ragcp.views import index, forbidden, trigger_error
 from django.conf.urls import url
 
 app_name = 'ragcp'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('sentry-debug/', trigger_error),
 
     url(r'^$', index, name='index'),
 
