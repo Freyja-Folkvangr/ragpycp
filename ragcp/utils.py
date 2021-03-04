@@ -1,18 +1,14 @@
-from os import environ
+from os import getenv
 
 
 def get_configuration(variable_name: str):
-    try:
-        return environ[variable_name]
-    except KeyError:
-        print('Config not present: %s' % variable_name)
-        return None
+    return getenv(variable_name, None)
 
 
 def get_rss_address():
     feed_url = get_configuration('RSS_FEED')
 
-    if not feed_url:
-        return 'https://zapier.com/engine/rss/973076/freyja'
-    else:
+    if feed_url:
         return feed_url
+    else:
+        return 'https://zapier.com/engine/rss/973076/freyja'
