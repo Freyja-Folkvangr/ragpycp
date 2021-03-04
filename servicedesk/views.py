@@ -1,9 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from servicedesk.models import Ticket, Replies
 from .forms import new_ticket_form, new_ticket_reply
 
 # Create your views here.
-
+@login_required
 def tickets(request):
     if request.user.is_staff:
         tickets = Ticket.objects.all().order_by('state', 'created')
@@ -16,6 +17,7 @@ def tickets(request):
     }
     return render(request, 'tickets.html', context)
 
+@login_required
 def ticket(request, ticket_id):
     ticket = Ticket.objects.get(id=ticket_id)
     responses = Replies.objects.filter(ticket=ticket).order_by('created')
@@ -39,6 +41,7 @@ def ticket(request, ticket_id):
     }
     return render(request, 'ticket.html', context)
 
+@login_required
 def new_ticket(request):
     form = new_ticket_form(request.POST or None)
 

@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .models import Char
 
 
 # Create your views here.
 # view list of chars
+@login_required
 def char_list(request):
     if request.user.is_staff:
         chars = Char.objects.all()
@@ -16,6 +18,7 @@ def char_list(request):
     }
     return render(request, 'chars.html', context)
 
+@login_required
 def char_view(request, char_id):
     char = Char.objects.get(char_id=char_id)
 
@@ -27,7 +30,7 @@ def char_view(request, char_id):
     }
     return render(request, 'char_details.html', context)
 
-
+@login_required
 def char_reset_position(request, char_id):
     if request.POST:
         if 'reset-position' in request.POST:
@@ -47,7 +50,7 @@ def char_reset_position(request, char_id):
     else:
         return redirect('not_found')
 
-
+@login_required
 def char_reset_map(request, char_id):
     if request.POST:
         char = Char.objects.get(char_id=char_id)
@@ -60,7 +63,7 @@ def char_reset_map(request, char_id):
     else:
         return redirect('not_found')
 
-
+@login_required
 def char_reset_appearence(request, char_id):
     if request.POST:
         char = Char.objects.get(char_id=char_id)
