@@ -81,7 +81,13 @@ There are other configurations that you can change in order to customize RagCP t
 
 Open file ```./ragcp/settings.py``` and search the string ```# User settings```, below that line are the variables you can change.
 
-- ``FEED_ENABLED``: Enable or disable dynamic index that reads an  RSS Feed to populate news automatically.
+- ``FEED_ENABLED``: Enable or disable dynamic index that reads an  RSS Feed to populate news automatically. (default: True)
+
+- ``STATIC_CONTENT``: Do not show post and RSS content, shows an static welcome page instead. (default: False)
+
+- ``CHANGELOG_ENABLED``: Show changelog tab
+
+- ``RAGCP_CHANGELOG``: Show RagCP commit messages to allow users stay up to date of what they can do with the CP. Requires CHANGELOG_ENABLED: True and GITHUB_TOKEN
 
 # Optional environment variables
 
@@ -93,6 +99,8 @@ List of other environment variables you need to configure in order to use option
 
 - `DJANGO_SETTINGS_MODULE`: Leave blank for default, refer to Django documentation to use this feature
 
+- ``GITHUB_TOKEN``: Github Token used to read RagCP changelog
+
 **Note: If you are going to run RagCP by building a Docker image, set all environment variables on the ``Dockerfile`` instead**.
 
 # Change the index page
@@ -102,6 +110,10 @@ You can change the content that is displayed on the homepage, to do so you have 
 Content of the index page is located at:
 
 `./ragcp/templates/index.html`
+
+Static index content is located at
+
+`./ragcp/templates/welcome_content.html`
 
 In future versions, you'll be able to customize it from the CP (Django Admin).
 
