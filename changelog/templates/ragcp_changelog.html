@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block masterhead %}
+    <h1>RagCP Changelog</h1>
+    <h2>Viewing detailed list of updates</h2>
+{% endblock %}
+
+{% block body %}
+
+    {% if commits %}
+
+        <div class="card border-0 shadow mb-4">
+            <div class="card-body">
+                {% for commit in commits %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="{{ commit.avatar }}" height="24px">
+                            <small>
+                                <a href="{{ commit.url }}">
+                                    {{ commit.username }}
+                                </a>
+                            </small>
+                            <br>
+                            {{ commit.message }}
+                            <br><br>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        There are no commits
+    {% endif %}
+
+{% endblock %}
