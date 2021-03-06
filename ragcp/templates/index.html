@@ -15,16 +15,18 @@
                 Create new post
             </button>
         </a>
-        <a href="{% url 'content:get_feed' %}">
-            <button type="button" class="btn btn-sm btn-block btn-secondary"
-                    style="margin-bottom: 5px;">
-                <i class="em em-satellite" aria-role="presentation"
-                   aria-label=""></i>
-                Fetch from RSS Feed
-            </button>
-        </a>
+        {% if settings.FEED_ENABLED %}
+            <a href="{% url 'content:get_feed' %}">
+                <button type="button" class="btn btn-sm btn-block btn-secondary"
+                        style="margin-bottom: 5px;">
+                    <i class="em em-satellite" aria-role="presentation"
+                       aria-label=""></i>
+                    Fetch from RSS Feed
+                </button>
+            </a>
+        {% endif %}
     {% endif %}
-    {% if posts %}
+    {% if posts and not settings.STATIC_INDEX %}
         {% for post in posts %}
             <div class="row">
                 <div class="col-md-12">

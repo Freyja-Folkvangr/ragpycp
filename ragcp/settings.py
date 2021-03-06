@@ -180,9 +180,12 @@ sentry_sdk.init(
 )
 
 
-# Features configured through environment variables
-FEED_ADDRESS = get_rss_address()
-
 # User settings
 FEED_ENABLED = True
+CHANGELOG_ENABLED = True
+RAGCP_CHANGELOG = True
+STATIC_INDEX = False
 
+# Features configured through environment variables
+FEED_ADDRESS = get_rss_address() if FEED_ENABLED else None
+GITHUB_TOKEN = get_configuration('GITHUB_TOKEN') if CHANGELOG_ENABLED else None
