@@ -28,6 +28,7 @@ class Update(models.Model):
     patcher = models.ForeignKey(Patcher, on_delete=models.CASCADE, help_text='Patch client that will receive the update')
     created = models.DateTimeField(auto_now_add=True)
     filename = models.CharField(max_length=128, null=False, help_text='.thor filename')
+    changelog = models.CharField(max_length=256, default=None, null=True, help_text='What is this update about?')
 
     class Meta:
         unique_together = [['filename', 'patcher']]
