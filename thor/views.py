@@ -1,6 +1,9 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
+from django.utils import timezone
+
 from thor.models import Patcher, CustomClient, Update
 
 
@@ -21,7 +24,22 @@ def config(request, patcher_name):
     return render(request, 'main_config.html', context)
 
 def patch_list(request, patcher_name):
-    patches = Update.objects.filter(patcher__name=patcher_name)
+    """
+
+    :param request: django request
+    :param patcher_name: str name of the Patcher object
+
+    This function will query updates in order to render the patch list that is being read by Thor Patcher.
+    The available_since value must be None:now or greater or equal than now in current timezone
+
+    :return: render patch list
+    """
+    now = timezone.now()
+
+    query = Q(patcher__name=patcher_name)
+    query &= (Q(available_since=None) | Q(available_since__gte=now))
+
+    patches = Update.objects.filter(query)
 
     context = {
         'patches': patches

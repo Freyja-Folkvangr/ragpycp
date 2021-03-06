@@ -29,6 +29,7 @@ class Update(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     filename = models.CharField(max_length=128, null=False, help_text='.thor filename')
     changelog = models.CharField(max_length=256, default=None, null=True, help_text='What is this update about?')
+    available_since = models.DateTimeField(null=True, default=None, help_text='Date and time when this update will start rolling out. NULL = now, use server timezone')
 
     class Meta:
         unique_together = [['filename', 'patcher']]
