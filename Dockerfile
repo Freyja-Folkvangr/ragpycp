@@ -20,5 +20,6 @@ ENV DATABASE_PASSWORD=""
 ENV DATABASE_PORT=""
 ENV HOST="freyja-ro.xyz"
 ENV DJANGO_SETTINGS_MODULE="ragcp.settings"
+ENV GITHUB_TOKEN=""
 
 ENTRYPOINT python manage.py runserver 0.0.0.0:8000
