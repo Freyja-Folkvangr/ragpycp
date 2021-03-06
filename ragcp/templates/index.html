@@ -15,7 +15,7 @@
                 Create new post
             </button>
         </a>
-        {% if settings.FEED_ENABLED %}
+        {% if FEED_ENABLED %}
             <a href="{% url 'content:get_feed' %}">
                 <button type="button" class="btn btn-sm btn-block btn-secondary"
                         style="margin-bottom: 5px;">
@@ -26,7 +26,7 @@
             </a>
         {% endif %}
     {% endif %}
-    {% if posts and not settings.STATIC_INDEX %}
+    {% if posts and not STATIC_INDEX %}
         {% for post in posts %}
             <div class="row">
                 <div class="col-md-12">
