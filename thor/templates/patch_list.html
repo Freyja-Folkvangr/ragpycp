@@ -1,5 +1,8 @@
 {% if patches %}
 {% for patch in patches %}
+{% if patch.changelog %}
+// {{ patch.changelog }}
+{% endif %}
 {{ patch.id }} {{ patch.filename }}
 {% endfor %}
 {% else %}
