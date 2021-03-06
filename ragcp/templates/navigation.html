@@ -25,6 +25,10 @@
                         {% include "navigation_ragnarok.html" %}{% endblock %}
                 {% endif %}
 
+                {% if CHANGELOG_ENABLED %}
+                    {% include 'navigation_changelog.html' %}
+                {% endif %}
+
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'servicedesk:tickets' %}">
                         <i class="em em-male-technologist"

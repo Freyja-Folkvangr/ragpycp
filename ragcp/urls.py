@@ -36,5 +36,6 @@ urlpatterns = [
     path('servicedesk/', include('servicedesk.urls')),
     path('content/', include('content.urls')),
     path('thor/', include('thor.urls')),
+    path('changelog/', include('changelog.urls')),
 
 ]

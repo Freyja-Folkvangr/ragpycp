@@ -1,0 +1,17 @@
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="rankingDropdown"
+       role="button"
+       data-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false">
+        <i class="em em-label" aria-role="presentation" aria-label=""></i>
+        Changelog
+    </a>
+    <div class="dropdown-menu" aria-labelledby="rankingDropdown">
+        {% if RAGCP_CHANGELOG %}
+            <a class="dropdown-item" href="{% url 'changelog:ragcp_changelog' %}">
+                <i class="em em-newspaper" aria-role="presentation" aria-label="NEWSPAPER"></i>
+                RagCP
+            </a>
+        {% endif %}
+    </div>
+</li>
