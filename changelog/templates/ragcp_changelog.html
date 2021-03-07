@@ -14,15 +14,17 @@
                 {% for commit in commits %}
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="{{ commit.avatar }}" height="24px">
-                            <small>
-                                <a href="{{ commit.url }}">
-                                    {{ commit.username }}
-                                </a>
-                            </small>
-                            <br>
-                            {{ commit.message }}
-                            <br><br>
+                            <pre style="font-size: 12px!important; font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace; margin-bottom: 0px; margin-top: 1em;">{{ commit.message }}</pre>
+                            <div class="d-flex flex-items-center mt-1">
+                                <img src="{{ commit.avatar }}" height="24px">
+                                <div style="font-size: 12px!important;">
+                                    <a href="{{ commit.url }}">
+                                        {{ commit.username }}
+                                    </a>
+                                    {{ commit.date }}
+                                </div>
+                            </div>
+                            <hr class="my-2">
                         </div>
                     </div>
                 {% endfor %}
