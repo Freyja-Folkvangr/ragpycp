@@ -89,6 +89,8 @@ Open file ```./ragcp/settings.py``` and search the string ```# User settings```,
 
 - ``RAGCP_CHANGELOG``: Show RagCP commit messages to allow users stay up to date of what they can do with the CP. Requires CHANGELOG_ENABLED: True and GITHUB_TOKEN
 
+- ``RATHENA_CHANGELOG``: Show rAthena commit messages to allow users stay up to date of what have changed on the server. Requires CHANGELOG_ENABLED: True and GITHUB_TOKEN
+
 # Optional environment variables
 
 List of other environment variables you need to configure in order to use optional features.
@@ -100,6 +102,10 @@ List of other environment variables you need to configure in order to use option
 - `DJANGO_SETTINGS_MODULE`: Leave blank for default, refer to Django documentation to use this feature
 
 - ``GITHUB_TOKEN``: Github Token used to read RagCP changelog
+
+- ``RAGCP_REPO_NAME``: Defines the name of the repository where RagCP will read commit messages to display a changelog.
+
+- ``RATHENA_REPO_NAME``: Defines the name of the repository where RagCP will read commit messages to display a changelog.
 
 **Note: If you are going to run RagCP by building a Docker image, set all environment variables on the ``Dockerfile`` instead**.
 

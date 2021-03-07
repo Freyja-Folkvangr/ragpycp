@@ -21,5 +21,7 @@ ENV DATABASE_PORT=""
 ENV HOST="freyja-ro.xyz"
 ENV DJANGO_SETTINGS_MODULE="ragcp.settings"
 ENV GITHUB_TOKEN=""
+ENV RAGCP_REPO_NAME="ragpycp"
+ENV RATHENA_REPO_NAME="rathena"
 
 ENTRYPOINT python manage.py runserver 0.0.0.0:8000
