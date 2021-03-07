@@ -1,0 +1,8 @@
+<div class="card border-0 shadow mb-4">
+    <div class="card-body">
+        {% for commit in commits %}
+            {% include 'commit.html' %}
+            <hr class="my-2">
+        {% endfor %}
+    </div>
+</div>

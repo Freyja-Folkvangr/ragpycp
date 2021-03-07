@@ -13,5 +13,11 @@
                 RagCP
             </a>
         {% endif %}
+        {% if RATHENA_CHANGELOG %}
+            <a class="dropdown-item" href="{% url 'changelog:rathena_changelog' %}">
+                <i class="em em-newspaper" aria-role="presentation" aria-label="NEWSPAPER"></i>
+                rAthena
+            </a>
+        {% endif %}
     </div>
 </li>
