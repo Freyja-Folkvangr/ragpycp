@@ -143,7 +143,3 @@ The command collects the static files located on ``STATIC_ROOT`` path configured
 
 We haven't tested that setting outside the Heroku environment, but you can take a try. Let us know your results.
 
-# Demo
-I'm creating a Ragnarok server to play with friends, we'll be using RagCP, so feel free to take a look :)
-
-[Freyja](https://freyja-ragcp.herokuapp.com/)
