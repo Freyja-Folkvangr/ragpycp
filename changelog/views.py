@@ -1,5 +1,5 @@
 from django.http import HttpResponseServerError
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
 
 # Create your views here.
 from changelog.utils import get_simplified_commits

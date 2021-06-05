@@ -1,7 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from thor.models import Patcher, CustomClient, Update
+from thor.models import CustomClient, Patcher, Update
+
 
 class PatcherAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'allow', 'force_start', 'policy_msg']

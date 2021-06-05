@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Patcher(models.Model):
     name = models.CharField(max_length=128, null=True, default=True, db_index=True, help_text='Friendly name, used as index for security reasons, use dashes instead of spaces, avoid special characters and use an URL-friendly name')

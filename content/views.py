@@ -1,7 +1,7 @@
 import feedparser
 from django.db.models import Q
 from django.http import Http404
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 
 # Create your views here.
 from content.forms import new_entry_form, write_response_form

@@ -1,4 +1,5 @@
 from django.db import models
+
 from ragcp.models import Login
 
 # Create your models here.
