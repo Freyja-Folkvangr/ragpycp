@@ -1,8 +1,9 @@
 from base64 import b64encode
 
-from django.db import models
-from users.models import Login
 import requests
+from django.db import models
+
+from users.models import Login
 
 # Create your models here.
 

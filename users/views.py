@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect
+import random
 
+from django.shortcuts import redirect, render
 # Create your views here.
 # users/views.py
 from django.urls import reverse_lazy
 from django.views import generic
-import random
 
 from char.models import Char
+
 from .forms import CustomUserCreationForm
 from .models import Login
 

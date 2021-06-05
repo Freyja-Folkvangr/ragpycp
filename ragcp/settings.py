@@ -10,13 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import os
 import logging
-
-from ragcp.utils import get_configuration, get_rss_address
+import os
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+
+from ragcp.utils import get_configuration, get_rss_address
 
 logger = logging.getLogger(__name__)
 

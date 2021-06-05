@@ -1,7 +1,10 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from servicedesk.models import Ticket, Replies
+from django.shortcuts import redirect, render
+
+from servicedesk.models import Replies, Ticket
+
 from .forms import new_ticket_form, new_ticket_reply
+
 
 # Create your views here.
 @login_required

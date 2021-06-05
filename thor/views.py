@@ -1,10 +1,9 @@
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404
-
+from django.shortcuts import get_object_or_404, render
 # Create your views here.
 from django.utils import timezone
 
-from thor.models import Patcher, CustomClient, Update
+from thor.models import CustomClient, Patcher, Update
 
 
 def config(request, patcher_name):
